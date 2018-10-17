@@ -1,10 +1,10 @@
-WHILE { WhiLe } while wh}ile
-"Hola Mundo" while
-"comparar whiles:" 'WHILE' WHILE "WHILE"
+MIENTRAS { MienTras } mientras mien}tras
+"Hola Mundo" mientras
+"comparar mientras:" 'MIENTRas' MIENTRAS "MIENTRAS"
 "comparar numeros:" 123.00 .023 123 . 12da3.123
 
-while }
-if If
+mientras }
+si Si
 0#8
 12#8
 3F#16

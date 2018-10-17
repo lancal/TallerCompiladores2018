@@ -3,7 +3,7 @@ import re
 import os
 import codecs
 
-reserved = ['ELSE','IF','INT','RETURN','WHILE']
+reserved = ['SINO','SI','ENT','RET','MIENTRAS','VACUO','REP']
 
 tokens = reserved + ['ID','PLUS','MINUS','TIMES','DIVIDE','LT','EQ','ASSIGN','LPARENT','RPARENT','LBRACKET','RBRACKET',
                      'LTCOMMENT', 'RTCOMMENT','COMMA','SEMICOLON','AND','NOT','NUMBER']
@@ -30,33 +30,38 @@ t_NOT = '!'
 
 
 
-def t_ELSE(t):
-    r'(?i)else'
+def t_SINO(t):
+    r'(?i)sino'
     # El modificador (?i) es para aceptar mayusculas y minusculas.
     return t
 
-def t_IF(t):
-    r'(?i)if'
+def t_SI(t):
+    r'(?i)si'
     # El modificador (?i) es para aceptar mayusculas y minusculas.
     return t
 
-def t_INT(t):
-    r'(?i)int'
+def t_ENT(t):
+    r'(?i)ent'
     # El modificador (?i) es para aceptar mayusculas y minusculas.
     return t
 
-def t_VOID(t):
-    r'(?i)void'
+def t_VACUO(t):
+    r'(?i)vacuo'
     # El modificador (?i) es para aceptar mayusculas y minusculas.
     return t
 
-def t_RETURN(t):
-    r'(?i)return'
+def t_RET(t):
+    r'(?i)ret'
     # El modificador (?i) es para aceptar mayusculas y minusculas.
     return t
 
-def t_WHILE(t):
-    r'(?i)while'
+def t_MIENTRAS(t):
+    r'(?i)mientras'
+    # El modificador (?i) es para aceptar mayusculas y minusculas.
+    return t
+
+def t_REP(t):
+    r'(?i)rep'
     # El modificador (?i) es para aceptar mayusculas y minusculas.
     return t
 
