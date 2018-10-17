@@ -6,7 +6,7 @@ import codecs
 reserved = ['ELSE','IF','INT','RETURN','WHILE']
 
 tokens = reserved + ['ID','PLUS','MINUS','TIMES','DIVIDE','LT','EQ','ASSIGN','LPARENT','RPARENT','LBRACKET','RBRACKET',
-                     'LTCOMMENT', 'RTCOMMENT','COMMA','SEMICOLON','AND','NOT']
+                     'LTCOMMENT', 'RTCOMMENT','COMMA','SEMICOLON','AND','NOT','NUMBER']
 
 t_ignore = ' \t\n'  # Ignorar esto!
 t_PLUS = r'\+'
@@ -72,6 +72,14 @@ def t_NEWLINE(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
     # Salto de linea (contar)
+    return t
+
+def t_NUMBER(t):
+
+    #r'( ([0-7]+\#8) | ([0-9]+) | (([0-9]+)?([a-f]*[0-9]*)+\#16))'
+
+    r'( ([0-7]+\#8) | (([0-9]+)?([a-f]*[0-9]*)+\#16 | ([0-9]+) )  )'
+
     return t
 
 
