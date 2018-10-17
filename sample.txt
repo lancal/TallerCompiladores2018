@@ -17,7 +17,7 @@ si Si
 WHILE
 sino
 ab$cc
-a$1, a2, ab$Cde, abCe$a12, acbe
+a$1 a2, ab$Cde, abCe$a12, acbe
 ab$$cc
 &&
 !
@@ -26,3 +26,5 @@ ab$$cc
 ()
 <>
 =
+#10
+##adfasd10

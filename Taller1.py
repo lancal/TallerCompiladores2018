@@ -6,7 +6,7 @@ import codecs
 reserved = ['SINO','SI','ENT','RET','MIENTRAS','VACUO','REP','LT','EQ']
 
 tokens = reserved + ['ID','PLUS','MINUS','TIMES','DIVIDE','ASSIGN','LPARENT','RPARENT','LBRACKET','RBRACKET',
-                     'LTCOMMENT', 'RTCOMMENT','COMMA','SEMICOLON','AND','NOT','NUMBER']
+                     'LTCOMMENT', 'RTCOMMENT','COMMA','SEMICOLON','AND','NOT','NUMBER','SLCOMMENT']
 
 t_ignore = ' \t\n'  # Ignorar esto!
 t_PLUS = r'\+'
@@ -87,6 +87,14 @@ def t_NUMBER(t):
 
     r'( ([0-7]+\#8) | (([0-9]+)?([a-f]*[0-9]*)+\#16 | ([0-9]+) )  )'
 
+    return t
+
+# SLCOMMENT es un comentario de UNA linea.
+contComment = 0
+def t_SLCOMMENT(t):
+    r'\#.+'
+    global contComment
+    contComment += 1
     return t
 
 
