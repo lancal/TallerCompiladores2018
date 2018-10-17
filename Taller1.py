@@ -3,9 +3,9 @@ import re
 import os
 import codecs
 
-reserved = ['SINO','SI','ENT','RET','MIENTRAS','VACUO','REP']
+reserved = ['SINO','SI','ENT','RET','MIENTRAS','VACUO','REP','LT','EQ']
 
-tokens = reserved + ['ID','PLUS','MINUS','TIMES','DIVIDE','LT','EQ','ASSIGN','LPARENT','RPARENT','LBRACKET','RBRACKET',
+tokens = reserved + ['ID','PLUS','MINUS','TIMES','DIVIDE','ASSIGN','LPARENT','RPARENT','LBRACKET','RBRACKET',
                      'LTCOMMENT', 'RTCOMMENT','COMMA','SEMICOLON','AND','NOT','NUMBER']
 
 t_ignore = ' \t\n'  # Ignorar esto!
@@ -66,8 +66,10 @@ def t_REP(t):
     return t
 
 def t_ID(t):
-    r'([a-zA-Z]){1}([$a-zA-Z0-9])+'
-    #r'([a-zA-Z]$)?(([a-zA-Z])+($)?)*(0-9)*'
+    #r'([a-zA-Z]){1}([$a-zA-Z0-9])+'
+    #r'([a-zA-Z])$?(([a-zA-Z])+$?)*(0-9)*'
+    r'( ([a-z])(\$?)([a-zA-Z]+(\$?))*[0-9]* )'
+
     if t.value.upper() in reserved:
         t.value = t.value.upper()
         t.type = t.value

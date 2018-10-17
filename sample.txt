@@ -11,3 +11,11 @@ si Si
 3f#16
 3
 231
+5 LT 8
+9 EQ 9
+1 + 1
+WHILE
+sino
+ab$cc
+a$1, a2, ab$Cde, abCe$a12, acbe
+ab$$cc
