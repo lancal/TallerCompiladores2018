@@ -1,7 +1,6 @@
 import ply.lex as lex
 import re
-import os
-import codecs
+
 
 reserved = ['SINO','SI','ENT','RET','MIENTRAS','VACUO','REP','LT','EQ']
 
@@ -65,6 +64,14 @@ def t_REP(t):
     # El modificador (?i) es para aceptar mayusculas y minusculas.
     return t
 
+# SLCOMMENT es un comentario de UNA linea.
+contComment = 0
+def t_SLCOMMENT(t):
+    r'\#.+'
+    global contComment
+    contComment += 1
+    return t
+
 def t_ID(t):
     #r'([a-zA-Z]){1}([$a-zA-Z0-9])+'
     #r'([a-zA-Z])$?(([a-zA-Z])+$?)*(0-9)*'
@@ -88,18 +95,6 @@ def t_NUMBER(t):
     r'( ([0-7]+\#8) | (([0-9]+)?([a-f]*[0-9]*)+\#16 | ([0-9]+) )  )'
 
     return t
-
-# SLCOMMENT es un comentario de UNA linea.
-contComment = 0
-def t_SLCOMMENT(t):
-    r'\#.+'
-    global contComment
-    contComment += 1
-    return t
-
-
-
-
 
 def t_error(t):
     print("Illegal character '{0}' at line {1}".format(t.value[0], t.lineno))
