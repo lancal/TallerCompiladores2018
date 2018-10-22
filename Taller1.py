@@ -30,37 +30,37 @@ t_NOT = '!'
 
 
 def t_SINO(t):
-    r'(?i)sino'
+    r'(?i:sino)'
     # El modificador (?i) es para aceptar mayusculas y minusculas.
     return t
 
 def t_SI(t):
-    r'(?i)si'
+    r'(?i:si)'
     # El modificador (?i) es para aceptar mayusculas y minusculas.
     return t
 
 def t_ENT(t):
-    r'(?i)ent'
+    r'(?i:ent)'
     # El modificador (?i) es para aceptar mayusculas y minusculas.
     return t
 
 def t_VACUO(t):
-    r'(?i)vacuo'
+    r'(?i:vacuo)'
     # El modificador (?i) es para aceptar mayusculas y minusculas.
     return t
 
 def t_RET(t):
-    r'(?i)ret'
+    r'(?i:ret)'
     # El modificador (?i) es para aceptar mayusculas y minusculas.
     return t
 
 def t_MIENTRAS(t):
-    r'(?i)mientras'
+    r'(?i:mientras)'
     # El modificador (?i) es para aceptar mayusculas y minusculas.
     return t
 
 def t_REP(t):
-    r'(?i)rep'
+    r'(?i:rep)'
     # El modificador (?i) es para aceptar mayusculas y minusculas.
     return t
 
@@ -76,18 +76,30 @@ def t_NUMBER(t):
 
     #r'( ([0-7]+\#8) | ([0-9]+) | (([0-9]+)?([a-f]*[0-9]*)+\#16))'
 
-    r'( ([0-7]+\#8) | (([0-9]+)?([a-f]*[0-9]*)+\#16 | ([0-9]+) )  )'
+    #r'( ([0-7]+\#8) | (([0-9]+)?(([a-f]*)![0-9]*)+\#16 | ([0-9]+) )  )'
+
+    #r'( ([0-7]+\#8) | (([0-9]+)?([a-f]+)+\#16 | ([0-9]+) )  )'
+
+    r'( ([0-7]+\#8) | (([0-9a-f])+\#16 | ([0-9]+) )  )'
+
 
     return t
 
 def t_ID(t):
     #r'([a-zA-Z]){1}([$a-zA-Z0-9])+'
     #r'([a-zA-Z])$?(([a-zA-Z])+$?)*(0-9)*'
+    #r'( (  [a-z]+\$ ( [a-zA-Z]+\$ )* [0-9]* )  )'
+
+    #r'( ([a-z]+\$) | ([a-z]+[A-Z]*\$[a-z]+[A-Z]+) ) '
+
+
+    #original r
     r'( ([a-z])(\$?)([a-zA-Z]+(\$?))*[0-9]* )'
 
     if t.value.upper() in reserved:
         t.value = t.value.upper()
         t.type = t.value
+
     return t
 
 def t_NEWLINE(t):
