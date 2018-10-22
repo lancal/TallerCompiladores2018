@@ -99,6 +99,8 @@ def t_SLCOMMENT(t):
 
 
 
+
+
 def t_error(t):
     print("Illegal character '{0}' at line {1}".format(t.value[0], t.lineno))
     # Tratamiento de errores.
