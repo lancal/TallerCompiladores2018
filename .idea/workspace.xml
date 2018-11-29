@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="40871ab4-8f55-47c9-9580-c3298558555e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/dibujar_AST_visitor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nodos.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/parser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Taller1.py" beforeDir="false" afterPath="$PROJECT_DIR$/scanner.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample.txt" beforeDir="false" afterPath="$PROJECT_DIR$/sample.pp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dibujar_AST_visitor.py" beforeDir="false" afterPath="$PROJECT_DIR$/dibujar_AST_visitor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nodos.py" beforeDir="false" afterPath="$PROJECT_DIR$/nodos.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/parser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner.py" beforeDir="false" afterPath="$PROJECT_DIR$/scanner.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,7 +51,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="402" />
-          <entry key="Python" value="1509" />
+          <entry key="Python" value="2240" />
         </counts>
       </usages-collector>
     </session>
@@ -62,25 +61,25 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scanner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1322">
-              <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+            <state relative-caret-position="92">
+              <caret line="82" column="9" lean-forward="true" selection-start-line="82" selection-start-column="9" selection-end-line="82" selection-end-column="9" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
-                <marker date="1542911694769" expanded="true" signature="1747:1753" ph="..." />
-                <marker date="1542911694769" expanded="true" signature="2512:2514" ph="..." />
-                <marker date="1542911694769" expanded="true" signature="2701:2703" ph="..." />
-                <marker date="1542911694769" expanded="true" signature="2836:2838" ph="..." />
-                <marker date="1542911694769" expanded="true" signature="2836:2839" ph="..." />
+                <marker date="1543525008284" expanded="true" signature="1741:1747" ph="..." />
+                <marker date="1543525008284" expanded="true" signature="2506:2508" ph="..." />
+                <marker date="1543525008284" expanded="true" signature="2695:2697" ph="..." />
+                <marker date="1543525008284" expanded="true" signature="2830:2832" ph="..." />
+                <marker date="1543525008284" expanded="true" signature="2830:2833" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+            <state relative-caret-position="-7">
+              <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
               <folding>
                 <element signature="e#15#38#0" expanded="true" />
               </folding>
@@ -90,12 +89,20 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dibujar_AST_visitor.py">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="579">
+              <caret line="66" column="18" selection-start-line="66" selection-start-column="18" selection-end-line="66" selection-end-column="18" />
+            </state>
+          </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nodos.py">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="488">
+              <caret line="59" column="48" selection-start-line="59" selection-start-column="48" selection-end-line="59" selection-end-column="48" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -116,9 +123,10 @@
         <option value="$PROJECT_DIR$/lexer.py" />
         <option value="$PROJECT_DIR$/sample.txt" />
         <option value="$PROJECT_DIR$/Taller1.py" />
-        <option value="$PROJECT_DIR$/nodos.py" />
-        <option value="$PROJECT_DIR$/dibujar_AST_visitor.py" />
         <option value="$PROJECT_DIR$/parser.py" />
+        <option value="$PROJECT_DIR$/dibujar_AST_visitor.py" />
+        <option value="$PROJECT_DIR$/scanner.py" />
+        <option value="$PROJECT_DIR$/nodos.py" />
       </list>
     </option>
   </component>
@@ -378,34 +386,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nodos.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dibujar_AST_visitor.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/scanner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1322">
-          <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+        <state relative-caret-position="92">
+          <caret line="82" column="9" lean-forward="true" selection-start-line="82" selection-start-column="9" selection-end-line="82" selection-end-column="9" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
-            <marker date="1542911694769" expanded="true" signature="1747:1753" ph="..." />
-            <marker date="1542911694769" expanded="true" signature="2512:2514" ph="..." />
-            <marker date="1542911694769" expanded="true" signature="2701:2703" ph="..." />
-            <marker date="1542911694769" expanded="true" signature="2836:2838" ph="..." />
-            <marker date="1542911694769" expanded="true" signature="2836:2839" ph="..." />
+            <marker date="1543525008284" expanded="true" signature="1741:1747" ph="..." />
+            <marker date="1543525008284" expanded="true" signature="2506:2508" ph="..." />
+            <marker date="1543525008284" expanded="true" signature="2695:2697" ph="..." />
+            <marker date="1543525008284" expanded="true" signature="2830:2832" ph="..." />
+            <marker date="1543525008284" expanded="true" signature="2830:2833" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+        <state relative-caret-position="-7">
+          <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dibujar_AST_visitor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="579">
+          <caret line="66" column="18" selection-start-line="66" selection-start-column="18" selection-end-line="66" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodos.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="488">
+          <caret line="59" column="48" selection-start-line="59" selection-start-column="48" selection-end-line="59" selection-end-column="48" />
         </state>
       </provider>
     </entry>

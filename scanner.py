@@ -7,7 +7,7 @@ from os import listdir
 reserved = ['SINO','SI','ENT','RET','MIENTRAS','VACUO','REP','LT','EQ']
 
 tokens = reserved + ['ID','PLUS','MINUS','TIMES','DIVIDE','ASSIGN','LPARENT','RPARENT','LBRACKET','RBRACKET',
-                     'LTCOMMENT', 'RTCOMMENT','COMMA','SEMICOLON','AND','NOT','NUMBER','SLCOMMENT','MLCOMMENT']
+                     'LTCOMMENT', 'RTCOMMENT','COMMA','SEMICOLON','AND','NOT','NUM','SLCOMMENT','MLCOMMENT']
 
 t_ignore = ' \t\n'  # Ignorar esto!
 t_PLUS = r'\+'
@@ -80,7 +80,7 @@ def t_MLCOMMENT(t):
     contComment += 1
     pass
 
-def t_NUMBER(t):
+def t_NUM(t):
 
     #r'( ([0-7]+\#8) | ([0-9]+) | (([0-9]+)?([a-f]*[0-9]*)+\#16))'
 
