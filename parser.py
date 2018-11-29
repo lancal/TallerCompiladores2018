@@ -37,8 +37,76 @@ def p_declaracion2(p):
 
 def p_declaracion_var(p):
     """declaracion_var : def_tipo ID SEMICOLON"""
-    p[0] = nodos
+    p[0] = nodos.type_esp_id_num(p[1],p[2])
 
+def p_declaracion_var2(p):
+    """declaracion_var : def_tipo ID LTCOMMENT NUM RTCOMMENT SEMICOLON"""
+    p[0] = nodos.type_esp_id_num(p[1],p[2],p[4])
+
+def p_def_tipo(p):
+    """def_tipo : VACUO"""
+    p[0] = p[1]
+
+def p_def_tipo2(p):
+    """def_tip : ENT"""
+    p[0] = p[1]
+
+def p_declaracion_fun(p):
+    """declaracion_fun : def_tipo ID LBRACKET parametros RBRACKET sentencia_comp'"""
+    p[0] = nodos.def_tipo_id_parametros_sentencia_comp(p[1],p[2],p[4],p[6])
+
+def p_parametros(p):
+    """parametros : list_parametros"""
+    p[0] = p[1]
+
+def p_parametros2(p):
+    """parametros : VACUO"""
+    p[0] = [nodos.nodoParametros(p[1])]
+
+
+def p_lista_parametros(p):
+    """list_parametros : lista_parametros COMMA param"""
+    if isinstance(p[1], list):
+        p[0] = p[1]
+    else:
+        p[0] = [p[1]]
+
+    if isinstance(p[3], list):
+        p[0].extend(p[3])
+    else:
+        p[0].extend([p[3]])
+
+def p_lista_parametros2(p):
+    """list_parametros : param"""
+    p[0] = p[1]
+
+def p_param(p):
+    """param : def_tipo ID"""
+    p[0] = nodos.nodoParametros(p[1],p[2])
+
+def p_param2(p):
+    """param : def_tipo ID LTCOMMENT RTCOMMENT"""
+    p[0] = nodos.nodoParametros(p[1], p[2], is_vector=True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def p_vacio(p):
+    'vacio :'
+    p[0] = nodos.nodoVacio()
+    pass
 
 
 

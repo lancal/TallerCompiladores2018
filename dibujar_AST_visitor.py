@@ -66,3 +66,19 @@ class Visitor(object):
 
         #completar
         print(declaracion_var_p)
+
+    def visit_def_tipo_id_parametros_sentencia_comp(self,declaracion_fun_p):
+
+        # completar
+        print(declaracion_fun_p)
+
+    def visit_nodoParametros(self,parametros_p):
+
+        # completar
+        print(parametros_p)
+
+    def visit_nodoVacio(self,vacio_t):
+
+        # completar
+        print(vacio_t)
+

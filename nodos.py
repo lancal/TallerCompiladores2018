@@ -65,3 +65,35 @@ class type_esp_id_num(Nodo):
 
     def accept(self,visitor):
         visitor.visit_type_esp_id_num(self)
+
+class def_tipo_id_parametros_sentencia_comp(Nodo):
+
+    def __init__(self,def_tipo_p,ID_p,parametros_p,sentencia_comp_p):
+
+        self.def_tipo_p = def_tipo_p
+        self.ID_p = ID_p
+        self.paramtros_p = parametros_p
+        self.sentencia_comp_p = sentencia_comp_p
+
+    def accept(self,visitor):
+
+        visitor.visit_def_tipo_id_parametros_sentencia_comp(self)
+
+class nodoParametros(Nodo):
+
+    def __init__(self,def_tipo_p,ID_p = None, is_vector = False):
+
+        self.def_tipo_p = def_tipo_p
+        self.ID_p = ID_p
+        self.is_vector = is_vector
+
+    def accept(self,visitor):
+        visitor.visit_nodoParametros(self)
+
+class nodoVacio():
+
+    def __init__(self):
+        self.name = 'vacio'
+
+    def accept(self,visitor):
+        visitor.visit_nodoVacio(self)
