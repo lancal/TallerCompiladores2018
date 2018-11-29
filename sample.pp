@@ -2,7 +2,6 @@ MIENTRAS { MienTras } mientras mien}tras
 "Hola Mundo" mientras
 "comparar mientras:" 'MIENTRas' MIENTRAS "MIENTRAS"
 "comparar numeros:" 123.00 .023 123 . 12da3.123
-
 mientras }
 si Si
 0#8
@@ -44,3 +43,4 @@ aA$aA
 A#16
 a#16
 B
+*/0/*0*/0/*

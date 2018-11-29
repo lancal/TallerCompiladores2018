@@ -1,16 +1,18 @@
 import ply.lex as lex
 import re
+from os import listdir
+#import os.path
 
 
 reserved = ['SINO','SI','ENT','RET','MIENTRAS','VACUO','REP','LT','EQ']
 
 tokens = reserved + ['ID','PLUS','MINUS','TIMES','DIVIDE','ASSIGN','LPARENT','RPARENT','LBRACKET','RBRACKET',
-                     'LTCOMMENT', 'RTCOMMENT','COMMA','SEMICOLON','AND','NOT','NUMBER','SLCOMMENT']
+                     'LTCOMMENT', 'RTCOMMENT','COMMA','SEMICOLON','AND','NOT','NUMBER','SLCOMMENT','MLCOMMENT']
 
 t_ignore = ' \t\n'  # Ignorar esto!
 t_PLUS = r'\+'
 t_MINUS = r'\-'
-t_TIMES = r'\++'
+t_TIMES = r'\+\+'
 t_DIVIDE = r'\--'
 t_LT = r'LT'
 t_EQ = r'EQ'
@@ -70,7 +72,13 @@ def t_SLCOMMENT(t):
     r'\#.+'
     global contComment
     contComment += 1
-    return t
+    pass
+
+def t_MLCOMMENT(t):
+    r'(\*)(\/)([^*/])+(\/)(\*)'
+    global contComment
+    contComment += 1
+    pass
 
 def t_NUMBER(t):
 
@@ -118,8 +126,28 @@ def t_error(t):
 
 lexer = lex.lex()
 
-with open('sample.txt', 'r') as f:
-    contents = f.read()
-    lex.input(contents)
-    for tok in iter(lex.token, None):
-        print( repr(tok.type), repr(tok.value))
+def listarArchivoPP():
+
+    for carpeta in listdir("."):
+        if carpeta.endswith(".pp"):
+            print (carpeta)
+
+def ingresarArchivo(nombreArchivo):
+
+
+    with open(nombreArchivo, 'r') as f:
+        contents = f.read()
+        lex.input(contents)
+        for tok in iter(lex.token, None):
+            print( repr(tok.type), repr(tok.value))
+
+def main():
+
+    listarArchivoPP()
+
+    archivoNombre = input("Ingrese el nombre del archivo a leer: ")
+
+    ingresarArchivo(archivoNombre)
+
+if __name__ == "__main__":
+   	 main()
