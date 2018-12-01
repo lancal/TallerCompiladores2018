@@ -1,0 +1,92 @@
+Created by PLY version 3.10 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    SINO
+    SI
+    RET
+    MIENTRAS
+    REP
+    LT
+    EQ
+    PLUS
+    MINUS
+    TIMES
+    DIVIDE
+    ASSIGN
+    RPARENT
+    AND
+    NOT
+    SLCOMMENT
+    MLCOMMENT
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> lista_decl
+Rule 2     lista_decl -> lista_decl declaracion
+Rule 3     lista_decl -> declaracion
+Rule 4     declaracion -> declaracion_var
+Rule 5     declaracion -> declaracion_fun
+Rule 6     declaracion_var -> def_tipo ID SEMICOLON
+Rule 7     declaracion_var -> def_tipo ID LTCOMMENT NUM RTCOMMENT SEMICOLON
+Rule 8     def_tipo -> VACUO
+Rule 9     def_tipo -> ENT
+Rule 10    declaracion_fun -> def_tipo ID LBRACKET parametros RBRACKET sentencia_comp
+Rule 11    parametros -> lista_parametros
+Rule 12    parametros -> VACUO
+Rule 13    lista_parametros -> lista_parametros COMMA param
+Rule 14    lista_parametros -> param
+Rule 15    param -> def_tipo ID
+Rule 16    param -> def_tipo ID LTCOMMENT RTCOMMENT
+Rule 17    sentencia_comp -> LPARENT declaraciones_locales lista_sentencias
+Rule 18    vacio -> <empty>
+
+Terminals, with rules where they appear
+
+AND                  : 
+ASSIGN               : 
+COMMA                : 13
+DIVIDE               : 
+ENT                  : 9
+EQ                   : 
+ID                   : 6 7 10 15 16
+LBRACKET             : 10
+LPARENT              : 17
+LT                   : 
+LTCOMMENT            : 7 16
+MIENTRAS             : 
+MINUS                : 
+MLCOMMENT            : 
+NOT                  : 
+NUM                  : 7
+PLUS                 : 
+RBRACKET             : 10
+REP                  : 
+RET                  : 
+RPARENT              : 
+RTCOMMENT            : 7 16
+SEMICOLON            : 6 7
+SI                   : 
+SINO                 : 
+SLCOMMENT            : 
+TIMES                : 
+VACUO                : 8 12
+error                : 
+
+Nonterminals, with rules where they appear
+
+declaracion          : 2 3
+declaracion_fun      : 5
+declaracion_var      : 4
+declaraciones_locales : 17
+def_tipo             : 6 7 10 15 16
+lista_decl           : 1 2
+lista_parametros     : 11 13
+lista_sentencias     : 17
+param                : 13 14
+parametros           : 10
+programa             : 0
+sentencia_comp       : 10
+vacio                : 
+

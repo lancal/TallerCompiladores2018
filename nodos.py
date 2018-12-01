@@ -97,3 +97,14 @@ class nodoVacio():
 
     def accept(self,visitor):
         visitor.visit_nodoVacio(self)
+
+class nodoSentenciaComp(Nodo):
+
+    def __init__(self,declaraciones_locales_p,lista_sentencias_p):
+
+        self.declaraciones_locales_p = declaraciones_locales_p
+        self.lista_sentencias_p = lista_sentencias_p
+
+    def accept(self,visitor):
+        visitor.visit_nodoSentenciaComp(self)
+

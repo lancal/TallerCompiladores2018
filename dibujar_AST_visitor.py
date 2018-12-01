@@ -82,3 +82,8 @@ class Visitor(object):
         # completar
         print(vacio_t)
 
+    def visit_nodoSentenciaComp(self,sentencia_comp_p):
+
+        #completar
+        print(sentencia_comp_p)
+

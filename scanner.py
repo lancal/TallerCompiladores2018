@@ -150,4 +150,4 @@ def main():
     ingresarArchivo(archivoNombre)
 
 if __name__ == "__main__":
-   	 main()
+    main()
