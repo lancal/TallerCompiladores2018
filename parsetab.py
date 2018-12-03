@@ -5,9 +5,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'programaSINO SI ENT RET MIENTRAS VACUO REP LT EQ ID PLUS MINUS TIMES DIVIDE ASSIGN LPARENT RPARENT LBRACKET RBRACKET LTCOMMENT RTCOMMENT COMMA SEMICOLON AND NOT NUM SLCOMMENT MLCOMMENTprograma : lista_decl lista_decl : lista_decl declaracionlista_decl : declaraciondeclaracion : declaracion_vardeclaracion_var : def_tipo ID SEMICOLONdeclaracion_var : def_tipo ID LTCOMMENT NUM RTCOMMENT SEMICOLONdef_tipo : VACUOdef_tipo : ENTparametros : lista_parametrosparametros : VACUOlista_parametros : lista_parametros COMMA paramlista_parametros : paramparam : def_tipo IDparam : def_tipo ID LTCOMMENT RTCOMMENTvacio :'
+_lr_signature = 'programaSINO SI ENT RET MIENTRAS VACUO REP LT EQ ID PLUS MINUS TIMES DIVIDE ASSIGN LPARENT RPARENT LBRACKET RBRACKET LTCOMMENT RTCOMMENT COMMA SEMICOLON AND NOT NUM SLCOMMENT MLCOMMENTprograma : lista_decl lista_decl : lista_decl declaracionlista_decl : declaraciondeclaracion : declaracion_vardeclaracion : declaracion_fundeclaracion_var : def_tipo ID SEMICOLONdeclaracion_var : def_tipo ID LTCOMMENT NUM RTCOMMENT SEMICOLONdef_tipo : VACUOdef_tipo : ENTdeclaracion_fun : def_tipo ID LBRACKET parametros RBRACKETparametros : lista_parametrosparametros : VACUOlista_parametros : lista_parametros COMMA paramlista_parametros : paramparam : def_tipo IDparam : def_tipo ID LTCOMMENT RTCOMMENT'
     
-_lr_action_items = {'VACUO':([0,2,3,4,8,10,14,],[6,6,-3,-4,-2,-5,-6,]),'ENT':([0,2,3,4,8,10,14,],[7,7,-3,-4,-2,-5,-6,]),'$end':([1,2,3,4,8,10,14,],[0,-1,-3,-4,-2,-5,-6,]),'ID':([5,6,7,],[9,-7,-8,]),'SEMICOLON':([9,13,],[10,14,]),'LTCOMMENT':([9,],[11,]),'NUM':([11,],[12,]),'RTCOMMENT':([12,],[13,]),}
+_lr_action_items = {'VACUO':([0,2,3,4,5,9,11,13,22,23,24,],[7,7,-3,-4,-5,-2,-6,18,-10,7,-7,]),'ENT':([0,2,3,4,5,9,11,13,22,23,24,],[8,8,-3,-4,-5,-2,-6,8,-10,8,-7,]),'$end':([1,2,3,4,5,9,11,22,24,],[0,-1,-3,-4,-5,-2,-6,-10,-7,]),'ID':([6,7,8,15,18,],[10,-8,-9,21,-8,]),'SEMICOLON':([10,20,],[11,24,]),'LTCOMMENT':([10,21,],[12,25,]),'LBRACKET':([10,],[13,]),'NUM':([12,],[14,]),'RTCOMMENT':([14,25,],[20,27,]),'RBRACKET':([16,17,18,19,21,26,27,],[22,-11,-12,-14,-15,-13,-16,]),'COMMA':([17,19,21,26,27,],[23,-14,-15,-13,-16,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'programa':([0,],[1,]),'lista_decl':([0,],[2,]),'declaracion':([0,2,],[3,8,]),'declaracion_var':([0,2,],[4,4,]),'def_tipo':([0,2,],[5,5,]),}
+_lr_goto_items = {'programa':([0,],[1,]),'lista_decl':([0,],[2,]),'declaracion':([0,2,],[3,9,]),'declaracion_var':([0,2,],[4,4,]),'declaracion_fun':([0,2,],[5,5,]),'def_tipo':([0,2,13,23,],[6,6,15,15,]),'parametros':([13,],[16,]),'lista_parametros':([13,],[17,]),'param':([13,23,],[19,26,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -30,15 +30,16 @@ _lr_productions = [
   ('lista_decl -> lista_decl declaracion','lista_decl',2,'p_lista_decl','parser.py',15),
   ('lista_decl -> declaracion','lista_decl',1,'p_lista_decl2','parser.py',27),
   ('declaracion -> declaracion_var','declaracion',1,'p_declaracion','parser.py',31),
+  ('declaracion -> declaracion_fun','declaracion',1,'p_declaracion2','parser.py',35),
   ('declaracion_var -> def_tipo ID SEMICOLON','declaracion_var',3,'p_declaracion_var','parser.py',39),
   ('declaracion_var -> def_tipo ID LTCOMMENT NUM RTCOMMENT SEMICOLON','declaracion_var',6,'p_declaracion_var2','parser.py',43),
   ('def_tipo -> VACUO','def_tipo',1,'p_def_tipo','parser.py',47),
   ('def_tipo -> ENT','def_tipo',1,'p_def_tipo2','parser.py',51),
-  ('parametros -> lista_parametros','parametros',1,'p_parametros','parser.py',59),
-  ('parametros -> VACUO','parametros',1,'p_parametros2','parser.py',63),
-  ('lista_parametros -> lista_parametros COMMA param','lista_parametros',3,'p_lista_parametros','parser.py',68),
-  ('lista_parametros -> param','lista_parametros',1,'p_lista_parametros2','parser.py',80),
-  ('param -> def_tipo ID','param',2,'p_param','parser.py',84),
-  ('param -> def_tipo ID LTCOMMENT RTCOMMENT','param',4,'p_param2','parser.py',88),
-  ('vacio -> <empty>','vacio',0,'p_vacio','parser.py',111),
+  ('declaracion_fun -> def_tipo ID LBRACKET parametros RBRACKET','declaracion_fun',5,'p_declaracion_fun','parser.py',55),
+  ('parametros -> lista_parametros','parametros',1,'p_parametros','parser.py',60),
+  ('parametros -> VACUO','parametros',1,'p_parametros2','parser.py',64),
+  ('lista_parametros -> lista_parametros COMMA param','lista_parametros',3,'p_lista_parametros','parser.py',69),
+  ('lista_parametros -> param','lista_parametros',1,'p_lista_parametros2','parser.py',81),
+  ('param -> def_tipo ID','param',2,'p_param','parser.py',85),
+  ('param -> def_tipo ID LTCOMMENT RTCOMMENT','param',4,'p_param2','parser.py',89),
 ]

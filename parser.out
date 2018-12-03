@@ -14,6 +14,7 @@ Unused terminals:
     TIMES
     DIVIDE
     ASSIGN
+    LPARENT
     RPARENT
     AND
     NOT
@@ -32,15 +33,13 @@ Rule 6     declaracion_var -> def_tipo ID SEMICOLON
 Rule 7     declaracion_var -> def_tipo ID LTCOMMENT NUM RTCOMMENT SEMICOLON
 Rule 8     def_tipo -> VACUO
 Rule 9     def_tipo -> ENT
-Rule 10    declaracion_fun -> def_tipo ID LBRACKET parametros RBRACKET sentencia_comp
+Rule 10    declaracion_fun -> def_tipo ID LBRACKET parametros RBRACKET
 Rule 11    parametros -> lista_parametros
 Rule 12    parametros -> VACUO
 Rule 13    lista_parametros -> lista_parametros COMMA param
 Rule 14    lista_parametros -> param
 Rule 15    param -> def_tipo ID
 Rule 16    param -> def_tipo ID LTCOMMENT RTCOMMENT
-Rule 17    sentencia_comp -> LPARENT declaraciones_locales lista_sentencias
-Rule 18    vacio -> <empty>
 
 Terminals, with rules where they appear
 
@@ -52,7 +51,7 @@ ENT                  : 9
 EQ                   : 
 ID                   : 6 7 10 15 16
 LBRACKET             : 10
-LPARENT              : 17
+LPARENT              : 
 LT                   : 
 LTCOMMENT            : 7 16
 MIENTRAS             : 
@@ -79,14 +78,288 @@ Nonterminals, with rules where they appear
 declaracion          : 2 3
 declaracion_fun      : 5
 declaracion_var      : 4
-declaraciones_locales : 17
 def_tipo             : 6 7 10 15 16
 lista_decl           : 1 2
 lista_parametros     : 11 13
-lista_sentencias     : 17
 param                : 13 14
 parametros           : 10
 programa             : 0
-sentencia_comp       : 10
-vacio                : 
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . lista_decl
+    (2) lista_decl -> . lista_decl declaracion
+    (3) lista_decl -> . declaracion
+    (4) declaracion -> . declaracion_var
+    (5) declaracion -> . declaracion_fun
+    (6) declaracion_var -> . def_tipo ID SEMICOLON
+    (7) declaracion_var -> . def_tipo ID LTCOMMENT NUM RTCOMMENT SEMICOLON
+    (10) declaracion_fun -> . def_tipo ID LBRACKET parametros RBRACKET
+    (8) def_tipo -> . VACUO
+    (9) def_tipo -> . ENT
+
+    VACUO           shift and go to state 7
+    ENT             shift and go to state 8
+
+    programa                       shift and go to state 1
+    lista_decl                     shift and go to state 2
+    declaracion                    shift and go to state 3
+    declaracion_var                shift and go to state 4
+    declaracion_fun                shift and go to state 5
+    def_tipo                       shift and go to state 6
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> lista_decl .
+    (2) lista_decl -> lista_decl . declaracion
+    (4) declaracion -> . declaracion_var
+    (5) declaracion -> . declaracion_fun
+    (6) declaracion_var -> . def_tipo ID SEMICOLON
+    (7) declaracion_var -> . def_tipo ID LTCOMMENT NUM RTCOMMENT SEMICOLON
+    (10) declaracion_fun -> . def_tipo ID LBRACKET parametros RBRACKET
+    (8) def_tipo -> . VACUO
+    (9) def_tipo -> . ENT
+
+    $end            reduce using rule 1 (programa -> lista_decl .)
+    VACUO           shift and go to state 7
+    ENT             shift and go to state 8
+
+    declaracion                    shift and go to state 9
+    declaracion_var                shift and go to state 4
+    declaracion_fun                shift and go to state 5
+    def_tipo                       shift and go to state 6
+
+state 3
+
+    (3) lista_decl -> declaracion .
+
+    VACUO           reduce using rule 3 (lista_decl -> declaracion .)
+    ENT             reduce using rule 3 (lista_decl -> declaracion .)
+    $end            reduce using rule 3 (lista_decl -> declaracion .)
+
+
+state 4
+
+    (4) declaracion -> declaracion_var .
+
+    VACUO           reduce using rule 4 (declaracion -> declaracion_var .)
+    ENT             reduce using rule 4 (declaracion -> declaracion_var .)
+    $end            reduce using rule 4 (declaracion -> declaracion_var .)
+
+
+state 5
+
+    (5) declaracion -> declaracion_fun .
+
+    VACUO           reduce using rule 5 (declaracion -> declaracion_fun .)
+    ENT             reduce using rule 5 (declaracion -> declaracion_fun .)
+    $end            reduce using rule 5 (declaracion -> declaracion_fun .)
+
+
+state 6
+
+    (6) declaracion_var -> def_tipo . ID SEMICOLON
+    (7) declaracion_var -> def_tipo . ID LTCOMMENT NUM RTCOMMENT SEMICOLON
+    (10) declaracion_fun -> def_tipo . ID LBRACKET parametros RBRACKET
+
+    ID              shift and go to state 10
+
+
+state 7
+
+    (8) def_tipo -> VACUO .
+
+    ID              reduce using rule 8 (def_tipo -> VACUO .)
+
+
+state 8
+
+    (9) def_tipo -> ENT .
+
+    ID              reduce using rule 9 (def_tipo -> ENT .)
+
+
+state 9
+
+    (2) lista_decl -> lista_decl declaracion .
+
+    VACUO           reduce using rule 2 (lista_decl -> lista_decl declaracion .)
+    ENT             reduce using rule 2 (lista_decl -> lista_decl declaracion .)
+    $end            reduce using rule 2 (lista_decl -> lista_decl declaracion .)
+
+
+state 10
+
+    (6) declaracion_var -> def_tipo ID . SEMICOLON
+    (7) declaracion_var -> def_tipo ID . LTCOMMENT NUM RTCOMMENT SEMICOLON
+    (10) declaracion_fun -> def_tipo ID . LBRACKET parametros RBRACKET
+
+    SEMICOLON       shift and go to state 11
+    LTCOMMENT       shift and go to state 12
+    LBRACKET        shift and go to state 13
+
+
+state 11
+
+    (6) declaracion_var -> def_tipo ID SEMICOLON .
+
+    VACUO           reduce using rule 6 (declaracion_var -> def_tipo ID SEMICOLON .)
+    ENT             reduce using rule 6 (declaracion_var -> def_tipo ID SEMICOLON .)
+    $end            reduce using rule 6 (declaracion_var -> def_tipo ID SEMICOLON .)
+
+
+state 12
+
+    (7) declaracion_var -> def_tipo ID LTCOMMENT . NUM RTCOMMENT SEMICOLON
+
+    NUM             shift and go to state 14
+
+
+state 13
+
+    (10) declaracion_fun -> def_tipo ID LBRACKET . parametros RBRACKET
+    (11) parametros -> . lista_parametros
+    (12) parametros -> . VACUO
+    (13) lista_parametros -> . lista_parametros COMMA param
+    (14) lista_parametros -> . param
+    (15) param -> . def_tipo ID
+    (16) param -> . def_tipo ID LTCOMMENT RTCOMMENT
+    (8) def_tipo -> . VACUO
+    (9) def_tipo -> . ENT
+
+    VACUO           shift and go to state 18
+    ENT             shift and go to state 8
+
+    def_tipo                       shift and go to state 15
+    parametros                     shift and go to state 16
+    lista_parametros               shift and go to state 17
+    param                          shift and go to state 19
+
+state 14
+
+    (7) declaracion_var -> def_tipo ID LTCOMMENT NUM . RTCOMMENT SEMICOLON
+
+    RTCOMMENT       shift and go to state 20
+
+
+state 15
+
+    (15) param -> def_tipo . ID
+    (16) param -> def_tipo . ID LTCOMMENT RTCOMMENT
+
+    ID              shift and go to state 21
+
+
+state 16
+
+    (10) declaracion_fun -> def_tipo ID LBRACKET parametros . RBRACKET
+
+    RBRACKET        shift and go to state 22
+
+
+state 17
+
+    (11) parametros -> lista_parametros .
+    (13) lista_parametros -> lista_parametros . COMMA param
+
+    RBRACKET        reduce using rule 11 (parametros -> lista_parametros .)
+    COMMA           shift and go to state 23
+
+
+state 18
+
+    (12) parametros -> VACUO .
+    (8) def_tipo -> VACUO .
+
+    RBRACKET        reduce using rule 12 (parametros -> VACUO .)
+    ID              reduce using rule 8 (def_tipo -> VACUO .)
+
+
+state 19
+
+    (14) lista_parametros -> param .
+
+    COMMA           reduce using rule 14 (lista_parametros -> param .)
+    RBRACKET        reduce using rule 14 (lista_parametros -> param .)
+
+
+state 20
+
+    (7) declaracion_var -> def_tipo ID LTCOMMENT NUM RTCOMMENT . SEMICOLON
+
+    SEMICOLON       shift and go to state 24
+
+
+state 21
+
+    (15) param -> def_tipo ID .
+    (16) param -> def_tipo ID . LTCOMMENT RTCOMMENT
+
+    COMMA           reduce using rule 15 (param -> def_tipo ID .)
+    RBRACKET        reduce using rule 15 (param -> def_tipo ID .)
+    LTCOMMENT       shift and go to state 25
+
+
+state 22
+
+    (10) declaracion_fun -> def_tipo ID LBRACKET parametros RBRACKET .
+
+    VACUO           reduce using rule 10 (declaracion_fun -> def_tipo ID LBRACKET parametros RBRACKET .)
+    ENT             reduce using rule 10 (declaracion_fun -> def_tipo ID LBRACKET parametros RBRACKET .)
+    $end            reduce using rule 10 (declaracion_fun -> def_tipo ID LBRACKET parametros RBRACKET .)
+
+
+state 23
+
+    (13) lista_parametros -> lista_parametros COMMA . param
+    (15) param -> . def_tipo ID
+    (16) param -> . def_tipo ID LTCOMMENT RTCOMMENT
+    (8) def_tipo -> . VACUO
+    (9) def_tipo -> . ENT
+
+    VACUO           shift and go to state 7
+    ENT             shift and go to state 8
+
+    param                          shift and go to state 26
+    def_tipo                       shift and go to state 15
+
+state 24
+
+    (7) declaracion_var -> def_tipo ID LTCOMMENT NUM RTCOMMENT SEMICOLON .
+
+    VACUO           reduce using rule 7 (declaracion_var -> def_tipo ID LTCOMMENT NUM RTCOMMENT SEMICOLON .)
+    ENT             reduce using rule 7 (declaracion_var -> def_tipo ID LTCOMMENT NUM RTCOMMENT SEMICOLON .)
+    $end            reduce using rule 7 (declaracion_var -> def_tipo ID LTCOMMENT NUM RTCOMMENT SEMICOLON .)
+
+
+state 25
+
+    (16) param -> def_tipo ID LTCOMMENT . RTCOMMENT
+
+    RTCOMMENT       shift and go to state 27
+
+
+state 26
+
+    (13) lista_parametros -> lista_parametros COMMA param .
+
+    COMMA           reduce using rule 13 (lista_parametros -> lista_parametros COMMA param .)
+    RBRACKET        reduce using rule 13 (lista_parametros -> lista_parametros COMMA param .)
+
+
+state 27
+
+    (16) param -> def_tipo ID LTCOMMENT RTCOMMENT .
+
+    COMMA           reduce using rule 16 (param -> def_tipo ID LTCOMMENT RTCOMMENT .)
+    RBRACKET        reduce using rule 16 (param -> def_tipo ID LTCOMMENT RTCOMMENT .)
 

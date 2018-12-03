@@ -52,7 +52,8 @@ def p_def_tipo2(p):
     p[0] = p[1]
 
 def p_declaracion_fun(p):
-    """declaracion_fun : def_tipo ID LBRACKET parametros RBRACKET sentencia_comp"""
+    #"""declaracion_fun : def_tipo ID LBRACKET parametros RBRACKET sentencia_comp"""
+    """declaracion_fun : def_tipo ID LBRACKET parametros RBRACKET"""
     p[0] = nodos.def_tipo_id_parametros_sentencia_comp(p[1],p[2],p[4],p[6])
 
 def p_parametros(p):
@@ -88,112 +89,110 @@ def p_param2(p):
     """param : def_tipo ID LTCOMMENT RTCOMMENT"""
     p[0] = nodos.nodoParametros(p[1], p[2], is_vector=True)
 
-def p_sentencia_comp(p):
-    """sentencia_comp : LPARENT declaraciones_locales lista_sentencias"""
-    p[0] = nodos.nodoSentenciaComp(p[2],p[3])
+# def p_sentencia_comp(p):
+#     """sentencia_comp : LPARENT declaraciones_locales lista_sentencias"""
+#     p[0] = nodos.nodoSentenciaComp(p[2],p[3])
+#
+# def p_declaraciones_locales(p):
+#     """declaraciones_locales : declaraciones_locales declaracion_var"""
+#     if isinstance(p[1], list):
+#         p[0] = p[1]
+#     else:
+#         p[0] = [p[1]]
+#
+#     if isinstance(p[2], list):
+#         p[0].extend(p[2])
+#     else:
+#         p[0].extend([p[2]])
+#
+# def p_declaraciones_locales2(p):
+#     """declaraciones_locales : vacio"""
+#     p[0] = [p[1]]
 
-def p_declaraciones_locales(p):
-    """declaraciones_locales : declaraciones_locales declaraciones_variables"""
-    if isinstance(p[1], list):
-        p[0] = p[1]
-    else:
-        p[0] = [p[1]]
+# def p_lista_sentencias(p):
+#     """lista_sentencias : lista_sentencias sentencia"""
+#     if isinstance(p[1], list):
+#         p[0] = p[1]
+#     else:
+#         p[0] = [p[1]]
+#
+#     if isinstance(p[2], list):
+#         p[0].extend(p[2])
+#     else:
+#         p[0].extend([p[2]])
+#
+# def p_lista_sentencias2(p):
+#     """lista_sentencias : vacio"""
+#     p[0] = [p[1]]
+#
+# def p_sentencia(p):
+#     """sentencia : sentencia_expr"""
+#     p[0] = p[1]
+#
+# def p_sentencia2(p):
+#     """sentencia : sentencia_comp"""
+#     p[0] = p[1]
+#
+# def p_sentencia3(p):
+#     """sentencia : sentencia_seleccion"""
+#     p[0] = p[1]
+#
+# def p_sentencia4(p):
+#     """sentencia : sentencia_iteracion"""
+#     p[0] = p[1]
+#
+# def p_sentencia5(p):
+#     """sentencia : sentencia_retorno"""
+#     p[0] = p[1]
+#
+# def p_sentencia_expr(p):
+#     """sentencia_expr : expresion SEMICOLON"""
+#     p[0] = p[1]
+#
+# def p_sentencia_expr2(p):
+#     """sentencia_expr : SEMICOLON"""
+#     p[0] = p[1]
 
-    if isinstance(p[2], list):
-        p[0].extend(p[2])
-    else:
-        p[0].extend([p[2]])
+#def p_sentencia_seleccion(p):
+ #   """sentencia_seleccion : SI LBRACKET expresion RBRACKET sentencia"""
+  #  p[0] = nodos.nodoSentenciaSeleccion(p[3],p[5])
 
-def p_declaraciones_locales2(p):
-    """declaraciones_locales : vacio"""
-    p[0] = [p[1]]
+#def p_sentencia_seleccion2(p):
+ #   """sentencia_seleccion : SI LBRACKET expresion RBRACKET sentencia SINO sentencia"""
+  #  p[0] = nodos.nodoSentenciaSeleccion(p[3], p[5],is_else=True,sino_sentencia = p[7])
 
-def p_lista_sentencias(p):
-    """lista_sentencias : lista_sentencias sentencia"""
-    if isinstance(p[1], list):
-        p[0] = p[1]
-    else:
-        p[0] = [p[1]]
+#def p_sentencia_iteracion(p):
+ #   """sentencia_iteracion : MIENTRAS LBRACKET expresion RBRACKET sentencia"""
+  #  p[0] = nodos.nodoSentenciaIteracion(expresion_p = p[3],sentencia_p = p[5])
 
-    if isinstance(p[2], list):
-        p[0].extend(p[2])
-    else:
-        p[0].extend([p[2]])
+#def p_sentencia_iteracion2(p):
+ #   """sentencia_iteracion : REP sentencia_comp"""
+  #  p[0] = nodos.nodoSentenciaIteracion(sentencia_comp_p=p[7])
 
-def p_lista_sentencias2(p):
-    """lista_sentencias : vacio"""
-    p[0] = [p[1]]
+#def p_sentencia_retorno(p):
+ #   """sentencia_retorno : RET SEMICOLON"""
+  #  p[0] = nodos.nodoSentenciaRetorno()
 
-def p_sentencia(p):
-    """sentencia : sentencia_expr"""
-    p[0] = p[1]
-
-def p_sentencia2(p):
-    """sentencia : sentencia_comp"""
-    p[0] = p[1]
-
-def p_sentencia3(p):
-    """sentencia : sentencia_seleccion"""
-    p[0] = p[1]
-
-def p_sentencia4(p):
-    """sentencia : sentencia_iteracion"""
-    p[0] = p[1]
-
-def p_sentencia5(p):
-    """sentencia : sentencia_retorno"""
-    p[0] = p[1]
-
-def p_sentencia_expr(p):
-    """sentencia_expr : expresion SEMICOLON"""
-    p[0] = p[1]
-
-def p_sentencia_expr2(p):
-    """sentencia_expr : SEMICOLON"""
-    p[0] = p[1]
-
-def p_sentencia_seleccion(p):
-    """sentencia_seleccion : SI LBRACKET expresion RBRACKET sentencia"""
-    p[0] = nodos.nodoSentenciaSeleccion(p[3],p[5])
-
-def p_sentencia_seleccion2(p):
-    """sentencia_seleccion : SI LBRACKET expresion RBRACKET sentencia SINO sentencia"""
-    p[0] = nodos.nodoSentenciaSeleccion(p[3], p[5],is_else=True,sino_sentencia = p[7])
-
-def p_sentencia_iteracion(p):
-    """sentencia_iteracion : MIENTRAS LBRACKET expresion RBRACKET sentencia"""
-    p[0] = nodos.nodoSentenciaIteracion(expresion_p = p[3],sentencia_p = p[5])
-
-def p_sentencia_iteracion2(p):
-    """sentencia_iteracion : REP sentencia_comp"""
-    p[0] = nodos.nodoSentenciaIteracion(sentencia_comp_p=p[7])
-
-def p_sentencia_retorno(p):
-    """sentencia_retorno : RET SEMICOLON"""
-    p[0] = nodos.nodoSentenciaRetorno()
-
-def p_sentencia_retorno2(p):
-    """sentencia_retorno = RET expresion SEMICOLON"""
-    p[0] = nodos.nodoSentenciaRetorno(thereis_expression=True,expresion_p=p[2])
-
-
-def p_expresion(p):
-    """expresion : var ASSIGN expresion"""
-    p[0] = nodos.nodoAssign(p[1],p[3])
-
-def p_expresion2(p):
-    """expresion : expresion_negada"""
-    p[0] = p[1]
-
-def p_var(p):
-    """var : ID"""
-    p[0] = nodos.nodoVar(p[1])
-
-def p_var2(p):
-    """var : ID LTCOMMENT expresion RTCOMMENT"""
-    p[0] = nodos.nodoVar(p[1],is_vec_access=True, expresion_p=p[3])
+#def p_sentencia_retorno2(p):
+ #   """sentencia_retorno : RET expresion SEMICOLON"""
+  #  p[0] = nodos.nodoSentenciaRetorno(thereis_expression=True,expresion_p=p[2])
 
 
+#def p_expresion(p):
+ #   """expresion : var ASSIGN expresion"""
+  #  p[0] = nodos.nodoAssign(p[1],p[3])
+
+#def p_expresion2(p):
+ #   """expresion : expresion_negada"""
+  #  p[0] = p[1]
+
+#def p_var(p):
+ #   """var : ID"""
+  #  p[0] = nodos.nodoVar(p[1])
+
+#def p_var2(p):
+ #   """var : ID LTCOMMENT expresion RTCOMMENT"""
+  #  p[0] = nodos.nodoVar(p[1],is_vec_access=True, expresion_p=p[3])
 
 
 
@@ -211,10 +210,12 @@ def p_var2(p):
 
 
 
-def p_vacio(p):
-    'vacio :'
-    p[0] = nodos.nodoVacio()
-    pass
+
+
+#def p_vacio(p):
+ #   'vacio :'
+  #  p[0] = nodos.nodoVacio()
+   # pass
 
 # Errores en la sintaxis.
 def p_error(p):

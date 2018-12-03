@@ -8,13 +8,25 @@ class Visitor(object):
         self.id_additive_expression = 0
         self.id_term = 0
         self.id_num = 0
-        self.id_id = 0
+        self.id_ID = 0
+        self.id_type_esp_id_num = 0
+        self.id_def_tipo = 0
 
     def visit_program(self, program):
         self.id_program += 1
         id_program = self.id_program
         if program.statement_list is not None:
-            for stmt in program.statement_list:
+
+            if isinstance(program.statement_list,list):
+
+                aux = program.statement_list
+
+            else:
+
+                aux = [program.statement_list]
+
+
+            for stmt in aux:
                 if stmt is not None:
                     self.ast += '\t"Lista ' + str(id_program) + '" '
                     stmt.accept(self)
@@ -65,7 +77,25 @@ class Visitor(object):
     def visit_type_esp_id_num(self,declaracion_var_p):
 
         #completar
-        print(declaracion_var_p)
+        self.id_type_esp_id_num += 1
+        id_type_esp_id_num = self.id_type_esp_id_num
+
+
+        self.id_def_tipo += 1
+        id_def_tipo = self.id_def_tipo
+
+        self.ast += '-> "Declaracion var' + str(id_type_esp_id_num) + '"' + '\n'
+
+        self.ast += '\t"Declaracion Var' + str(id_type_esp_id_num) + '" '\
+                    '-> "def tipo' + str(id_def_tipo) + ': ' + declaracion_var_p.def_tipo_p + '"' + '\n'
+
+        self.id_ID += 1
+        id_ID = self.id_ID
+
+        self.ast += '\t"Declaracion Var ' + str(id_type_esp_id_num) + '" '\
+                    '-> "ID ' + str(id_ID) + ': ' + declaracion_var_p.ID_t + '" ' + '\n'
+
+        #print(declaracion_var_p)
 
     def visit_def_tipo_id_parametros_sentencia_comp(self,declaracion_fun_p):
 

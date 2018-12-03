@@ -57,10 +57,10 @@ class Num(Nodo):
 
 class type_esp_id_num(Nodo):
 
-    def __init__(self,def_tipo_p,ID_p,NUM_p=None):
+    def __init__(self,def_tipo_p,ID_t,NUM_p=None):
 
         self.def_tipo_p = def_tipo_p
-        self.ID_p = ID_p
+        self.ID_t = ID_t
         self.NUM_p = NUM_p
 
     def accept(self,visitor):
