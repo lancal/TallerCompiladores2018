@@ -80,14 +80,13 @@ class Visitor(object):
         self.id_type_esp_id_num += 1
         id_type_esp_id_num = self.id_type_esp_id_num
 
+        self.ast += '-> "Declaracion Var ' + str(id_type_esp_id_num) + '"' + '\n'
 
         self.id_def_tipo += 1
         id_def_tipo = self.id_def_tipo
 
-        self.ast += '-> "Declaracion var' + str(id_type_esp_id_num) + '"' + '\n'
-
-        self.ast += '\t"Declaracion Var' + str(id_type_esp_id_num) + '" '\
-                    '-> "def tipo' + str(id_def_tipo) + ': ' + declaracion_var_p.def_tipo_p + '"' + '\n'
+        self.ast += '\t"Declaracion Var ' + str(id_type_esp_id_num) + '" '\
+                    '-> "def tipo' + str(id_def_tipo) + ': ' + declaracion_var_p.def_tipo_p + '" ' + '\n'
 
         self.id_ID += 1
         id_ID = self.id_ID

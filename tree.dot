@@ -1,5 +1,5 @@
 digraph G {
-	"Lista 1" -> "Declaracion var1"
-	"Declaracion Var1" -> "def tipo1: VACUO"
+	"Lista 1" -> "Declaracion Var 1"
+	"Declaracion Var 1" -> "def tipo1: VACUO" 
 	"Declaracion Var 1" -> "ID 1: ab$cc" 
 }
