@@ -87,3 +87,26 @@ class Visitor(object):
         #completar
         print(sentencia_comp_p)
 
+    def visit_nodoSentenciaSeleccion(self,sentencia_seleccion_p):
+        # completar
+        print(sentencia_seleccion_p)
+
+    def visit_nodoSentenciaIteracion(self,sentencia_iteracion_p):
+        # completar
+        print(sentencia_iteracion_p)
+
+    def visit_nodoSentenciaRetorno(self,sentencia_retorno_p):
+        # completar
+        print(sentencia_retorno_p)
+
+    def visit_nodoAssign(self,expresion_p):
+        # completar
+        print(expresion_p)
+
+    def visit_nodoVar(self,var_p):
+        # completar
+        print(var_p)
+
+
+
+

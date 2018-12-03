@@ -81,10 +81,10 @@ class def_tipo_id_parametros_sentencia_comp(Nodo):
 
 class nodoParametros(Nodo):
 
-    def __init__(self,def_tipo_p,ID_p = None, is_vector = False):
+    def __init__(self,def_tipo_p,ID_t = None, is_vector = False):
 
         self.def_tipo_p = def_tipo_p
-        self.ID_p = ID_p
+        self.ID_t = ID_t
         self.is_vector = is_vector
 
     def accept(self,visitor):
@@ -107,4 +107,56 @@ class nodoSentenciaComp(Nodo):
 
     def accept(self,visitor):
         visitor.visit_nodoSentenciaComp(self)
+
+class nodoSentenciaSeleccion(Nodo):
+
+    def __init__(self,expresion_p,sentencia_p,is_else = False,sino_sentencia = None):
+        self.expresion_p = expresion_p
+        self.sentencia_p = sentencia_p
+        self.is_else = is_else
+        self.else_statement = sino_sentencia
+
+    def accept(self,visitor):
+        visitor.visit_nodoSentenciaSeleccion(self)
+
+class nodoSentenciaIteracion(Nodo):
+
+    def __init__(self,expresion_p=None,sentencia_p=None,sentencia_comp_p = None):
+
+        self.expresion_p = expresion_p
+        self.sentencia_p = sentencia_p
+        self.sentencia_comp_p = sentencia_comp_p
+
+    def accept(self,visitor):
+        visitor.visit_nodoSentenciaSeleccion(self)
+
+class nodoSentenciaRetorno(Nodo):
+
+    def __init__(self,thereis_expression = False, expresion_p = None):
+
+        self.thereis_expression = thereis_expression
+        self.expresion_p = expresion_p
+
+    def accept(self,visitor):
+        visitor.visit_nodoSentenciaRetorno(self)
+
+class nodoAssign(Nodo):
+
+    def __init__(self,var_p,expresion_p):
+        self.var_p = var_p
+        self.expresion_p = expresion_p
+
+    def accept(self,visitor):
+        visitor.visit_nodoAssign(self)
+
+class nodoVar(Nodo):
+
+    def __init__(self,id_t, is_vec_access=False, expresion_p=None):
+
+        self.id_t = id_t
+        self.is_vec_access = is_vec_access
+        self.expresion_p = expresion_p
+
+    def accept(self,visitor):
+        visitor.visit_nodoVar(self)
 
