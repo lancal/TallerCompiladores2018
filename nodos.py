@@ -57,14 +57,28 @@ class Num(Nodo):
 
 class type_esp_id_num(Nodo):
 
-    def __init__(self,def_tipo_p,ID_t,NUM_p=None):
+    #global NUM_t
+
+    def __init__(self,def_tipo_p,ID_t,NUM_t=None):
 
         self.def_tipo_p = def_tipo_p
         self.ID_t = ID_t
-        self.NUM_p = NUM_p
+        self.NUM_t = NUM_t
 
-    def accept(self,visitor):
+    def accept(self, visitor):
         visitor.visit_type_esp_id_num(self)
+
+    # if self.NUM_t is not None:
+    #
+    #     def accept(self,visitor):
+    #         visitor.visit_type_esp_id_num2(self)
+    #
+    # else:
+    #
+    #     def accept(self,visitor):
+    #         visitor.visit_type_esp_id_num(self)
+
+
 
 class def_tipo_id_parametros_sentencia_comp(Nodo):
 

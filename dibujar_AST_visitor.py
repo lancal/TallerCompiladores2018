@@ -11,6 +11,7 @@ class Visitor(object):
         self.id_ID = 0
         self.id_type_esp_id_num = 0
         self.id_def_tipo = 0
+        self.id_NUM = 0
 
     def visit_program(self, program):
         self.id_program += 1
@@ -76,7 +77,7 @@ class Visitor(object):
 
     def visit_type_esp_id_num(self,declaracion_var_p):
 
-        #completar
+
         self.id_type_esp_id_num += 1
         id_type_esp_id_num = self.id_type_esp_id_num
 
@@ -94,7 +95,44 @@ class Visitor(object):
         self.ast += '\t"Declaracion Var ' + str(id_type_esp_id_num) + '" '\
                     '-> "ID ' + str(id_ID) + ': ' + declaracion_var_p.ID_t + '" ' + '\n'
 
-        #print(declaracion_var_p)
+        if declaracion_var_p.NUM_t is not None:
+
+            self.id_NUM += 1
+            id_NUM = self.id_NUM
+            self.ast += '\t"Declaracion Var ' + str(id_type_esp_id_num) + '" ' \
+                        '-> "NUM ' + str(id_NUM) + ': ' + declaracion_var_p.NUM_t + '" ' + '\n'
+
+
+
+
+    # def visit_type_esp_id_num2(self,declaracion_var_p):
+    #
+    #
+    #     self.id_type_esp_id_num += 1
+    #     id_type_esp_id_num = self.id_type_esp_id_num
+    #
+    #     self.ast += '-> "Declaracion Var ' + str(id_type_esp_id_num) + '"' + '\n'
+    #
+    #     self.id_def_tipo += 1
+    #     id_def_tipo = self.id_def_tipo
+    #
+    #     self.ast += '\t"Declaracion Var ' + str(id_type_esp_id_num) + '" ' \
+    #                 '-> "def tipo' + str(id_def_tipo) + ': ' + declaracion_var_p.def_tipo_p + '" ' + '\n'
+    #
+    #     self.id_ID += 1
+    #     id_ID = self.id_ID
+    #
+    #     self.ast += '\t"Declaracion Var ' + str(id_type_esp_id_num) + '" ' \
+    #                 '-> "ID ' + str(id_ID) + ': ' + declaracion_var_p.ID_t + '" ' + '\n'
+    #
+    #     self.id_NUM += 1
+    #     id_NUM = self.id_NUM
+    #     self.ast += '\t"Declaracion Var ' + str(id_type_esp_id_num) + '" ' \
+    #                 '-> "NUM ' + str(id_NUM) + ': ' + declaracion_var_p.NUM_t + '" ' + '\n'
+
+
+
+
 
     def visit_def_tipo_id_parametros_sentencia_comp(self,declaracion_fun_p):
 

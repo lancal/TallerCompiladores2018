@@ -2,4 +2,8 @@ digraph G {
 	"Lista 1" -> "Declaracion Var 1"
 	"Declaracion Var 1" -> "def tipo1: VACUO" 
 	"Declaracion Var 1" -> "ID 1: ab$cc" 
+	"Lista 1" -> "Declaracion Var 2"
+	"Declaracion Var 2" -> "def tipo2: VACUO" 
+	"Declaracion Var 2" -> "ID 2: ab$aa" 
+	"Declaracion Var 2" -> "NUM 1: 123" 
 }

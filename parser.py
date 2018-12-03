@@ -41,7 +41,7 @@ def p_declaracion_var(p):
 
 def p_declaracion_var2(p):
     """declaracion_var : def_tipo ID LTCOMMENT NUM RTCOMMENT SEMICOLON"""
-    p[0] = nodos.type_esp_id_num(p[1],p[2],p[4])
+    p[0] = nodos.type_esp_id_num(p[1],p[2],NUM_t=p[4])
 
 def p_def_tipo(p):
     """def_tipo : VACUO"""
