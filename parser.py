@@ -107,7 +107,7 @@ def p_param2(p):
 
 def p_sentencia_comp(p):
     #Regla 10
-     """sentencia_comp : LPARENT declaraciones_locales lista_sentencias"""
+     """sentencia_comp : LPARENT declaraciones_locales lista_sentencias RPARENT"""
      p[0] = nodos.nodoSentenciaComp(p[2],p[3])
 
 def p_declaraciones_locales(p):
