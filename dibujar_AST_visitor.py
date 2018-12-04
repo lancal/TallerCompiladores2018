@@ -33,47 +33,47 @@ class Visitor(object):
                     stmt.accept(self)
         self.ast = 'digraph G {\n' + self.ast + '}'
 
-    def visit_expression(self, expression):
-        self.id_expression += 1
-        id_expression = self.id_expression
-        self.ast += '-> "' + 'Asignacion ' + str(id_expression) + '"' + '\n'
-        self.ast += '\t"' + 'Asignacion ' + str(id_expression) + '" '
-        expression.var_p.accept(self)
-        self.ast += '\t"' + 'Asignacion ' + str(id_expression) + '" '
-        expression.expression_p.accept(self)
-
-    def visit_simple_expression(self, simple_expresion):
-        self.id_simple_expression += 1
-        id_simple_expression = self.id_simple_expression
-        self.ast += '-> "Comparador ' + str(id_simple_expression) + ': ' + simple_expresion.relop_t + '"' + '\n'
-        self.ast += '\t"Comparador ' + str(id_simple_expression) + ': ' + simple_expresion.relop_t + '" '
-        simple_expresion.additive_expression1_p.accept(self)
-        self.ast += '\t"Comparador ' + str(id_simple_expression) + ': ' + simple_expresion.relop_t + '" '
-        simple_expresion.additive_expression2_p.accept(self)
-
-    def visit_additive_expression(self, additive_expresion):
-        self.id_additive_expression += 1
-        id_additive_expression = self.id_additive_expression
-        self.ast += '-> "Signo ' + str(id_additive_expression) + ': ' + additive_expresion.addop_t + '"' + '\n'
-        self.ast += '\t"Signo ' + str(id_additive_expression) + ': ' + additive_expresion.addop_t + '" '
-        additive_expresion.additive_expression_p.accept(self)
-        self.ast += '\t"Signo ' + str(id_additive_expression) + ': ' + additive_expresion.addop_t + '" '
-        additive_expresion.term_p.accept(self)
-
-    def visit_term(self, term):
-        self.id_term += 1
-        id_term = self.id_term
-        self.ast += '-> "Signo ' + str(id_term) + ': ' + term.mulop_t + '"' + '\n'
-        self.ast += '\t"Signo ' + str(id_term) + ': ' + term.mulop_t + '" '
-        term.term_p.accept(self)
-        if term.factor_p is not None:
-            self.ast += '\t"Signo ' + str(id_term) + ': ' + term.mulop_t + '" '
-            term.factor_p.accept(self)
-
-    def visit_num(self, num):
-        self.id_num += 1
-        id_num = self.id_num
-        self.ast += '-> "NUM' + str(id_num) + ': ' + num.num_t + '"' + '\n'
+    # def visit_expression(self, expression):
+    #     self.id_expression += 1
+    #     id_expression = self.id_expression
+    #     self.ast += '-> "' + 'Asignacion ' + str(id_expression) + '"' + '\n'
+    #     self.ast += '\t"' + 'Asignacion ' + str(id_expression) + '" '
+    #     expression.var_p.accept(self)
+    #     self.ast += '\t"' + 'Asignacion ' + str(id_expression) + '" '
+    #     expression.expression_p.accept(self)
+    #
+    # def visit_simple_expression(self, simple_expresion):
+    #     self.id_simple_expression += 1
+    #     id_simple_expression = self.id_simple_expression
+    #     self.ast += '-> "Comparador ' + str(id_simple_expression) + ': ' + simple_expresion.relop_t + '"' + '\n'
+    #     self.ast += '\t"Comparador ' + str(id_simple_expression) + ': ' + simple_expresion.relop_t + '" '
+    #     simple_expresion.additive_expression1_p.accept(self)
+    #     self.ast += '\t"Comparador ' + str(id_simple_expression) + ': ' + simple_expresion.relop_t + '" '
+    #     simple_expresion.additive_expression2_p.accept(self)
+    #
+    # def visit_additive_expression(self, additive_expresion):
+    #     self.id_additive_expression += 1
+    #     id_additive_expression = self.id_additive_expression
+    #     self.ast += '-> "Signo ' + str(id_additive_expression) + ': ' + additive_expresion.addop_t + '"' + '\n'
+    #     self.ast += '\t"Signo ' + str(id_additive_expression) + ': ' + additive_expresion.addop_t + '" '
+    #     additive_expresion.additive_expression_p.accept(self)
+    #     self.ast += '\t"Signo ' + str(id_additive_expression) + ': ' + additive_expresion.addop_t + '" '
+    #     additive_expresion.term_p.accept(self)
+    #
+    # def visit_term(self, term):
+    #     self.id_term += 1
+    #     id_term = self.id_term
+    #     self.ast += '-> "Signo ' + str(id_term) + ': ' + term.mulop_t + '"' + '\n'
+    #     self.ast += '\t"Signo ' + str(id_term) + ': ' + term.mulop_t + '" '
+    #     term.term_p.accept(self)
+    #     if term.factor_p is not None:
+    #         self.ast += '\t"Signo ' + str(id_term) + ': ' + term.mulop_t + '" '
+    #         term.factor_p.accept(self)
+    #
+    # def visit_num(self, num):
+    #     self.id_num += 1
+    #     id_num = self.id_num
+    #     self.ast += '-> "NUM' + str(id_num) + ': ' + num.num_t + '"' + '\n'
 
     def visit_type_esp_id_num(self,declaracion_var_p):
 
@@ -101,37 +101,6 @@ class Visitor(object):
             id_NUM = self.id_NUM
             self.ast += '\t"Declaracion Var ' + str(id_type_esp_id_num) + '" ' \
                         '-> "NUM ' + str(id_NUM) + ': ' + declaracion_var_p.NUM_t + '" ' + '\n'
-
-
-
-
-    # def visit_type_esp_id_num2(self,declaracion_var_p):
-    #
-    #
-    #     self.id_type_esp_id_num += 1
-    #     id_type_esp_id_num = self.id_type_esp_id_num
-    #
-    #     self.ast += '-> "Declaracion Var ' + str(id_type_esp_id_num) + '"' + '\n'
-    #
-    #     self.id_def_tipo += 1
-    #     id_def_tipo = self.id_def_tipo
-    #
-    #     self.ast += '\t"Declaracion Var ' + str(id_type_esp_id_num) + '" ' \
-    #                 '-> "def tipo' + str(id_def_tipo) + ': ' + declaracion_var_p.def_tipo_p + '" ' + '\n'
-    #
-    #     self.id_ID += 1
-    #     id_ID = self.id_ID
-    #
-    #     self.ast += '\t"Declaracion Var ' + str(id_type_esp_id_num) + '" ' \
-    #                 '-> "ID ' + str(id_ID) + ': ' + declaracion_var_p.ID_t + '" ' + '\n'
-    #
-    #     self.id_NUM += 1
-    #     id_NUM = self.id_NUM
-    #     self.ast += '\t"Declaracion Var ' + str(id_type_esp_id_num) + '" ' \
-    #                 '-> "NUM ' + str(id_NUM) + ': ' + declaracion_var_p.NUM_t + '" ' + '\n'
-
-
-
 
 
     def visit_def_tipo_id_parametros_sentencia_comp(self,declaracion_fun_p):
@@ -173,6 +142,31 @@ class Visitor(object):
     def visit_nodoVar(self,var_p):
         # completar
         print(var_p)
+
+    def visit_nodoExpresionNegada(self,expresion_negada_p):
+
+        # completar
+        print(expresion_negada_p)
+
+    def visit_nodoExpresion_logica(self,expresion_logica_p):
+
+        # completar
+        print(expresion_logica_p)
+
+    def visit_nodoBinarioOP(self,ramaIzq_p):
+
+        # completar
+        print(ramaIzq_p)
+
+    def visit_nodoNUM(self,num_t):
+
+        # completar
+        print(num_t)
+
+    def visit_nodoInvocacion(self,invocacion_p):
+
+        #completar
+        print(invocacion_p)
 
 
 

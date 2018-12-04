@@ -8,51 +8,51 @@ class Program(Nodo):
     def accept(self, visitor):
         visitor.visit_program(self)
 
-class Expression(Nodo):
-    def __init__(self, var_p, expression_p):
-        self.var_p = var_p
-        self.expression_p = expression_p
-
-    def accept(self, visitor):
-        visitor.visit_expression(self)
-
-
-class SimpleExpression(Nodo):
-    def __init__(self, additive_expression1_p, relop_t, additive_expression2_p):
-        self.additive_expression1_p = additive_expression1_p
-        self.relop_t = relop_t
-        self.additive_expression2_p = additive_expression2_p
-
-    def accept(self, visitor):
-        visitor.visit_simple_expression(self)
-
-
-class AdditiveExpression(Nodo):
-    def __init__(self, additive_expression_p, addop_t, term_p):
-        self.additive_expression_p = additive_expression_p
-        self.addop_t = addop_t
-        self.term_p = term_p
-
-    def accept(self, visitor):
-        visitor.visit_additive_expression(self)
-
-
-class Term(Nodo):
-    def __init__(self, term_p, mulop_t, factor_p):
-        self.term_p = term_p
-        self.mulop_t = mulop_t
-        self.factor_p = factor_p
-
-    def accept(self, visitor):
-        visitor.visit_term(self)
-
-
-class Num(Nodo):
-    def __init__(self, num_t):
-        self.num_t = num_t
-
-    def accept(self, visitor):
-        visitor.visit_num(self)
+# class Expression(Nodo):
+#     def __init__(self, var_p, expression_p):
+#         self.var_p = var_p
+#         self.expression_p = expression_p
+#
+#     def accept(self, visitor):
+#         visitor.visit_expression(self)
+#
+#
+# class SimpleExpression(Nodo):
+#     def __init__(self, additive_expression1_p, relop_t, additive_expression2_p):
+#         self.additive_expression1_p = additive_expression1_p
+#         self.relop_t = relop_t
+#         self.additive_expression2_p = additive_expression2_p
+#
+#     def accept(self, visitor):
+#         visitor.visit_simple_expression(self)
+#
+#
+# class AdditiveExpression(Nodo):
+#     def __init__(self, additive_expression_p, addop_t, term_p):
+#         self.additive_expression_p = additive_expression_p
+#         self.addop_t = addop_t
+#         self.term_p = term_p
+#
+#     def accept(self, visitor):
+#         visitor.visit_additive_expression(self)
+#
+#
+# class Term(Nodo):
+#     def __init__(self, term_p, mulop_t, factor_p):
+#         self.term_p = term_p
+#         self.mulop_t = mulop_t
+#         self.factor_p = factor_p
+#
+#     def accept(self, visitor):
+#         visitor.visit_term(self)
+#
+#
+# class Num(Nodo):
+#     def __init__(self, num_t):
+#         self.num_t = num_t
+#
+#     def accept(self, visitor):
+#         visitor.visit_num(self)
 
 
 class type_esp_id_num(Nodo):
@@ -67,17 +67,6 @@ class type_esp_id_num(Nodo):
 
     def accept(self, visitor):
         visitor.visit_type_esp_id_num(self)
-
-    # if self.NUM_t is not None:
-    #
-    #     def accept(self,visitor):
-    #         visitor.visit_type_esp_id_num2(self)
-    #
-    # else:
-    #
-    #     def accept(self,visitor):
-    #         visitor.visit_type_esp_id_num(self)
-
 
 
 class def_tipo_id_parametros_sentencia_comp(Nodo):
@@ -173,4 +162,53 @@ class nodoVar(Nodo):
 
     def accept(self,visitor):
         visitor.visit_nodoVar(self)
+
+class nodoExpresionNegada(Nodo):
+
+    def __init__(self,expresion_negada_p):
+
+        self.expresion_negada_p = expresion_negada_p
+
+    def accept(self,visitor):
+        visitor.visit_nodoExpresionNegada(self)
+
+class nodoExpresionLogica(Nodo):
+
+    def __init__(self,expresion_logica_p = None , expresion_simple_p = None):
+        self.expresion_logica_p = expresion_logica_p
+        self.expresion_simple_p = expresion_simple_p
+
+    def accept(self,visitor):
+        visitor.visit_nodoExpresion_logica(self)
+
+class nodoBinarioOP(Nodo):
+
+    def __init__(self,ramaIzq_p, ramaDer_p, operacion_p):
+
+        self.ramaIzq_p = ramaIzq_p
+        self.ramaDer_p = ramaDer_p
+        self.operacion_p = operacion_p
+
+    def accept(self,visitor):
+        visitor.visit_nodoBinarioOP(self)
+
+class nodoNUM(Nodo):
+
+    def __init__(self, num_t):
+        self.num_t = num_t
+
+    def accept(self, visitor):
+        visitor.visit_nodoNUM(self)
+
+class nodoInvocacion(Nodo):
+
+    def __init__(self,id_t, argumentos_p):
+
+        self.id_t = id_t
+        self.argumentos_p = argumentos_p
+
+    def accept(self,visitor):
+        visitor.visit_nodoInvocacion(self)
+
+
 

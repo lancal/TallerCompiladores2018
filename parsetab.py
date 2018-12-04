@@ -5,9 +5,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'programaSINO SI ENT RET MIENTRAS VACUO REP LT EQ ID PLUS MINUS TIMES DIVIDE ASSIGN LPARENT RPARENT LBRACKET RBRACKET LTCOMMENT RTCOMMENT COMMA SEMICOLON AND NOT NUM SLCOMMENT MLCOMMENTprograma : lista_decl lista_decl : lista_decl declaracionlista_decl : declaraciondeclaracion : declaracion_vardeclaracion : declaracion_fundeclaracion_var : def_tipo ID SEMICOLONdeclaracion_var : def_tipo ID LTCOMMENT NUM RTCOMMENT SEMICOLONdef_tipo : VACUOdef_tipo : ENTdeclaracion_fun : def_tipo ID LBRACKET parametros RBRACKETparametros : lista_parametrosparametros : VACUOlista_parametros : lista_parametros COMMA paramlista_parametros : paramparam : def_tipo IDparam : def_tipo ID LTCOMMENT RTCOMMENT'
+_lr_signature = 'programaSINO SI ENT RET MIENTRAS VACUO REP LT EQ ID PLUS MINUS TIMES DIVIDE ASSIGN LPARENT RPARENT LBRACKET RBRACKET LTCOMMENT RTCOMMENT COMMA SEMICOLON AND NOT NUM SLCOMMENT MLCOMMENTprograma : lista_decl lista_decl : lista_decl declaracionlista_decl : declaraciondeclaracion : declaracion_vardeclaracion : declaracion_fundeclaracion_var : def_tipo ID SEMICOLONdeclaracion_var : def_tipo ID LTCOMMENT NUM RTCOMMENT SEMICOLONdef_tipo : VACUOdef_tipo : ENTdeclaracion_fun : def_tipo ID LBRACKET parametros RBRACKET sentencia_compparametros : lista_parametrosparametros : VACUOlista_parametros : lista_parametros COMMA paramlista_parametros : paramparam : def_tipo IDparam : def_tipo ID LTCOMMENT RTCOMMENTsentencia_comp : LPARENT declaraciones_locales lista_sentenciasdeclaraciones_locales : declaraciones_locales declaracion_vardeclaraciones_locales : vaciolista_sentencias : lista_sentencias sentencialista_sentencias : vaciosentencia : sentencia_exprsentencia : sentencia_compsentencia : sentencia_seleccionsentencia : sentencia_iteracionsentencia : sentencia_retornosentencia_expr : expresion SEMICOLONsentencia_expr : SEMICOLONsentencia_seleccion : SI LBRACKET expresion RBRACKET sentenciasentencia_seleccion : SI LBRACKET expresion RBRACKET sentencia SINO sentenciasentencia_iteracion : MIENTRAS LBRACKET expresion RBRACKET sentenciasentencia_iteracion : REP sentencia_compsentencia_retorno : RET SEMICOLONsentencia_retorno : RET expresion SEMICOLONexpresion : var ASSIGN expresionexpresion : expresion_negadavar : IDvar : ID LTCOMMENT expresion RTCOMMENTexpresion_negada : NOT LBRACKET expresion_logica RBRACKETexpresion_negada : expresion_logicaexpresion_logica : expresion_logica AND expresion_simpleexpresion_logica : expresion_logica AND NOT LBRACKET expresion_simple RBRACKETexpresion_logica : expresion_simpleexpresion_logica : NOT LBRACKET expresion_simple RBRACKETexpresion_simple : expresion_simple relop expresion_aditivaexpresion_simple : expresion_aditivarelop : LTrelop : EQexpresion_aditiva : expresion_aditiva addop termexpresion_aditiva : termaddop : PLUSaddop : MINUSterm : term mulop factorterm : factormulop : TIMESmulop : DIVIDEfactor : LBRACKET expresion RBRACKETfactor : varfactor : invocacionfactor : NUMinvocacion : ID LBRACKET argumentos RBRACKET argumentos : lista_argargumentos : vaciolista_arg : lista_arg COMMA expresionlista_arg : expresionvacio :'
     
-_lr_action_items = {'VACUO':([0,2,3,4,5,9,11,13,22,23,24,],[7,7,-3,-4,-5,-2,-6,18,-10,7,-7,]),'ENT':([0,2,3,4,5,9,11,13,22,23,24,],[8,8,-3,-4,-5,-2,-6,8,-10,8,-7,]),'$end':([1,2,3,4,5,9,11,22,24,],[0,-1,-3,-4,-5,-2,-6,-10,-7,]),'ID':([6,7,8,15,18,],[10,-8,-9,21,-8,]),'SEMICOLON':([10,20,],[11,24,]),'LTCOMMENT':([10,21,],[12,25,]),'LBRACKET':([10,],[13,]),'NUM':([12,],[14,]),'RTCOMMENT':([14,25,],[20,27,]),'RBRACKET':([16,17,18,19,21,26,27,],[22,-11,-12,-14,-15,-13,-16,]),'COMMA':([17,19,21,26,27,],[23,-14,-15,-13,-16,]),}
+_lr_action_items = {'VACUO':([0,2,3,4,5,9,11,13,23,24,26,27,30,31,32,33,34,36,37,38,39,40,41,43,61,65,66,85,110,111,117,],[7,7,-3,-4,-5,-2,-6,18,7,-7,-10,-66,7,-19,-17,-18,-21,-20,-22,-23,-24,-25,-26,-28,-27,-32,-33,-34,-29,-31,-30,]),'ENT':([0,2,3,4,5,9,11,13,23,24,26,27,30,31,32,33,34,36,37,38,39,40,41,43,61,65,66,85,110,111,117,],[8,8,-3,-4,-5,-2,-6,8,8,-7,-10,-66,8,-19,-17,-18,-21,-20,-22,-23,-24,-25,-26,-28,-27,-32,-33,-34,-29,-31,-30,]),'$end':([1,2,3,4,5,9,11,24,26,27,30,31,32,33,34,36,37,38,39,40,41,43,61,65,66,85,110,111,117,],[0,-1,-3,-4,-5,-2,-6,-7,-10,-66,-66,-19,-17,-18,-21,-20,-22,-23,-24,-25,-26,-28,-27,-32,-33,-34,-29,-31,-30,]),'ID':([6,7,8,11,15,18,24,27,30,31,32,33,34,35,36,37,38,39,40,41,43,45,48,61,62,64,65,66,68,69,70,71,72,73,74,75,76,77,78,79,80,81,85,101,102,105,106,109,110,111,115,117,],[10,-8,-9,-6,21,-8,-7,-66,-66,-19,51,-18,-21,60,-20,-22,-23,-24,-25,-26,-28,51,51,-27,51,51,-32,-33,51,51,51,51,51,51,-47,-48,51,-51,-52,51,-55,-56,-34,51,51,51,51,51,-29,-31,51,-30,]),'SEMICOLON':([10,11,20,24,27,30,31,32,33,34,36,37,38,39,40,41,42,43,48,49,50,51,53,54,55,56,57,58,59,60,61,65,66,67,83,85,86,95,96,98,99,100,101,102,103,104,107,108,110,111,115,116,117,],[11,-6,24,-7,-66,-66,-19,43,-18,-21,-20,-22,-23,-24,-25,-26,61,-28,66,-58,-36,-37,-40,-43,-46,-50,-54,-59,-60,11,-27,-32,-33,85,-57,-34,-35,-58,-41,-45,-49,-53,43,43,-38,-61,-39,-44,-29,-31,43,-42,-30,]),'LTCOMMENT':([10,21,51,60,],[12,25,69,12,]),'LBRACKET':([10,11,24,27,30,31,32,33,34,36,37,38,39,40,41,43,44,45,46,48,51,52,61,62,64,65,66,68,69,70,71,72,73,74,75,76,77,78,79,80,81,85,92,97,101,102,105,106,109,110,111,115,117,],[13,-6,-7,-66,-66,-19,45,-18,-21,-20,-22,-23,-24,-25,-26,-28,62,45,64,45,70,71,-27,45,45,-32,-33,45,45,45,45,45,45,-47,-48,45,-51,-52,45,-55,-56,-34,106,109,45,45,45,45,45,-29,-31,45,-30,]),'LPARENT':([11,22,24,27,30,31,32,33,34,36,37,38,39,40,41,43,47,61,65,66,85,101,102,110,111,115,117,],[-6,27,-7,-66,-66,-19,27,-18,-21,-20,-22,-23,-24,-25,-26,-28,27,-27,-32,-33,-34,27,27,-29,-31,27,-30,]),'SI':([11,24,27,30,31,32,33,34,36,37,38,39,40,41,43,61,65,66,85,101,102,110,111,115,117,],[-6,-7,-66,-66,-19,44,-18,-21,-20,-22,-23,-24,-25,-26,-28,-27,-32,-33,-34,44,44,-29,-31,44,-30,]),'MIENTRAS':([11,24,27,30,31,32,33,34,36,37,38,39,40,41,43,61,65,66,85,101,102,110,111,115,117,],[-6,-7,-66,-66,-19,46,-18,-21,-20,-22,-23,-24,-25,-26,-28,-27,-32,-33,-34,46,46,-29,-31,46,-30,]),'REP':([11,24,27,30,31,32,33,34,36,37,38,39,40,41,43,61,65,66,85,101,102,110,111,115,117,],[-6,-7,-66,-66,-19,47,-18,-21,-20,-22,-23,-24,-25,-26,-28,-27,-32,-33,-34,47,47,-29,-31,47,-30,]),'RET':([11,24,27,30,31,32,33,34,36,37,38,39,40,41,43,61,65,66,85,101,102,110,111,115,117,],[-6,-7,-66,-66,-19,48,-18,-21,-20,-22,-23,-24,-25,-26,-28,-27,-32,-33,-34,48,48,-29,-31,48,-30,]),'NOT':([11,24,27,30,31,32,33,34,36,37,38,39,40,41,43,45,48,61,62,64,65,66,68,69,70,71,72,85,101,102,105,110,111,115,117,],[-6,-7,-66,-66,-19,52,-18,-21,-20,-22,-23,-24,-25,-26,-28,52,52,-27,52,52,-32,-33,52,52,52,92,97,-34,52,52,52,-29,-31,52,-30,]),'NUM':([11,12,24,27,30,31,32,33,34,36,37,38,39,40,41,43,45,48,61,62,64,65,66,68,69,70,71,72,73,74,75,76,77,78,79,80,81,85,101,102,105,106,109,110,111,115,117,],[-6,14,-7,-66,-66,-19,59,-18,-21,-20,-22,-23,-24,-25,-26,-28,59,59,-27,59,59,-32,-33,59,59,59,59,59,59,-47,-48,59,-51,-52,59,-55,-56,-34,59,59,59,59,59,-29,-31,59,-30,]),'SINO':([11,24,27,30,31,32,33,34,36,37,38,39,40,41,43,61,65,66,85,110,111,117,],[-6,-7,-66,-66,-19,-17,-18,-21,-20,-22,-23,-24,-25,-26,-28,-27,-32,-33,-34,115,-31,-30,]),'RTCOMMENT':([14,25,49,50,51,53,54,55,56,57,58,59,83,86,87,95,96,98,99,100,103,104,107,108,116,],[20,29,-58,-36,-37,-40,-43,-46,-50,-54,-59,-60,-57,-35,103,-58,-41,-45,-49,-53,-38,-61,-39,-44,-42,]),'RBRACKET':([16,17,18,19,21,28,29,49,50,51,53,54,55,56,57,58,59,63,70,82,83,84,86,88,89,90,91,93,94,95,96,98,99,100,103,104,107,108,112,113,114,116,],[22,-11,-12,-14,-15,-13,-16,-58,-36,-37,-40,-43,-46,-50,-54,-59,-60,83,-66,101,-57,102,-35,104,-62,-63,-65,107,108,-58,-41,-45,-49,-53,-38,-61,-39,-44,-64,108,116,-42,]),'COMMA':([17,19,21,28,29,49,50,51,53,54,55,56,57,58,59,83,86,89,91,95,96,98,99,100,103,104,107,108,112,116,],[23,-14,-15,-13,-16,-58,-36,-37,-40,-43,-46,-50,-54,-59,-60,-57,-35,105,-65,-58,-41,-45,-49,-53,-38,-61,-39,-44,-64,-42,]),'ASSIGN':([49,51,103,],[68,-37,-38,]),'TIMES':([49,51,56,57,58,59,83,95,99,100,103,104,],[-58,-37,80,-54,-59,-60,-57,-58,80,-53,-38,-61,]),'DIVIDE':([49,51,56,57,58,59,83,95,99,100,103,104,],[-58,-37,81,-54,-59,-60,-57,-58,81,-53,-38,-61,]),'PLUS':([49,51,55,56,57,58,59,83,95,98,99,100,103,104,],[-58,-37,77,-50,-54,-59,-60,-57,-58,77,-49,-53,-38,-61,]),'MINUS':([49,51,55,56,57,58,59,83,95,98,99,100,103,104,],[-58,-37,78,-50,-54,-59,-60,-57,-58,78,-49,-53,-38,-61,]),'LT':([49,51,54,55,56,57,58,59,83,94,95,96,98,99,100,103,104,113,114,],[-58,-37,74,-46,-50,-54,-59,-60,-57,74,-58,74,-45,-49,-53,-38,-61,74,74,]),'EQ':([49,51,54,55,56,57,58,59,83,94,95,96,98,99,100,103,104,113,114,],[-58,-37,75,-46,-50,-54,-59,-60,-57,75,-58,75,-45,-49,-53,-38,-61,75,75,]),'AND':([49,51,53,54,55,56,57,58,59,83,93,94,95,96,98,99,100,103,104,108,116,],[-58,-37,72,-43,-46,-50,-54,-59,-60,-57,72,-43,-58,-41,-45,-49,-53,-38,-61,-44,-42,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'programa':([0,],[1,]),'lista_decl':([0,],[2,]),'declaracion':([0,2,],[3,9,]),'declaracion_var':([0,2,],[4,4,]),'declaracion_fun':([0,2,],[5,5,]),'def_tipo':([0,2,13,23,],[6,6,15,15,]),'parametros':([13,],[16,]),'lista_parametros':([13,],[17,]),'param':([13,23,],[19,26,]),}
+_lr_goto_items = {'programa':([0,],[1,]),'lista_decl':([0,],[2,]),'declaracion':([0,2,],[3,9,]),'declaracion_var':([0,2,30,],[4,4,33,]),'declaracion_fun':([0,2,],[5,5,]),'def_tipo':([0,2,13,23,30,],[6,6,15,15,35,]),'parametros':([13,],[16,]),'lista_parametros':([13,],[17,]),'param':([13,23,],[19,28,]),'sentencia_comp':([22,32,47,101,102,115,],[26,38,65,38,38,38,]),'declaraciones_locales':([27,],[30,]),'vacio':([27,30,70,],[31,34,90,]),'lista_sentencias':([30,],[32,]),'sentencia':([32,101,102,115,],[36,110,111,117,]),'sentencia_expr':([32,101,102,115,],[37,37,37,37,]),'sentencia_seleccion':([32,101,102,115,],[39,39,39,39,]),'sentencia_iteracion':([32,101,102,115,],[40,40,40,40,]),'sentencia_retorno':([32,101,102,115,],[41,41,41,41,]),'expresion':([32,45,48,62,64,68,69,70,101,102,105,115,],[42,63,67,82,84,86,87,91,42,42,112,42,]),'var':([32,45,48,62,64,68,69,70,71,72,73,76,79,101,102,105,106,109,115,],[49,49,49,49,49,49,49,49,95,95,95,95,95,49,49,49,95,95,49,]),'expresion_negada':([32,45,48,62,64,68,69,70,101,102,105,115,],[50,50,50,50,50,50,50,50,50,50,50,50,]),'expresion_logica':([32,45,48,62,64,68,69,70,71,101,102,105,115,],[53,53,53,53,53,53,53,53,93,53,53,53,53,]),'expresion_simple':([32,45,48,62,64,68,69,70,71,72,101,102,105,106,109,115,],[54,54,54,54,54,54,54,54,94,96,54,54,54,113,114,54,]),'expresion_aditiva':([32,45,48,62,64,68,69,70,71,72,73,101,102,105,106,109,115,],[55,55,55,55,55,55,55,55,55,55,98,55,55,55,55,55,55,]),'term':([32,45,48,62,64,68,69,70,71,72,73,76,101,102,105,106,109,115,],[56,56,56,56,56,56,56,56,56,56,56,99,56,56,56,56,56,56,]),'factor':([32,45,48,62,64,68,69,70,71,72,73,76,79,101,102,105,106,109,115,],[57,57,57,57,57,57,57,57,57,57,57,57,100,57,57,57,57,57,57,]),'invocacion':([32,45,48,62,64,68,69,70,71,72,73,76,79,101,102,105,106,109,115,],[58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,58,]),'relop':([54,94,96,113,114,],[73,73,73,73,73,]),'addop':([55,98,],[76,76,]),'mulop':([56,99,],[79,79,]),'argumentos':([70,],[88,]),'lista_arg':([70,],[89,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,19 +27,69 @@ del _lr_goto_items
 _lr_productions = [
   ("S' -> programa","S'",1,None,None,None),
   ('programa -> lista_decl','programa',1,'p_programa','parser.py',11),
-  ('lista_decl -> lista_decl declaracion','lista_decl',2,'p_lista_decl','parser.py',15),
-  ('lista_decl -> declaracion','lista_decl',1,'p_lista_decl2','parser.py',27),
-  ('declaracion -> declaracion_var','declaracion',1,'p_declaracion','parser.py',31),
-  ('declaracion -> declaracion_fun','declaracion',1,'p_declaracion2','parser.py',35),
-  ('declaracion_var -> def_tipo ID SEMICOLON','declaracion_var',3,'p_declaracion_var','parser.py',39),
-  ('declaracion_var -> def_tipo ID LTCOMMENT NUM RTCOMMENT SEMICOLON','declaracion_var',6,'p_declaracion_var2','parser.py',43),
-  ('def_tipo -> VACUO','def_tipo',1,'p_def_tipo','parser.py',47),
-  ('def_tipo -> ENT','def_tipo',1,'p_def_tipo2','parser.py',51),
-  ('declaracion_fun -> def_tipo ID LBRACKET parametros RBRACKET','declaracion_fun',5,'p_declaracion_fun','parser.py',55),
-  ('parametros -> lista_parametros','parametros',1,'p_parametros','parser.py',60),
-  ('parametros -> VACUO','parametros',1,'p_parametros2','parser.py',64),
-  ('lista_parametros -> lista_parametros COMMA param','lista_parametros',3,'p_lista_parametros','parser.py',69),
-  ('lista_parametros -> param','lista_parametros',1,'p_lista_parametros2','parser.py',81),
-  ('param -> def_tipo ID','param',2,'p_param','parser.py',85),
-  ('param -> def_tipo ID LTCOMMENT RTCOMMENT','param',4,'p_param2','parser.py',89),
+  ('lista_decl -> lista_decl declaracion','lista_decl',2,'p_lista_decl','parser.py',16),
+  ('lista_decl -> declaracion','lista_decl',1,'p_lista_decl2','parser.py',29),
+  ('declaracion -> declaracion_var','declaracion',1,'p_declaracion','parser.py',34),
+  ('declaracion -> declaracion_fun','declaracion',1,'p_declaracion2','parser.py',39),
+  ('declaracion_var -> def_tipo ID SEMICOLON','declaracion_var',3,'p_declaracion_var','parser.py',44),
+  ('declaracion_var -> def_tipo ID LTCOMMENT NUM RTCOMMENT SEMICOLON','declaracion_var',6,'p_declaracion_var2','parser.py',49),
+  ('def_tipo -> VACUO','def_tipo',1,'p_def_tipo','parser.py',54),
+  ('def_tipo -> ENT','def_tipo',1,'p_def_tipo2','parser.py',59),
+  ('declaracion_fun -> def_tipo ID LBRACKET parametros RBRACKET sentencia_comp','declaracion_fun',6,'p_declaracion_fun','parser.py',64),
+  ('parametros -> lista_parametros','parametros',1,'p_parametros','parser.py',70),
+  ('parametros -> VACUO','parametros',1,'p_parametros2','parser.py',75),
+  ('lista_parametros -> lista_parametros COMMA param','lista_parametros',3,'p_lista_parametros','parser.py',81),
+  ('lista_parametros -> param','lista_parametros',1,'p_lista_parametros2','parser.py',94),
+  ('param -> def_tipo ID','param',2,'p_param','parser.py',99),
+  ('param -> def_tipo ID LTCOMMENT RTCOMMENT','param',4,'p_param2','parser.py',104),
+  ('sentencia_comp -> LPARENT declaraciones_locales lista_sentencias','sentencia_comp',3,'p_sentencia_comp','parser.py',109),
+  ('declaraciones_locales -> declaraciones_locales declaracion_var','declaraciones_locales',2,'p_declaraciones_locales','parser.py',114),
+  ('declaraciones_locales -> vacio','declaraciones_locales',1,'p_declaraciones_locales2','parser.py',127),
+  ('lista_sentencias -> lista_sentencias sentencia','lista_sentencias',2,'p_lista_sentencias','parser.py',132),
+  ('lista_sentencias -> vacio','lista_sentencias',1,'p_lista_sentencias2','parser.py',145),
+  ('sentencia -> sentencia_expr','sentencia',1,'p_sentencia','parser.py',150),
+  ('sentencia -> sentencia_comp','sentencia',1,'p_sentencia2','parser.py',155),
+  ('sentencia -> sentencia_seleccion','sentencia',1,'p_sentencia3','parser.py',160),
+  ('sentencia -> sentencia_iteracion','sentencia',1,'p_sentencia4','parser.py',165),
+  ('sentencia -> sentencia_retorno','sentencia',1,'p_sentencia5','parser.py',170),
+  ('sentencia_expr -> expresion SEMICOLON','sentencia_expr',2,'p_sentencia_expr','parser.py',175),
+  ('sentencia_expr -> SEMICOLON','sentencia_expr',1,'p_sentencia_expr2','parser.py',180),
+  ('sentencia_seleccion -> SI LBRACKET expresion RBRACKET sentencia','sentencia_seleccion',5,'p_sentencia_seleccion','parser.py',185),
+  ('sentencia_seleccion -> SI LBRACKET expresion RBRACKET sentencia SINO sentencia','sentencia_seleccion',7,'p_sentencia_seleccion2','parser.py',190),
+  ('sentencia_iteracion -> MIENTRAS LBRACKET expresion RBRACKET sentencia','sentencia_iteracion',5,'p_sentencia_iteracion','parser.py',195),
+  ('sentencia_iteracion -> REP sentencia_comp','sentencia_iteracion',2,'p_sentencia_iteracion2','parser.py',200),
+  ('sentencia_retorno -> RET SEMICOLON','sentencia_retorno',2,'p_sentencia_retorno','parser.py',205),
+  ('sentencia_retorno -> RET expresion SEMICOLON','sentencia_retorno',3,'p_sentencia_retorno2','parser.py',210),
+  ('expresion -> var ASSIGN expresion','expresion',3,'p_expresion','parser.py',216),
+  ('expresion -> expresion_negada','expresion',1,'p_expresion2','parser.py',221),
+  ('var -> ID','var',1,'p_var','parser.py',226),
+  ('var -> ID LTCOMMENT expresion RTCOMMENT','var',4,'p_var2','parser.py',231),
+  ('expresion_negada -> NOT LBRACKET expresion_logica RBRACKET','expresion_negada',4,'p_expresion_negada','parser.py',236),
+  ('expresion_negada -> expresion_logica','expresion_negada',1,'p_expresion_negada2','parser.py',241),
+  ('expresion_logica -> expresion_logica AND expresion_simple','expresion_logica',3,'p_expresion_logica','parser.py',246),
+  ('expresion_logica -> expresion_logica AND NOT LBRACKET expresion_simple RBRACKET','expresion_logica',6,'p_expresion_logica2','parser.py',251),
+  ('expresion_logica -> expresion_simple','expresion_logica',1,'p_expresion_logica3','parser.py',256),
+  ('expresion_logica -> NOT LBRACKET expresion_simple RBRACKET','expresion_logica',4,'p_expresion_logica4','parser.py',261),
+  ('expresion_simple -> expresion_simple relop expresion_aditiva','expresion_simple',3,'p_expresion_simple','parser.py',266),
+  ('expresion_simple -> expresion_aditiva','expresion_simple',1,'p_expresion_simple2','parser.py',278),
+  ('relop -> LT','relop',1,'p_relop','parser.py',283),
+  ('relop -> EQ','relop',1,'p_relop2','parser.py',288),
+  ('expresion_aditiva -> expresion_aditiva addop term','expresion_aditiva',3,'p_expresion_aditiva','parser.py',293),
+  ('expresion_aditiva -> term','expresion_aditiva',1,'p_expresion_aditiva2','parser.py',306),
+  ('addop -> PLUS','addop',1,'p_addop','parser.py',311),
+  ('addop -> MINUS','addop',1,'p_addop2','parser.py',316),
+  ('term -> term mulop factor','term',3,'p_term','parser.py',321),
+  ('term -> factor','term',1,'p_term2','parser.py',333),
+  ('mulop -> TIMES','mulop',1,'p_mulop','parser.py',339),
+  ('mulop -> DIVIDE','mulop',1,'p_mulop2','parser.py',344),
+  ('factor -> LBRACKET expresion RBRACKET','factor',3,'p_factor','parser.py',348),
+  ('factor -> var','factor',1,'p_factor2','parser.py',353),
+  ('factor -> invocacion','factor',1,'p_factor3','parser.py',358),
+  ('factor -> NUM','factor',1,'p_factor4','parser.py',363),
+  ('invocacion -> ID LBRACKET argumentos RBRACKET','invocacion',4,'p_invocacion','parser.py',368),
+  ('argumentos -> lista_arg','argumentos',1,'p_argumentos','parser.py',373),
+  ('argumentos -> vacio','argumentos',1,'p_argumentos2','parser.py',378),
+  ('lista_arg -> lista_arg COMMA expresion','lista_arg',3,'p_lista_arg','parser.py',384),
+  ('lista_arg -> expresion','lista_arg',1,'p_lista_arg2','parser.py',397),
+  ('vacio -> <empty>','vacio',0,'p_vacio','parser.py',405),
 ]
