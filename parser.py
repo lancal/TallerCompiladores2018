@@ -43,12 +43,12 @@ def p_declaracion2(p):
 def p_declaracion_var(p):
     #Regla 4
     """declaracion_var : def_tipo ID SEMICOLON"""
-    p[0] = nodos.type_esp_id_num(p[1],p[2])
+    p[0] = nodos.nodoDeclaracionVar(p[1],p[2])
 
 def p_declaracion_var2(p):
     #Regla 4
     """declaracion_var : def_tipo ID LTCOMMENT NUM RTCOMMENT SEMICOLON"""
-    p[0] = nodos.type_esp_id_num(p[1],p[2],NUM_t=p[4])
+    p[0] = nodos.nodoDeclaracionVar(p[1],p[2],NUM_t=p[4])
 
 def p_def_tipo(p):
     #Regla 5
@@ -64,7 +64,7 @@ def p_declaracion_fun(p):
     #Regla 6
     """declaracion_fun : def_tipo ID LBRACKET parametros RBRACKET sentencia_comp"""
     #"""declaracion_fun : def_tipo ID LBRACKET parametros RBRACKET"""
-    p[0] = nodos.def_tipo_id_parametros_sentencia_comp(p[1],p[2],p[4],p[6])
+    p[0] = nodos.nodoDeclaracionFun(p[1],p[2],p[4],p[6])
 
 def p_parametros(p):
     #Regla 7
@@ -423,7 +423,7 @@ parser = yacc.yacc(debug=True,start="programa")
 
 treeFileDot = open('tree.dot', 'w')
 
-with open('sample2.pp', 'r') as arch:
+with open('sample3.pp', 'r') as arch:
     contents = arch.read()
     result = parser.parse(contents)
     if result is not None:

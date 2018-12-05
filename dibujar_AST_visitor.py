@@ -9,9 +9,13 @@ class Visitor(object):
         self.id_term = 0
         self.id_num = 0
         self.id_ID = 0
-        self.id_type_esp_id_num = 0
+        self.id_ID2 = 0
+        self.id_declaracion_var= 0
         self.id_def_tipo = 0
         self.id_NUM = 0
+        self.id_declaracion_fun = 0
+        self.id_parametros = 0
+        self.id_sentencia_comp = 0
 
     def visit_program(self, program):
         self.id_program += 1
@@ -75,38 +79,96 @@ class Visitor(object):
     #     id_num = self.id_num
     #     self.ast += '-> "NUM' + str(id_num) + ': ' + num.num_t + '"' + '\n'
 
-    def visit_type_esp_id_num(self,declaracion_var_p):
+    def visit_nodoDeclaracionVar(self,declaracion_var_p):
 
 
-        self.id_type_esp_id_num += 1
-        id_type_esp_id_num = self.id_type_esp_id_num
+        self.id_declaracion_var+= 1
+        id_declaracion_var = self.id_declaracion_var
 
-        self.ast += '-> "Declaracion Var ' + str(id_type_esp_id_num) + '"' + '\n'
+        self.ast += '-> "Declaracion Var ' + str(id_declaracion_var) + '"' + '\n'
 
         self.id_def_tipo += 1
         id_def_tipo = self.id_def_tipo
 
-        self.ast += '\t"Declaracion Var ' + str(id_type_esp_id_num) + '" '\
+        self.ast += '\t"Declaracion Var ' + str(id_declaracion_var) + '" '\
                     '-> "def tipo' + str(id_def_tipo) + ': ' + declaracion_var_p.def_tipo_p + '" ' + '\n'
 
         self.id_ID += 1
         id_ID = self.id_ID
 
-        self.ast += '\t"Declaracion Var ' + str(id_type_esp_id_num) + '" '\
+        self.ast += '\t"Declaracion Var ' + str(id_declaracion_var) + '" '\
                     '-> "ID ' + str(id_ID) + ': ' + declaracion_var_p.ID_t + '" ' + '\n'
 
         if declaracion_var_p.NUM_t is not None:
 
             self.id_NUM += 1
             id_NUM = self.id_NUM
-            self.ast += '\t"Declaracion Var ' + str(id_type_esp_id_num) + '" ' \
+            self.ast += '\t"Declaracion Var ' + str(id_declaracion_var) + '" ' \
                         '-> "NUM ' + str(id_NUM) + ': ' + declaracion_var_p.NUM_t + '" ' + '\n'
 
 
-    def visit_def_tipo_id_parametros_sentencia_comp(self,declaracion_fun_p):
+    def visit_nodoDeclaracionFun(self,declaracion_fun_p):
 
         # completar
-        print(declaracion_fun_p)
+        self.id_declaracion_fun +=1
+        id_declaracion_fun = self.id_declaracion_fun
+
+        self.ast += '-> "Declaracion Fun ' + str(id_declaracion_fun) + '"' + '\n'
+
+        self.id_def_tipo += 1
+        id_def_tipo = self.id_def_tipo
+
+        self.ast += '\t"Declaracion Fun ' + str(id_declaracion_fun) + '" ' \
+                    '-> "def tipo' + str(id_def_tipo) + ': ' + declaracion_fun_p.def_tipo_p + '" ' + '\n'
+
+        self.id_ID += 1
+        id_ID = self.id_ID
+
+        self.ast += '\t"Declaracion Fun ' + str(id_declaracion_fun) + '" ' \
+                    '-> "ID ' + str(id_ID) + ': ' + declaracion_fun_p.ID_t + '" ' + '\n'
+
+        self.id_parametros += 1
+        id_parametros = self.id_parametros
+
+        #print(id_parametros)
+        #print(declaracion_fun_p.parametros_p)
+
+
+        #for x in declaracion_fun_p.parametros_p :
+
+        #self.ast += '\t"Declaracion Fun ' + str(id_declaracion_fun) + '" ' \
+         #           '-> "Parametros ' + str(id_parametros) + ': ' + declaracion_fun_p.parametros_p + '" ' + '\n'
+
+        if declaracion_fun_p.parametros_p is not None:
+
+            if isinstance(declaracion_fun_p.parametros_p,list) :
+
+                aux = declaracion_fun_p.parametros_p
+
+            else:
+
+                aux = [declaracion_fun_p.parametros_p]
+
+            for x in aux:
+
+                #print(aux)
+
+                print(x)
+
+                if declaracion_fun_p.parametros_p is not None:
+
+                    self.ast += '\t"Declaracion Fun ' + str(id_declaracion_fun) + '" ' \
+                                '-> "Parametros ' + str(id_parametros) + ': ' + str(x)  + '" ' + '\n'
+
+
+
+
+
+
+
+
+
+        #print(declaracion_fun_p)
 
     def visit_nodoParametros(self,parametros_p):
 

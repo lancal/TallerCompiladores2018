@@ -55,7 +55,7 @@ class Program(Nodo):
 #         visitor.visit_num(self)
 
 
-class type_esp_id_num(Nodo):
+class nodoDeclaracionVar(Nodo):
 
     #global NUM_t
 
@@ -66,21 +66,21 @@ class type_esp_id_num(Nodo):
         self.NUM_t = NUM_t
 
     def accept(self, visitor):
-        visitor.visit_type_esp_id_num(self)
+        visitor.visit_nodoDeclaracionVar(self)
 
 
-class def_tipo_id_parametros_sentencia_comp(Nodo):
+class nodoDeclaracionFun(Nodo):
 
-    def __init__(self,def_tipo_p,ID_p,parametros_p,sentencia_comp_p):
+    def __init__(self,def_tipo_p,ID_t,parametros_p,sentencia_comp_p):
 
         self.def_tipo_p = def_tipo_p
-        self.ID_p = ID_p
-        self.paramtros_p = parametros_p
+        self.ID_t = ID_t
+        self.parametros_p = parametros_p
         self.sentencia_comp_p = sentencia_comp_p
 
     def accept(self,visitor):
 
-        visitor.visit_def_tipo_id_parametros_sentencia_comp(self)
+        visitor.visit_nodoDeclaracionFun(self)
 
 class nodoParametros(Nodo):
 
