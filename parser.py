@@ -12,13 +12,18 @@ def p_programa(p):
     """programa : lista_decl """
     p[0] = nodos.Program(p[1])
 
+    #print(p[0])
+
 def p_lista_decl(p):
     #Regla 2
     """lista_decl : lista_decl declaracion"""
     if isinstance(p[1], list):
         p[0] = p[1]
+        #print(p[0])
     else:
         p[0] = [p[1]]
+
+        #print(p[0])
 
     if isinstance(p[2], list):
         p[0].extend(p[2])

@@ -64,6 +64,8 @@ class nodoDeclaracionVar(Nodo):
         self.def_tipo_p = def_tipo_p
         self.ID_t = ID_t
         self.NUM_t = NUM_t
+        self.nombre = 'Declaracion Var '
+
 
     def accept(self, visitor):
         visitor.visit_nodoDeclaracionVar(self)
@@ -77,6 +79,7 @@ class nodoDeclaracionFun(Nodo):
         self.ID_t = ID_t
         self.parametros_p = parametros_p
         self.sentencia_comp_p = sentencia_comp_p
+        self.nombre = 'Declaracion Fun '
 
     def accept(self,visitor):
 
@@ -100,6 +103,7 @@ class nodoParametros(Nodo):
         self.def_tipo_p = def_tipo_p
         self.ID_t = ID_t
         self.is_vector = is_vector
+        self.nombre = 'Parametros '
 
     def accept(self,visitor):
         visitor.visit_nodoParametros(self)
@@ -111,6 +115,7 @@ class nodoSentenciaComp(Nodo):
 
         self.declaraciones_locales_p = declaraciones_locales_p
         self.lista_sentencias_p = lista_sentencias_p
+        self.nombre = 'Sentencia Comp '
 
     def accept(self,visitor):
         visitor.visit_nodoSentenciaComp(self)
@@ -122,6 +127,7 @@ class nodoSentenciaSeleccion(Nodo):
         self.sentencia_p = sentencia_p
         self.is_else = is_else
         self.else_statement = sino_sentencia
+        self.nombre = 'Sentencia Seleccion '
 
     def accept(self,visitor):
         visitor.visit_nodoSentenciaSeleccion(self)
@@ -133,6 +139,7 @@ class nodoSentenciaIteracion(Nodo):
         self.expresion_p = expresion_p
         self.sentencia_p = sentencia_p
         self.sentencia_comp_p = sentencia_comp_p
+        self.nombre = 'Sentencia Iteracion '
 
     def accept(self,visitor):
         visitor.visit_nodoSentenciaSeleccion(self)
@@ -143,6 +150,7 @@ class nodoSentenciaRetorno(Nodo):
 
         self.thereis_expression = thereis_expression
         self.expresion_p = expresion_p
+        self.nombre = 'Sentencia Retorno '
 
     def accept(self,visitor):
         visitor.visit_nodoSentenciaRetorno(self)
@@ -152,6 +160,7 @@ class nodoAssign(Nodo):
     def __init__(self,var_p,expresion_p):
         self.var_p = var_p
         self.expresion_p = expresion_p
+        self.nombre = 'Assign '
 
     def accept(self,visitor):
         visitor.visit_nodoAssign(self)
@@ -163,6 +172,7 @@ class nodoVar(Nodo):
         self.id_t = id_t
         self.is_vec_access = is_vec_access
         self.expresion_p = expresion_p
+        self.nombre = 'Var '
 
     def accept(self,visitor):
         visitor.visit_nodoVar(self)
@@ -172,6 +182,7 @@ class nodoExpresionNegada(Nodo):
     def __init__(self,expresion_negada_p):
 
         self.expresion_negada_p = expresion_negada_p
+        self.nombre = 'Expresion Negada '
 
     def accept(self,visitor):
         visitor.visit_nodoExpresionNegada(self)
@@ -181,6 +192,7 @@ class nodoExpresionLogica(Nodo):
     def __init__(self,expresion_logica_p = None , expresion_simple_p = None):
         self.expresion_logica_p = expresion_logica_p
         self.expresion_simple_p = expresion_simple_p
+        self.nombre = 'Expresion Logica '
 
     def accept(self,visitor):
         visitor.visit_nodoExpresion_logica(self)
@@ -188,7 +200,7 @@ class nodoExpresionLogica(Nodo):
 class nodoVacio():
 
     def __init__(self):
-        self.name = 'vacio'
+        self.nombre = 'vacio'
 
     def accept(self,visitor):
         visitor.visit_nodoVacio(self)
@@ -201,6 +213,7 @@ class nodoBinarioOP(Nodo):
         self.ramaIzq_p = ramaIzq_p
         self.ramaDer_p = ramaDer_p
         self.operacion_p = operacion_p
+        self.nombre = 'Nodo Binario Op '
 
     def accept(self,visitor):
         visitor.visit_nodoBinarioOP(self)
@@ -209,6 +222,7 @@ class nodoNUM(Nodo):
 
     def __init__(self, num_t):
         self.num_t = num_t
+        self.nombre = 'NUM '
 
     def accept(self, visitor):
         visitor.visit_nodoNUM(self)
@@ -219,6 +233,7 @@ class nodoInvocacion(Nodo):
 
         self.id_t = id_t
         self.argumentos_p = argumentos_p
+        self.nombre = 'Invocacion '
 
     def accept(self,visitor):
         visitor.visit_nodoInvocacion(self)
