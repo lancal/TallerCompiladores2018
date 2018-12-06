@@ -486,8 +486,9 @@ class Visitor(object):
 
         self.ast += '"Expresion ' + str(id_nodoExpresion) + '"' + '\n'
 
+        #self.manyTimes(expresion_p.expresion_p, id_nodoExpresion, expresion_p.nombre)
         self.manyTimes(expresion_p.var_p, id_nodoExpresion, expresion_p.nombre)
-        #self.manyTimes(expresion_p.var_p, id_nodoExpresion, expresion_p.nombre)
+
 
     def visit_nodoVar(self,var_p):
         # completar
@@ -499,7 +500,7 @@ class Visitor(object):
         self.ast += '"Var ' + str(id_nodoVar) + '"' + '\n'
 
         self.manyTimes(var_p.id_t, id_nodoVar, var_p.nombre)
-        self.manyTimes(var_p.expresion_p, id_nodoVar, var_p.nombre)
+        #self.manyTimes(var_p.expresion_p, id_nodoVar, var_p.nombre)
 
 
     def visit_nodoExpresionNegada(self,expresion_negada_p):
