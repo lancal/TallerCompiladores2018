@@ -1,7 +1,13 @@
 digraph G {
 	"Lista 1" -> "Declaracion Fun 1"
-	"Declaracion Fun 1" -> "def tipo1: VACUO" 
+	"Declaracion Fun 1" -> "def tipo 1: VACUO" 
 	"Declaracion Fun 1" -> "ID 1: e$" 
-	"Declaracion Fun 1" -> "Parametros 1: <nodos.nodoParametros object at 0x114553438>" 
-	"Declaracion Fun 1" -> "Parametros 1: <nodos.nodoParametros object at 0x1145534a8>" 
+	"Declaracion Fun 1" -> "ParamElse 1: ent a"
+	"Declaracion Fun 1" -> "ParamElse 2: vacuo w"
+	"Declaracion Fun 1" -> 	"Sentencia comp 1"
+	"Sentencia compp 1" -> 
+	"Sentencia compp 1" -> 
+"Declaracion Var 1"
+	"Declaracion Var 1" -> "def tipo 2: ent" 
+	"Declaracion Var 1" -> "ID 2: e$" 
 }

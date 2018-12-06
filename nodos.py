@@ -82,6 +82,17 @@ class nodoDeclaracionFun(Nodo):
 
         visitor.visit_nodoDeclaracionFun(self)
 
+# class nodoLista_parametros(Nodo):
+#
+#     def __init__(self,lista_parametros_p,param_p):
+#
+#         self.lista_parametros_p = lista_parametros_p
+#         self.param_p = param_p
+#
+#     def accept(self,visitor):
+#
+#         visitor.visit_nodoLista_parametros(self)
+
 class nodoParametros(Nodo):
 
     def __init__(self,def_tipo_p,ID_t = None, is_vector = False):
@@ -93,13 +104,6 @@ class nodoParametros(Nodo):
     def accept(self,visitor):
         visitor.visit_nodoParametros(self)
 
-class nodoVacio():
-
-    def __init__(self):
-        self.name = 'vacio'
-
-    def accept(self,visitor):
-        visitor.visit_nodoVacio(self)
 
 class nodoSentenciaComp(Nodo):
 
@@ -180,6 +184,15 @@ class nodoExpresionLogica(Nodo):
 
     def accept(self,visitor):
         visitor.visit_nodoExpresion_logica(self)
+
+class nodoVacio():
+
+    def __init__(self):
+        self.name = 'vacio'
+
+    def accept(self,visitor):
+        visitor.visit_nodoVacio(self)
+
 
 class nodoBinarioOP(Nodo):
 
