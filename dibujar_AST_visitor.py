@@ -18,6 +18,9 @@ class Visitor(object):
         self.id_sentencia_comp = 0
         self.id_nodo = 0
         self.id_nodoListaParametros = 0
+        self.id_nodoSentenciaSeleccion = 0
+        self.id_nodoExpresion = 0
+        self.id_nodoVar = 0
 
         self.id_nodoParam = 0
 
@@ -97,7 +100,13 @@ class Visitor(object):
 
     def manyTimes(self,p1,p2,p3):
 
+        print(p1)
+        print("afuera if many times")
+
         if p1 is not None:
+
+            print("adentro if many times")
+
             if isinstance(p1, list):
 
                 aux = p1
@@ -360,7 +369,7 @@ class Visitor(object):
     #     id_nodoParametros = self.id_nodoListaParametros
 
 
-    def visit_nodoParametros(self,param_p):
+    def visit_nodoParam(self,param_p):
 
         #completar
         #print(param_p)
@@ -368,7 +377,7 @@ class Visitor(object):
         self.id_nodoParam += 1
         id_nodoParam = self.id_nodoParam
 
-        self.ast += '"Parametros ' + str(id_nodoParam) + '"' + '\n'
+        self.ast += '"Param ' + str(id_nodoParam) + '"' + '\n'
 
         self.manyTimes(param_p.def_tipo_p,id_nodoParam,param_p.nombre)
         self.manyTimes(param_p.ID_t, id_nodoParam, param_p.nombre)
@@ -417,6 +426,7 @@ class Visitor(object):
         self.ast += '"Sentencia Comp ' + str(id_sentencia_comp) + '"' + '\n'
 
         self.manyTimes(sentencia_comp_p.declaraciones_locales_p,id_sentencia_comp,sentencia_comp_p.nombre)
+        self.manyTimes(sentencia_comp_p.lista_sentencias_p, id_sentencia_comp, sentencia_comp_p.nombre)
         #self.manyTimes(sentencia_comp_p.lista_sentencias_p, id_sentencia_comp, sentencia_comp_p.nombre)
 
         # for x in sentencia_comp_p.declaraciones_locales_p:
@@ -444,8 +454,21 @@ class Visitor(object):
         #     y.accept(self)
 
     def visit_nodoSentenciaSeleccion(self,sentencia_seleccion_p):
+
         # completar
-        print(sentencia_seleccion_p)
+        #print(sentencia_seleccion_p)
+
+        self.id_nodoSentenciaSeleccion += 1
+        id_nodoSentenciaSeleccion = self.id_nodoSentenciaSeleccion
+
+        self.ast += '"Sentencia Seleccion ' + str(id_nodoSentenciaSeleccion) + '"' + '\n'
+
+        print(sentencia_seleccion_p.sentencia_p)
+        print("sentencia seleccion_p")
+
+        self.manyTimes(sentencia_seleccion_p.expresion_p, id_nodoSentenciaSeleccion, sentencia_seleccion_p.nombre)
+        self.manyTimes(sentencia_seleccion_p.sentencia_p, id_nodoSentenciaSeleccion, sentencia_seleccion_p.nombre)
+
 
     def visit_nodoSentenciaIteracion(self,sentencia_iteracion_p):
         # completar
@@ -455,13 +478,29 @@ class Visitor(object):
         # completar
         print(sentencia_retorno_p)
 
-    def visit_nodoAssign(self,expresion_p):
+    def visit_nodoExpresion(self,expresion_p):
         # completar
-        print(expresion_p)
+        #print(expresion_p)
+        self.id_nodoExpresion += 1
+        id_nodoExpresion = self.id_nodoExpresion
+
+        self.ast += '"Expresion ' + str(id_nodoExpresion) + '"' + '\n'
+
+        self.manyTimes(expresion_p.var_p, id_nodoExpresion, expresion_p.nombre)
+        #self.manyTimes(expresion_p.var_p, id_nodoExpresion, expresion_p.nombre)
 
     def visit_nodoVar(self,var_p):
         # completar
-        print(var_p)
+        #print(var_p)
+
+        self.id_nodoVar += 1
+        id_nodoVar = self.id_nodoVar
+
+        self.ast += '"Var ' + str(id_nodoVar) + '"' + '\n'
+
+        self.manyTimes(var_p.id_t, id_nodoVar, var_p.nombre)
+        self.manyTimes(var_p.expresion_p, id_nodoVar, var_p.nombre)
+
 
     def visit_nodoExpresionNegada(self,expresion_negada_p):
 

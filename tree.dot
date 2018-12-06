@@ -4,20 +4,24 @@ digraph G {
 	"Declaracion Fun 1" -> 1
 	2 [label="e$"]
 	"Declaracion Fun 1" -> 2
-	"Declaracion Fun 1" -> "Parametros 1"
+	"Declaracion Fun 1" -> "Param 1"
 	3 [label="ent"]
-	"Parametros 1" -> 3
+	"Param 1" -> 3
 	4 [label="a"]
-	"Parametros 1" -> 4
-	"Declaracion Fun 1" -> "Parametros 2"
+	"Param 1" -> 4
+	"Declaracion Fun 1" -> "Param 2"
 	5 [label="vacuo"]
-	"Parametros 2" -> 5
+	"Param 2" -> 5
 	6 [label="w"]
-	"Parametros 2" -> 6
+	"Param 2" -> 6
 	"Declaracion Fun 1" -> "Sentencia Comp 1"
 	"Sentencia Comp 1" -> "Declaracion Var 1"
 	7 [label="ent"]
 	"Declaracion Var 1" -> 7
 	8 [label="e$"]
 	"Declaracion Var 1" -> 8
-}
+	"Sentencia Comp 1" -> "Sentencia Seleccion 1"
+	"Sentencia Seleccion 1" -> "Expresion 1"
+	"Expresion 1" -> 	"Sentencia Seleccion 1" -> "Sentencia Comp 2"
+	"Sentencia Comp 2" -> "Expresion 2"
+	"Expresion 2" -> }

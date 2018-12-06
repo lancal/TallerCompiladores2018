@@ -79,7 +79,7 @@ def p_parametros(p):
 def p_parametros2(p):
     #Regla 7
     """parametros : VACUO"""
-    p[0] = [nodos.nodoParametros(p[1])]
+    p[0] = nodos.nodoParam(p[1])
 
 
 def p_lista_parametros(p):
@@ -103,12 +103,12 @@ def p_lista_parametros2(p):
 def p_param(p):
     #Regla 9
     """param : def_tipo ID"""
-    p[0] = nodos.nodoParametros(p[1],p[2])
+    p[0] = nodos.nodoParam(p[1],p[2])
 
 def p_param2(p):
     #Regla 9
     """param : def_tipo ID LTCOMMENT RTCOMMENT"""
-    p[0] = nodos.nodoParametros(p[1], p[2], is_vector=True)
+    p[0] = nodos.nodoParam(p[1], p[2], is_vector=True)
 
 def p_sentencia_comp(p):
     #Regla 10
@@ -220,7 +220,7 @@ def p_sentencia_retorno2(p):
 def p_expresion(p):
     #Regla 18
     """expresion : var ASSIGN expresion"""
-    p[0] = nodos.nodoAssign(p[1],p[3])
+    p[0] = nodos.nodoExpresion(p[1],p[3])
 
 def p_expresion2(p):
     #Regla 18

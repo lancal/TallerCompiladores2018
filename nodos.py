@@ -96,17 +96,17 @@ class nodoDeclaracionFun(Nodo):
 #
 #         visitor.visit_nodoLista_parametros(self)
 
-class nodoParametros(Nodo):
+class nodoParam(Nodo):
 
-    def __init__(self,def_tipo_p,ID_t = None, is_vector = False):
+    def __init__(self,def_tipo_p,ID_t = None):
 
         self.def_tipo_p = def_tipo_p
         self.ID_t = ID_t
-        self.is_vector = is_vector
-        self.nombre = 'Parametros '
+        #self.is_vector = is_vector
+        self.nombre = 'Param '
 
     def accept(self,visitor):
-        visitor.visit_nodoParametros(self)
+        visitor.visit_nodoParam(self)
 
 
 class nodoSentenciaComp(Nodo):
@@ -155,15 +155,15 @@ class nodoSentenciaRetorno(Nodo):
     def accept(self,visitor):
         visitor.visit_nodoSentenciaRetorno(self)
 
-class nodoAssign(Nodo):
+class nodoExpresion(Nodo):
 
     def __init__(self,var_p,expresion_p):
         self.var_p = var_p
         self.expresion_p = expresion_p
-        self.nombre = 'Assign '
+        self.nombre = 'Expresion '
 
     def accept(self,visitor):
-        visitor.visit_nodoAssign(self)
+        visitor.visit_nodoExpresion(self)
 
 class nodoVar(Nodo):
 
