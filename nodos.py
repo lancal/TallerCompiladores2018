@@ -59,10 +59,11 @@ class nodoDeclaracionVar(Nodo):
 
     #global NUM_t
 
-    def __init__(self,def_tipo_p,ID_t,NUM_t=None):
+    def __init__(self,def_tipo_p,ID_t,thereis_num = False,NUM_t=None):
 
         self.def_tipo_p = def_tipo_p
         self.ID_t = ID_t
+        self.thereis_num = thereis_num
         self.NUM_t = NUM_t
         self.nombre = 'Declaracion Var '
 
@@ -98,11 +99,11 @@ class nodoDeclaracionFun(Nodo):
 
 class nodoParam(Nodo):
 
-    def __init__(self,def_tipo_p,ID_t = None):
+    def __init__(self,def_tipo_p,thereis_ID = False,ID_t = None):
 
         self.def_tipo_p = def_tipo_p
         self.ID_t = ID_t
-        #self.is_vector = is_vector
+        self.thereis_ID = thereis_ID
         self.nombre = 'Param '
 
     def accept(self,visitor):
@@ -111,10 +112,12 @@ class nodoParam(Nodo):
 
 class nodoSentenciaComp(Nodo):
 
-    def __init__(self,declaraciones_locales_p,lista_sentencias_p):
+    def __init__(self,declaraciones_locales_p,lista_sentencias_p,is_vacio=False,vacio_t=None):
 
         self.declaraciones_locales_p = declaraciones_locales_p
         self.lista_sentencias_p = lista_sentencias_p
+        self.is_vacio = is_vacio
+        self.vacio_t = vacio_t
         self.nombre = 'Sentencia Comp '
 
     def accept(self,visitor):
@@ -122,11 +125,11 @@ class nodoSentenciaComp(Nodo):
 
 class nodoSentenciaSeleccion(Nodo):
 
-    def __init__(self,expresion_p,sentencia_p,is_else = False,sino_sentencia = None):
+    def __init__(self,expresion_p,sentencia_p,is_else = False,sentencia_p2 = None):
         self.expresion_p = expresion_p
         self.sentencia_p = sentencia_p
         self.is_else = is_else
-        self.else_statement = sino_sentencia
+        self.sentencia_p2 = sentencia_p2
         self.nombre = 'Sentencia Seleccion '
 
     def accept(self,visitor):
@@ -134,15 +137,19 @@ class nodoSentenciaSeleccion(Nodo):
 
 class nodoSentenciaIteracion(Nodo):
 
-    def __init__(self,expresion_p=None,sentencia_p=None,sentencia_comp_p = None):
+    def __init__(self,thereis_expresion = False,expresion_p=None,thereis_sentencia = False,sentencia_p=None,
+                 thereis_sentencia_comp = False,sentencia_comp_p = None):
 
+        self.thereis_expresion = thereis_expresion
         self.expresion_p = expresion_p
+        self.thereis_sentencia = thereis_sentencia
         self.sentencia_p = sentencia_p
+        self.thereis_sentencia_comp = thereis_sentencia_comp
         self.sentencia_comp_p = sentencia_comp_p
         self.nombre = 'Sentencia Iteracion '
 
     def accept(self,visitor):
-        visitor.visit_nodoSentenciaSeleccion(self)
+        visitor.visit_nodoSentenciaIteracion(self)
 
 class nodoSentenciaRetorno(Nodo):
 
@@ -205,6 +212,9 @@ class nodoExpresionLogica(Nodo):
 class nodoVacio():
 
     def __init__(self):
+
+        #self.is_vacio = is_vacio
+        #self.vacio_t = vacio_t
         self.nombre = 'vacio'
 
     def accept(self,visitor):

@@ -1,64 +1,34 @@
 digraph G {
+	"Lista 1" -> "Declaracion Var 1"
+	1 [label="VACUo"]
+	"Declaracion Var 1" -> 1
+	2 [label="ab$cc"]
+	"Declaracion Var 1" -> 2
+	"Lista 1" -> "Declaracion Var 2"
+	3 [label="VACUO"]
+	"Declaracion Var 2" -> 3
+	4 [label="ab$aa"]
+	"Declaracion Var 2" -> 4
+	5 [label="123"]
+	"Declaracion Var 2" -> 5
 	"Lista 1" -> "Declaracion Fun 1"
-	1 [label="VACUO"]
-	"Declaracion Fun 1" -> 1
-	2 [label="e$"]
-	"Declaracion Fun 1" -> 2
+	6 [label="VACUO"]
+	"Declaracion Fun 1" -> 6
+	7 [label="ab"]
+	"Declaracion Fun 1" -> 7
 	"Declaracion Fun 1" -> "Param 1"
-	3 [label="ent"]
-	"Param 1" -> 3
-	4 [label="a"]
-	"Param 1" -> 4
+	8 [label="ent"]
+	"Param 1" -> 8
+	9 [label="f"]
+	"Param 1" -> 9
 	"Declaracion Fun 1" -> "Param 2"
-	5 [label="vacuo"]
-	"Param 2" -> 5
-	6 [label="w"]
-	"Param 2" -> 6
+	10 [label="ent"]
+	"Param 2" -> 10
+	11 [label="k"]
+	"Param 2" -> 11
 	"Declaracion Fun 1" -> "Sentencia Comp 1"
-	"Sentencia Comp 1" -> "Sentencia Retorno 1"
-	"Sentencia Retorno 1" -> "Expresion 1"
-	"Expresion 1" -> "Var 1"
-	7 [label="b"]
-	"Var 1" -> 7
-	"Expresion 1" -> "Expresion 2"
-	"Expresion 2" -> "Expresion Negada 1"
-	"Expresion Negada 1" -> "Expresion Logica 1"
-	"Expresion Logica 1" -> "Var 2"
-	8 [label="bc"]
-	"Var 2" -> 8
-	"Sentencia Comp 1" -> "Sentencia Retorno 2"
-	9 [label="RET ;"]
-	"Sentencia Retorno 2" -> 9
-	"Sentencia Comp 1" -> "Sentencia Retorno 3"
-	"Sentencia Retorno 3" -> "Expresion 3"
-	"Expresion 3" -> "Var 3"
-	10 [label="cc"]
-	"Var 3" -> 10
-	"Var 3" -> "Expresion 4"
-	"Expresion 4" -> "Var 4"
-	11 [label="as"]
-	"Var 4" -> 11
-	"Expresion 4" -> "Expresion 5"
-	"Expresion 5" -> "Expresion Negada 2"
-	"Expresion Negada 2" -> "Expresion Logica 2"
-	"Expresion Logica 2" -> "Var 5"
-	12 [label="dfs"]
-	"Var 5" -> 12
-	"Expresion 3" -> "Expresion 6"
-	"Expresion 6" -> "Expresion Negada 3"
-	"Expresion Negada 3" -> "Expresion Logica 3"
-	"Expresion Logica 3" -> "Var 6"
-	13 [label="dd"]
-	"Var 6" -> 13
-	"Sentencia Comp 1" -> "Sentencia Retorno 4"
-	"Sentencia Retorno 4" -> "Expresion 7"
-	"Expresion 7" -> "Var 7"
-	14 [label="bb"]
-	"Var 7" -> 14
-	"Expresion 7" -> "Expresion 8"
-	"Expresion 8" -> "Expresion Negada 4"
-	"Expresion Negada 4" -> "Expresion Logica 4"
-	"Expresion Logica 4" -> "Var 8"
-	15 [label="aa"]
-	"Var 8" -> 15
+	12 [label="vacio"]
+	"Sentencia Comp 1" -> 12
+	13 [label="vacio"]
+	"Sentencia Comp 1" -> 13
 }

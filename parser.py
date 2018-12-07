@@ -53,7 +53,7 @@ def p_declaracion_var(p):
 def p_declaracion_var2(p):
     #Regla 4
     """declaracion_var : def_tipo ID LTCOMMENT NUM RTCOMMENT SEMICOLON"""
-    p[0] = nodos.nodoDeclaracionVar(p[1],p[2],NUM_t=p[4])
+    p[0] = nodos.nodoDeclaracionVar(p[1],p[2],thereis_num=True,NUM_t=p[4])
 
 def p_def_tipo(p):
     #Regla 5
@@ -103,17 +103,18 @@ def p_lista_parametros2(p):
 def p_param(p):
     #Regla 9
     """param : def_tipo ID"""
-    p[0] = nodos.nodoParam(p[1],p[2])
+    p[0] = nodos.nodoParam(p[1],thereis_ID=True, ID_t= p[2])
 
 def p_param2(p):
     #Regla 9
     """param : def_tipo ID LTCOMMENT RTCOMMENT"""
-    p[0] = nodos.nodoParam(p[1], p[2])
+    p[0] = nodos.nodoParam(p[1], thereis_ID=True, ID_t= p[2])
 
 def p_sentencia_comp(p):
     #Regla 10
      """sentencia_comp : LPARENT declaraciones_locales lista_sentencias RPARENT"""
      p[0] = nodos.nodoSentenciaComp(p[2],p[3])
+     #p[0] = nodos.nodoSentenciaComp(declaraciones_locales_p=p[2], lista_sentencias_p = p[3])
 
 def p_declaraciones_locales(p):
     #Regla 11
@@ -122,16 +123,20 @@ def p_declaraciones_locales(p):
         p[0] = p[1]
      else:
         p[0] = [p[1]]
+        #p[0] = nodos.nodoVacio(is_vacio=True,vacio_t = p[1])
 
      if isinstance(p[2], list):
         p[0].extend(p[2])
      else:
         p[0].extend([p[2]])
+        #p[0] = nodos.nodoVacio(is_vacio=True,vacio_t=p[2])
 
 def p_declaraciones_locales2(p):
     #Regla 11
     """declaraciones_locales : vacio"""
     p[0] = [p[1]]
+    #p[0] = nodos.nodoVacio(is_vacio=True,vacio_t = p[1])
+
 
 def p_lista_sentencias(p):
     #Regla 12
@@ -139,7 +144,9 @@ def p_lista_sentencias(p):
     if isinstance(p[1], list):
         p[0] = p[1]
     else:
-        p[0] = [p[1]]
+        #p[0] = [p[1]]
+        p[0] = nodos.nodoVacio(is_vacio=True, vacio_t=p[1])
+
 
     if isinstance(p[2], list):
         p[0].extend(p[2])
@@ -150,6 +157,8 @@ def p_lista_sentencias2(p):
     #Regla 12
     """lista_sentencias : vacio"""
     p[0] = [p[1]]
+    #p[0] = nodos.nodoVacio(is_vacio=True,vacio_t=p[1])
+
 
 def p_sentencia(p):
     #Regla 13
@@ -194,17 +203,17 @@ def p_sentencia_seleccion(p):
 def p_sentencia_seleccion2(p):
     #Regla 15
     """sentencia_seleccion : SI LBRACKET expresion RBRACKET sentencia SINO sentencia"""
-    p[0] = nodos.nodoSentenciaSeleccion(p[3], p[5],is_else=True,sino_sentencia = p[7])
+    p[0] = nodos.nodoSentenciaSeleccion(p[3], p[5],is_else=True,sentencia_p2 = p[7])
 
 def p_sentencia_iteracion(p):
     #Regla 16
     """sentencia_iteracion : MIENTRAS LBRACKET expresion RBRACKET sentencia"""
-    p[0] = nodos.nodoSentenciaIteracion(expresion_p = p[3],sentencia_p = p[5])
+    p[0] = nodos.nodoSentenciaIteracion(thereis_expresion=True, expresion_p= p[3], thereis_sentencia=True,sentencia_p = p[5])
 
 def p_sentencia_iteracion2(p):
     #Regla 16
     """sentencia_iteracion : REP sentencia_comp"""
-    p[0] = nodos.nodoSentenciaIteracion(sentencia_comp_p=p[7])
+    p[0] = nodos.nodoSentenciaIteracion(thereis_sentencia_comp=True , sentencia_comp_p = p[1])
 
 def p_sentencia_retorno(p):
     #Regla 17
@@ -383,6 +392,7 @@ def p_argumentos2(p):
     #Regla 30
     """argumentos : vacio"""
     p[0] = [p[1]]
+    #p[0] = nodos.nodoVacio(is_vacio= True,vacio_t=p[1])
 
 
 def p_lista_arg(p):
@@ -408,6 +418,7 @@ def p_lista_arg2(p):
 
 def p_vacio(p):
     'vacio :'
+    #p[0] = nodos.nodoVacio()
     p[0] = nodos.nodoVacio()
     pass
 
@@ -428,7 +439,7 @@ parser = yacc.yacc(debug=True,start="programa")
 
 treeFileDot = open('tree.dot', 'w')
 
-with open('sample6.pp', 'r') as arch:
+with open('sample2.pp', 'r') as arch:
     contents = arch.read()
     result = parser.parse(contents)
     if result is not None:

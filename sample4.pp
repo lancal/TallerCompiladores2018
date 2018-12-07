@@ -1,8 +1,8 @@
 VACUO e$ [ vacuo ] (
-  ent e$;
-  SI [ a$=e$ ](
-    a$ = a;
+  ent ea$;
+  SI [ a$=ed$ ](
+    af$ = a;
   ) SINO (
-    a$ = w;
+    aw$ = q;
   )
 )

@@ -27,6 +27,8 @@ class Visitor(object):
         self.id_nodoBinarioOP = 0
         self.id_nodoNum = 0
         self.id_nodoInvocacion = 0
+        self.id_nodoSentenciaIteracion = 0
+        self.id_nodoVacio = 0
 
         self.id_nodoParam = 0
 
@@ -144,7 +146,25 @@ class Visitor(object):
 
                     if x.nombre == "vacio":
 
-                        pass
+                        self.id_nodo += 1
+                        id_nodo = self.id_nodo
+
+                        #x.accept(self)
+                        #self.ast += '\t"' + p3 + str(p2) + '" ' + '-> '
+
+                        #self.ast += '\t' + str(id_nodo) + ' [label="' + x + '"]\n'
+
+                        #self.ast += '\t"' + p3 + str(p2) + '" ' + '-> ' + str(id_nodo) + '\n'
+
+                        #x.accept(self)
+                        #pass
+                        #self.ast += '\t"' + p3 + str(p2) + '" ' + '-> '
+                        #x.accept(self)
+                        self.ast += '\t' + str(id_nodo) + ' [label="' + x.nombre + '"]\n'
+                        self.ast += '\t"' + p3 + str(p2) + '" ' + '-> ' + str(id_nodo) + '\n'
+
+                        #pass
+
 
                     else:
 
@@ -171,9 +191,16 @@ class Visitor(object):
         #id_def_tipo = self.id_def_tipo
 
 
-        self.manyTimes(declaracion_var_p.def_tipo_p,id_declaracion_var,declaracion_var_p.nombre)
-        self.manyTimes(declaracion_var_p.ID_t, id_declaracion_var,declaracion_var_p.nombre)
-        self.manyTimes(declaracion_var_p.NUM_t, id_declaracion_var,declaracion_var_p.nombre)
+        if declaracion_var_p.thereis_num == False:
+
+            self.manyTimes(declaracion_var_p.def_tipo_p, id_declaracion_var, declaracion_var_p.nombre)
+            self.manyTimes(declaracion_var_p.ID_t, id_declaracion_var, declaracion_var_p.nombre)
+
+        else:
+
+            self.manyTimes(declaracion_var_p.def_tipo_p, id_declaracion_var, declaracion_var_p.nombre)
+            self.manyTimes(declaracion_var_p.ID_t, id_declaracion_var, declaracion_var_p.nombre)
+            self.manyTimes(declaracion_var_p.NUM_t, id_declaracion_var,declaracion_var_p.nombre)
 
         # if declaracion_var_p.def_tipo_p is not None:
         #     if isinstance(declaracion_var_p.def_tipo_p, list):
@@ -396,8 +423,14 @@ class Visitor(object):
 
         self.ast += '"Param ' + str(id_nodoParam) + '"' + '\n'
 
-        self.manyTimes(param_p.def_tipo_p,id_nodoParam,param_p.nombre)
-        self.manyTimes(param_p.ID_t, id_nodoParam, param_p.nombre)
+        if param_p.thereis_ID == False:
+
+            self.manyTimes(param_p.def_tipo_p,id_nodoParam,param_p.nombre)
+
+        else:
+
+            self.manyTimes(param_p.def_tipo_p, id_nodoParam, param_p.nombre)
+            self.manyTimes(param_p.ID_t, id_nodoParam, param_p.nombre)
 
         #if param_p.is_vector:
 
@@ -422,7 +455,14 @@ class Visitor(object):
 
         # completar
         #print(vacio_t)
-        pass
+        #pass
+
+        self.id_nodoVacio += 1
+        id_nodoVacio = self.id_nodoVacio
+
+        self.ast += '"Nodo Vacio ' + str(id_nodoVacio) + '"' + '\n'
+
+        self.manyTimes(vacio_t.vacio_t,id_nodoVacio,vacio_t.nombre)
 
     def visit_nodoSentenciaComp(self,sentencia_comp_p):
 
@@ -441,6 +481,7 @@ class Visitor(object):
 
 
         self.ast += '"Sentencia Comp ' + str(id_sentencia_comp) + '"' + '\n'
+
 
         self.manyTimes(sentencia_comp_p.declaraciones_locales_p,id_sentencia_comp,sentencia_comp_p.nombre)
         self.manyTimes(sentencia_comp_p.lista_sentencias_p, id_sentencia_comp, sentencia_comp_p.nombre)
@@ -494,13 +535,25 @@ class Visitor(object):
 
             self.manyTimes(sentencia_seleccion_p.expresion_p, id_nodoSentenciaSeleccion, sentencia_seleccion_p.nombre)
             self.manyTimes(sentencia_seleccion_p.sentencia_p, id_nodoSentenciaSeleccion, sentencia_seleccion_p.nombre)
-            self.manyTimes(sentencia_seleccion_p.sentencia_p, id_nodoSentenciaSeleccion, sentencia_seleccion_p.nombre)
+            self.manyTimes(sentencia_seleccion_p.sentencia_p2, id_nodoSentenciaSeleccion, sentencia_seleccion_p.nombre)
 
 
     def visit_nodoSentenciaIteracion(self,sentencia_iteracion_p):
         # completar
-        print(sentencia_iteracion_p)
+        #print(sentencia_iteracion_p)
+        self.id_nodoSentenciaIteracion += 1
+        id_nodoSentenciaIteracion = self.id_nodoSentenciaIteracion
 
+        self.ast += '"Declaracion Var ' + str(id_nodoSentenciaIteracion) + '"' + '\n'
+
+        if sentencia_iteracion_p.thereis_expresion == True and sentencia_iteracion_p.thereis_sentencia == True:
+
+            self.manyTimes(sentencia_iteracion_p.expresion_p, id_nodoSentenciaIteracion, sentencia_iteracion_p.nombre)
+            self.manyTimes(sentencia_iteracion_p.sentencia_p, id_nodoSentenciaIteracion, sentencia_iteracion_p.nombre)
+
+        if sentencia_iteracion_p.thereis_sentencia_comp == True:
+
+            self.manyTimes(sentencia_iteracion_p.sentencia_comp_p, id_nodoSentenciaIteracion, sentencia_iteracion_p.nombre)
 
 
     def visit_nodoSentenciaRetorno(self,sentencia_retorno_p):
@@ -655,7 +708,7 @@ class Visitor(object):
         self.ast += '"NUM ' + str(id_nodoNum) + '"' + '\n'
 
         self.manyTimes(nodoNum_p.num_t, id_nodoNum, nodoNum_p.nombre)
-        self.manyTimes(nodoNum_p.argumentos_p, id_nodoNum, nodoNum_p.nombre)
+
 
     def visit_nodoInvocacion(self,invocacion_p):
 
