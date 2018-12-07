@@ -21,6 +21,7 @@ class Visitor(object):
         self.id_nodoSentenciaSeleccion = 0
         self.id_nodoExpresion = 0
         self.id_nodoVar = 0
+        self.id_nodoSentenciaRetorno = 0
 
         self.id_nodoParam = 0
 
@@ -100,12 +101,12 @@ class Visitor(object):
 
     def manyTimes(self,p1,p2,p3):
 
-        print(p1)
-        print("afuera if many times")
+        #print(p1)
+        #print("afuera if many times")
 
         if p1 is not None:
 
-            print("adentro if many times")
+            #print("adentro if many times")
 
             if isinstance(p1, list):
 
@@ -115,7 +116,13 @@ class Visitor(object):
 
                 aux = [p1]
 
+            print(aux)
+            print("aux")
+
             for x in aux:
+
+                print(x)
+                print("x")
 
                 if isinstance(x, str):
 
@@ -128,12 +135,17 @@ class Visitor(object):
 
                 else:
 
+                    print("entro else manytimes")
+
                     if x.nombre == "vacio":
 
                         pass
 
                     else:
 
+                        print(p1)
+
+                        print("entro segundo else instance")
                         self.ast += '\t"' + p3 + str(p2) + '" ' + '-> '
                         x.accept(self)
                     # self.ast += '\t"Declaracion Var ' + str(id_declaracion_var) + '" '\
@@ -476,7 +488,14 @@ class Visitor(object):
 
     def visit_nodoSentenciaRetorno(self,sentencia_retorno_p):
         # completar
-        print(sentencia_retorno_p)
+        #print(sentencia_retorno_p)
+        self.id_nodoSentenciaRetorno += 1
+        id_nodoSentenciaRetorno = self.id_nodoSentenciaRetorno
+
+        self.ast += '"Sentencia Retorno ' + str(id_nodoSentenciaRetorno) + '"' + '\n'
+
+        self.manyTimes(sentencia_retorno_p.expresion_p,id_nodoSentenciaRetorno,sentencia_retorno_p.nombre)
+
 
     def visit_nodoExpresion(self,expresion_p):
         # completar
@@ -486,8 +505,48 @@ class Visitor(object):
 
         self.ast += '"Expresion ' + str(id_nodoExpresion) + '"' + '\n'
 
-        #self.manyTimes(expresion_p.expresion_p, id_nodoExpresion, expresion_p.nombre)
-        self.manyTimes(expresion_p.var_p, id_nodoExpresion, expresion_p.nombre)
+        #self.manyTimes(expresion_p.var_p, id_nodoExpresion, expresion_p.nombre)
+
+        print(expresion_p)
+
+        print(expresion_p.var_p)
+        print("ex")
+
+        print(expresion_p.expresion_p2)
+        print("exx")
+
+        print(expresion_p.expresion_negada_p)
+        print("exxx")
+
+        #if isinstance(expresion_p.var_p) and isinstance(expresion_p.expresion_p2):
+
+         #   print("entro if instance")
+
+          #  self.manyTimes(expresion_p.var_p, id_nodoExpresion, expresion_p.nombre)
+          #  self.manyTimes(expresion_p.expresion_p2, id_nodoExpresion, expresion_p.nombre)
+
+        if expresion_p.var_p is not None and expresion_p.expresion_p2 is not None:
+
+            print("entro ")
+
+            #self.manyTimes(expresion_p.expresion_p2, id_nodoExpresion, expresion_p.nombre)
+
+            self.manyTimes(expresion_p.var_p, id_nodoExpresion, expresion_p.nombre)
+
+            self.manyTimes(expresion_p.expresion_p2, id_nodoExpresion, expresion_p.nombre)
+
+            # self.manyTimes(expresion_p.var_p, id_nodoExpresion, expresion_p.nombre)
+
+
+        else:
+
+            print("entro else expresion negada")
+
+            self.manyTimes(expresion_p.expresion_negada_p, id_nodoExpresion, expresion_p.nombre)
+
+            #self.manyTimes(expresion_p.expresion_p, id_nodoExpresion, expresion_p.nombre)
+            #self.manyTimes(expresion_p.var_p, id_nodoExpresion, expresion_p.nombre)
+            #self.manyTimes(expresion_p.expresion_p2, id_nodoExpresion, expresion_p.nombre)
 
 
     def visit_nodoVar(self,var_p):
@@ -499,14 +558,21 @@ class Visitor(object):
 
         self.ast += '"Var ' + str(id_nodoVar) + '"' + '\n'
 
-        self.manyTimes(var_p.id_t, id_nodoVar, var_p.nombre)
-        #self.manyTimes(var_p.expresion_p, id_nodoVar, var_p.nombre)
+        if var_p.is_vec_access == False and var_p.expresion_p == None:
+
+            self.manyTimes(var_p.id_t, id_nodoVar, var_p.nombre)
+
+        else:
+
+            self.manyTimes(var_p.id_t, id_nodoVar, var_p.nombre)
+            self.manyTimes(var_p.expresion_p, id_nodoVar, var_p.nombre)
 
 
     def visit_nodoExpresionNegada(self,expresion_negada_p):
 
         # completar
         print(expresion_negada_p)
+        print("aaaaasdf")
 
     def visit_nodoExpresion_logica(self,expresion_logica_p):
 

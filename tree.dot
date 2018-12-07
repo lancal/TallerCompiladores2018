@@ -15,19 +15,10 @@ digraph G {
 	6 [label="w"]
 	"Param 2" -> 6
 	"Declaracion Fun 1" -> "Sentencia Comp 1"
-	"Sentencia Comp 1" -> "Declaracion Var 1"
-	7 [label="ent"]
-	"Declaracion Var 1" -> 7
-	8 [label="e$"]
-	"Declaracion Var 1" -> 8
-	"Sentencia Comp 1" -> "Sentencia Seleccion 1"
-	"Sentencia Seleccion 1" -> "Expresion 1"
+	"Sentencia Comp 1" -> "Sentencia Retorno 1"
+	"Sentencia Retorno 1" -> "Expresion 1"
 	"Expresion 1" -> "Var 1"
-	9 [label="a$"]
-	"Var 1" -> 9
-	"Sentencia Seleccion 1" -> "Sentencia Comp 2"
-	"Sentencia Comp 2" -> "Expresion 2"
-	"Expresion 2" -> "Var 2"
-	10 [label="aa$"]
-	"Var 2" -> 10
-}
+	7 [label="b"]
+	"Var 1" -> 7
+	"Expresion 1" -> "Expresion 2"
+	"Expresion 2" -> }

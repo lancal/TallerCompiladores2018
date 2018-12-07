@@ -157,9 +157,10 @@ class nodoSentenciaRetorno(Nodo):
 
 class nodoExpresion(Nodo):
 
-    def __init__(self,var_p,expresion_p):
+    def __init__(self,var_p = None,expresion_p2 = None , expresion_negada_p = None):
         self.var_p = var_p
-        self.expresion_p = expresion_p
+        self.expresion_p2 = expresion_p2
+        self.expresion_negada_p = expresion_negada_p
         self.nombre = 'Expresion '
 
     def accept(self,visitor):
@@ -168,6 +169,7 @@ class nodoExpresion(Nodo):
 class nodoVar(Nodo):
 
     def __init__(self,id_t, is_vec_access=False, expresion_p=None):
+    #def __init__(self, id_t, expresion_p):
 
         self.id_t = id_t
         self.is_vec_access = is_vec_access
