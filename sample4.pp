@@ -6,3 +6,14 @@ VACUO e$ [ vacuo ] (
     aw$ = q;
   )
 )
+
+VACUO ee$ [ ent aaa , vacuo w ] (
+  ent et$;
+  VAcuo a2;
+  ent b<10>;
+  SI [ a$=e$=a ](
+    as$ = ad;
+  ) SINO (
+    aq$ = wr;
+  )
+)

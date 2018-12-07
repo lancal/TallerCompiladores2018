@@ -125,7 +125,7 @@ class nodoSentenciaComp(Nodo):
 
 class nodoSentenciaSeleccion(Nodo):
 
-    def __init__(self,expresion_p,sentencia_p,is_else = False,sentencia_p2 = None):
+    def __init__(self,expresion_p,sentencia_p,is_else = False,sentencia_p2=None):
         self.expresion_p = expresion_p
         self.sentencia_p = sentencia_p
         self.is_else = is_else

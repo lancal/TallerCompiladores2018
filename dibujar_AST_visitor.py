@@ -533,6 +533,8 @@ class Visitor(object):
 
         else:
 
+            print("entro if sentencia seleccion")
+
             self.manyTimes(sentencia_seleccion_p.expresion_p, id_nodoSentenciaSeleccion, sentencia_seleccion_p.nombre)
             self.manyTimes(sentencia_seleccion_p.sentencia_p, id_nodoSentenciaSeleccion, sentencia_seleccion_p.nombre)
             self.manyTimes(sentencia_seleccion_p.sentencia_p2, id_nodoSentenciaSeleccion, sentencia_seleccion_p.nombre)

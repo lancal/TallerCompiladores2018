@@ -3,6 +3,8 @@ import ply.yacc as yacc
 
 from scanner import tokens
 
+from os import listdir
+
 import nodos
 
 from dibujar_AST_visitor import Visitor
@@ -144,8 +146,8 @@ def p_lista_sentencias(p):
     if isinstance(p[1], list):
         p[0] = p[1]
     else:
-        #p[0] = [p[1]]
-        p[0] = nodos.nodoVacio(is_vacio=True, vacio_t=p[1])
+        p[0] = [p[1]]
+        #p[0] = nodos.nodoVacio(is_vacio=True, vacio_t=p[1])
 
 
     if isinstance(p[2], list):
@@ -259,7 +261,7 @@ def p_expresion_negada2(p):
 def p_expresion_logica(p):
     #Regla 21
     """expresion_logica : expresion_logica AND expresion_simple"""
-    p[0] = nodos.nodoExpresionLogica(expresion_logica_p=p[1],expresion_simple_p=[3])
+    p[0] = nodos.nodoExpresionLogica(expresion_logica_p=p[1],expresion_simple_p=p[3])
 
 def p_expresion_logica2(p):
     #Regla 21
@@ -437,14 +439,35 @@ def p_error(p):
 parser = yacc.yacc(debug=True,start="programa")
 
 
-treeFileDot = open('tree.dot', 'w')
+def listarArchivoPP():
 
-with open('sample2.pp', 'r') as arch:
-    contents = arch.read()
-    result = parser.parse(contents)
-    if result is not None:
-        visitor_tipos = Visitor()
-        nodos.Program.accept(result, visitor_tipos)
-        treeFileDot.write(visitor_tipos.ast)
-    else:
-        treeFileDot.write('Error al realizar el parse.')
+    for carpeta in listdir("."):
+        if carpeta.endswith(".pp"):
+            print (carpeta)
+
+def ingresarArchivo(nombreArchivo):
+
+    treeFileDot = open('tree.dot', 'w')
+
+    with open(nombreArchivo, 'r') as arch:
+        contents = arch.read()
+        result = parser.parse(contents)
+        if result is not None:
+            visitor_tipos = Visitor()
+            nodos.Program.accept(result, visitor_tipos)
+            treeFileDot.write(visitor_tipos.ast)
+        else:
+            treeFileDot.write('Error al realizar el parse.')
+
+
+
+def main():
+
+    listarArchivoPP()
+
+    archivoNombre = input("Ingrese el nombre del archivo a leer: ")
+
+    ingresarArchivo(archivoNombre)
+
+if __name__ == "__main__":
+    main()
