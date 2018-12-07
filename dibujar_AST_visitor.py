@@ -22,6 +22,11 @@ class Visitor(object):
         self.id_nodoExpresion = 0
         self.id_nodoVar = 0
         self.id_nodoSentenciaRetorno = 0
+        self.id_nodoExpresionNegada = 0
+        self.id_nodoExpresionLogica = 0
+        self.id_nodoBinarioOP = 0
+        self.id_nodoNum = 0
+        self.id_nodoInvocacion = 0
 
         self.id_nodoParam = 0
 
@@ -535,7 +540,10 @@ class Visitor(object):
 
             self.manyTimes(expresion_p.expresion_p2, id_nodoExpresion, expresion_p.nombre)
 
+            #expresion_p.expresion_p2.accept(self)
+
             # self.manyTimes(expresion_p.var_p, id_nodoExpresion, expresion_p.nombre)
+
 
 
         else:
@@ -568,31 +576,71 @@ class Visitor(object):
             self.manyTimes(var_p.expresion_p, id_nodoVar, var_p.nombre)
 
 
-    def visit_nodoExpresionNegada(self,expresion_negada_p):
+    def visit_nodoExpresionNegada(self,expresion_logica_p):
 
-        # completar
-        print(expresion_negada_p)
-        print("aaaaasdf")
+        #completar
+        #print(expresion_negada_p)
+        #print("aaaaasdf")
+
+        self.id_nodoExpresionNegada += 1
+        id_nodoExpresionNegada = self.id_nodoExpresionNegada
+
+        self.ast += '"Expresion Negada ' + str(id_nodoExpresionNegada) + '"' + '\n'
+
+        self.manyTimes(expresion_logica_p.expresion_logica_p,id_nodoExpresionNegada,expresion_logica_p.nombre)
 
     def visit_nodoExpresion_logica(self,expresion_logica_p):
 
         # completar
-        print(expresion_logica_p)
+        #print(expresion_logica_p)
 
-    def visit_nodoBinarioOP(self,ramaIzq_p):
+        self.id_nodoExpresionLogica += 1
+        id_nodoExpresionLogica = self.id_nodoExpresionLogica
+
+        self.ast += '"Expresion Logica ' + str(id_nodoExpresionLogica) + '"' + '\n'
+
+        self.manyTimes(expresion_logica_p.expresion_logica_p, id_nodoExpresionLogica, expresion_logica_p.nombre)
+        self.manyTimes(expresion_logica_p.expresion_simple_p, id_nodoExpresionLogica, expresion_logica_p.nombre)
+
+    def visit_nodoBinarioOP(self,nodoBinarioOP_p):
 
         # completar
-        print(ramaIzq_p)
+        #print(ramaIzq_p)
 
-    def visit_nodoNUM(self,num_t):
+        self.id_nodoBinarioOP += 1
+        id_nodoBinarioOP = self.id_nodoBinarioOP
+
+        self.ast += '"Nodo Binario OP ' + str(id_nodoBinarioOP) + '"' + '\n'
+
+        self.manyTimes(nodoBinarioOP_p.ramaIzq_p, id_nodoBinarioOP, nodoBinarioOP_p.nombre)
+        self.manyTimes(nodoBinarioOP_p.operacion_p, id_nodoBinarioOP, nodoBinarioOP_p.nombre)
+        self.manyTimes(nodoBinarioOP_p.ramaDer_p, id_nodoBinarioOP, nodoBinarioOP_p.nombre)
+
+    def visit_nodoNUM(self,nodoNum_p):
 
         # completar
-        print(num_t)
+        #print(num_t)
+
+        self.id_nodoNum += 1
+        id_nodoNum = self.id_nodoNum
+
+        self.ast += '"NUM ' + str(id_nodoNum) + '"' + '\n'
+
+        self.manyTimes(nodoNum_p.num_t, id_nodoNum, nodoNum_p.nombre)
+        self.manyTimes(nodoNum_p.argumentos_p, id_nodoNum, nodoNum_p.nombre)
 
     def visit_nodoInvocacion(self,invocacion_p):
 
         #completar
-        print(invocacion_p)
+        #print(invocacion_p)
+
+        self.id_nodoInvocacion += 1
+        id_nodoInvocacion = self.id_nodoInvocacion
+
+        self.ast += '"Invocacion ' + str(id_nodoInvocacion) + '"' + '\n'
+
+        self.manyTimes(invocacion_p.id_t, id_nodoInvocacion, invocacion_p.nombre)
+        self.manyTimes(invocacion_p.argumentos_p, id_nodoInvocacion, invocacion_p.nombre)
 
 
 

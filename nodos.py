@@ -181,9 +181,9 @@ class nodoVar(Nodo):
 
 class nodoExpresionNegada(Nodo):
 
-    def __init__(self,expresion_negada_p):
+    def __init__(self,expresion_logica_p):
 
-        self.expresion_negada_p = expresion_negada_p
+        self.expresion_logica_p = expresion_logica_p
         self.nombre = 'Expresion Negada '
 
     def accept(self,visitor):

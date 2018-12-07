@@ -428,7 +428,7 @@ parser = yacc.yacc(debug=True,start="programa")
 
 treeFileDot = open('tree.dot', 'w')
 
-with open('sample6.pp', 'r') as arch:
+with open('sample3.pp', 'r') as arch:
     contents = arch.read()
     result = parser.parse(contents)
     if result is not None:
