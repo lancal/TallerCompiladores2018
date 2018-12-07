@@ -480,16 +480,28 @@ class Visitor(object):
 
         self.ast += '"Sentencia Seleccion ' + str(id_nodoSentenciaSeleccion) + '"' + '\n'
 
-        print(sentencia_seleccion_p.sentencia_p)
-        print("sentencia seleccion_p")
+        #print(sentencia_seleccion_p.sentencia_p)
+        #print("sentencia seleccion_p")
 
-        self.manyTimes(sentencia_seleccion_p.expresion_p, id_nodoSentenciaSeleccion, sentencia_seleccion_p.nombre)
-        self.manyTimes(sentencia_seleccion_p.sentencia_p, id_nodoSentenciaSeleccion, sentencia_seleccion_p.nombre)
+        #print(sentencia_seleccion_p.is_else)
+
+        if sentencia_seleccion_p.is_else == False:
+
+            self.manyTimes(sentencia_seleccion_p.expresion_p, id_nodoSentenciaSeleccion, sentencia_seleccion_p.nombre)
+            self.manyTimes(sentencia_seleccion_p.sentencia_p, id_nodoSentenciaSeleccion, sentencia_seleccion_p.nombre)
+
+        else:
+
+            self.manyTimes(sentencia_seleccion_p.expresion_p, id_nodoSentenciaSeleccion, sentencia_seleccion_p.nombre)
+            self.manyTimes(sentencia_seleccion_p.sentencia_p, id_nodoSentenciaSeleccion, sentencia_seleccion_p.nombre)
+            self.manyTimes(sentencia_seleccion_p.sentencia_p, id_nodoSentenciaSeleccion, sentencia_seleccion_p.nombre)
 
 
     def visit_nodoSentenciaIteracion(self,sentencia_iteracion_p):
         # completar
         print(sentencia_iteracion_p)
+
+
 
     def visit_nodoSentenciaRetorno(self,sentencia_retorno_p):
         # completar
@@ -499,7 +511,13 @@ class Visitor(object):
 
         self.ast += '"Sentencia Retorno ' + str(id_nodoSentenciaRetorno) + '"' + '\n'
 
-        self.manyTimes(sentencia_retorno_p.expresion_p,id_nodoSentenciaRetorno,sentencia_retorno_p.nombre)
+        if sentencia_retorno_p.thereis_expression == True:
+
+            self.manyTimes(sentencia_retorno_p.expresion_p,id_nodoSentenciaRetorno,sentencia_retorno_p.nombre)
+
+        else:
+
+            self.manyTimes(sentencia_retorno_p.nombre2, id_nodoSentenciaRetorno, sentencia_retorno_p.nombre)
 
 
     def visit_nodoExpresion(self,expresion_p):
@@ -576,7 +594,7 @@ class Visitor(object):
             self.manyTimes(var_p.expresion_p, id_nodoVar, var_p.nombre)
 
 
-    def visit_nodoExpresionNegada(self,expresion_logica_p):
+    def visit_nodoExpresionNegada(self,expresion_negada_p):
 
         #completar
         #print(expresion_negada_p)
@@ -587,7 +605,17 @@ class Visitor(object):
 
         self.ast += '"Expresion Negada ' + str(id_nodoExpresionNegada) + '"' + '\n'
 
-        self.manyTimes(expresion_logica_p.expresion_logica_p,id_nodoExpresionNegada,expresion_logica_p.nombre)
+        if expresion_negada_p.not_bracket == False:
+
+            #print("entro True")
+
+            self.manyTimes(expresion_negada_p.expresion_logica_p,id_nodoExpresionNegada,expresion_negada_p.nombre)
+
+        #else:
+
+         #   print("asfdasdfasfa")
+
+          #  self.manyTimes(expresion_negada_p.nombre2, id_nodoExpresionNegada, expresion_negada_p.nombre)
 
     def visit_nodoExpresion_logica(self,expresion_logica_p):
 

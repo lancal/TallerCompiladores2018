@@ -240,12 +240,12 @@ def p_var2(p):
 def p_expresion_negada(p):
     #Regla 20
     """expresion_negada : NOT LBRACKET expresion_logica RBRACKET"""
-    p[0] = nodos.nodoExpresionNegada(p[3])
+    p[0] = nodos.nodoExpresionNegada(not_bracket=True,expresion_logica_p=p[3])
 
 def p_expresion_negada2(p):
     #Regla 20
     """expresion_negada : expresion_logica"""
-    p[0] = nodos.nodoExpresionNegada(p[1])
+    p[0] = nodos.nodoExpresionNegada(expresion_logica_p=p[1])
 
 def p_expresion_logica(p):
     #Regla 21
@@ -428,7 +428,7 @@ parser = yacc.yacc(debug=True,start="programa")
 
 treeFileDot = open('tree.dot', 'w')
 
-with open('sample3.pp', 'r') as arch:
+with open('sample6.pp', 'r') as arch:
     contents = arch.read()
     result = parser.parse(contents)
     if result is not None:

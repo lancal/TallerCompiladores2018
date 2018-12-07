@@ -151,6 +151,7 @@ class nodoSentenciaRetorno(Nodo):
         self.thereis_expression = thereis_expression
         self.expresion_p = expresion_p
         self.nombre = 'Sentencia Retorno '
+        self.nombre2 =  'RET ;'
 
     def accept(self,visitor):
         visitor.visit_nodoSentenciaRetorno(self)
@@ -181,10 +182,12 @@ class nodoVar(Nodo):
 
 class nodoExpresionNegada(Nodo):
 
-    def __init__(self,expresion_logica_p):
+    def __init__(self,not_bracket=False,expresion_logica_p=None):
 
+        self.not_bracket = not_bracket
         self.expresion_logica_p = expresion_logica_p
         self.nombre = 'Expresion Negada '
+        self.nombre2 = 'Expresion Negada ![]'
 
     def accept(self,visitor):
         visitor.visit_nodoExpresionNegada(self)

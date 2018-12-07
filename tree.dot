@@ -15,31 +15,50 @@ digraph G {
 	6 [label="w"]
 	"Param 2" -> 6
 	"Declaracion Fun 1" -> "Sentencia Comp 1"
-	"Sentencia Comp 1" -> "Declaracion Var 1"
-	7 [label="ent"]
-	"Declaracion Var 1" -> 7
-	8 [label="e$"]
-	"Declaracion Var 1" -> 8
-	"Sentencia Comp 1" -> "Sentencia Seleccion 1"
-	"Sentencia Seleccion 1" -> "Expresion 1"
+	"Sentencia Comp 1" -> "Sentencia Retorno 1"
+	"Sentencia Retorno 1" -> "Expresion 1"
 	"Expresion 1" -> "Var 1"
-	9 [label="a$"]
-	"Var 1" -> 9
+	7 [label="b"]
+	"Var 1" -> 7
 	"Expresion 1" -> "Expresion 2"
 	"Expresion 2" -> "Expresion Negada 1"
 	"Expresion Negada 1" -> "Expresion Logica 1"
 	"Expresion Logica 1" -> "Var 2"
-	10 [label="e$"]
-	"Var 2" -> 10
-	"Sentencia Seleccion 1" -> "Sentencia Comp 2"
-	"Sentencia Comp 2" -> "Expresion 3"
+	8 [label="bc"]
+	"Var 2" -> 8
+	"Sentencia Comp 1" -> "Sentencia Retorno 2"
+	9 [label="RET ;"]
+	"Sentencia Retorno 2" -> 9
+	"Sentencia Comp 1" -> "Sentencia Retorno 3"
+	"Sentencia Retorno 3" -> "Expresion 3"
 	"Expresion 3" -> "Var 3"
-	11 [label="aa$"]
-	"Var 3" -> 11
-	"Expresion 3" -> "Expresion 4"
-	"Expresion 4" -> "Expresion Negada 2"
+	10 [label="cc"]
+	"Var 3" -> 10
+	"Var 3" -> "Expresion 4"
+	"Expresion 4" -> "Var 4"
+	11 [label="as"]
+	"Var 4" -> 11
+	"Expresion 4" -> "Expresion 5"
+	"Expresion 5" -> "Expresion Negada 2"
 	"Expresion Negada 2" -> "Expresion Logica 2"
-	"Expresion Logica 2" -> "Var 4"
-	12 [label="a"]
-	"Var 4" -> 12
+	"Expresion Logica 2" -> "Var 5"
+	12 [label="dfs"]
+	"Var 5" -> 12
+	"Expresion 3" -> "Expresion 6"
+	"Expresion 6" -> "Expresion Negada 3"
+	"Expresion Negada 3" -> "Expresion Logica 3"
+	"Expresion Logica 3" -> "Var 6"
+	13 [label="dd"]
+	"Var 6" -> 13
+	"Sentencia Comp 1" -> "Sentencia Retorno 4"
+	"Sentencia Retorno 4" -> "Expresion 7"
+	"Expresion 7" -> "Var 7"
+	14 [label="bb"]
+	"Var 7" -> 14
+	"Expresion 7" -> "Expresion 8"
+	"Expresion 8" -> "Expresion Negada 4"
+	"Expresion Negada 4" -> "Expresion Logica 4"
+	"Expresion Logica 4" -> "Var 8"
+	15 [label="aa"]
+	"Var 8" -> 15
 }

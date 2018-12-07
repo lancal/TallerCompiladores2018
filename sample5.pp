@@ -15,14 +15,12 @@ VACUO e$ [ ent a , vacuo w ] (
     REP (
       a=3;
     )
-    mientras [ [uwu] && ! [ [30 LT 50] EQ a<a2<e$>> ] ] (
+    mientras [ uwu && ! [ [30 LT 50] EQ a<a2<e$>> ] ] (
       enT we;
     )
     RET uwu;
   )
-  MIENTRAS [![uwu] && ![uwu (a=a,b=b)]](
-
-  )
+  MIENTRAS [![uwu] && ![owo[a=a,b=b]]](;)
   RET;
 )
 ent a$; #Primera variable
