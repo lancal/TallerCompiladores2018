@@ -549,7 +549,7 @@ class Visitor(object):
         self.id_nodoSentenciaIteracion += 1
         id_nodoSentenciaIteracion = self.id_nodoSentenciaIteracion
 
-        self.ast += '"Declaracion Var ' + str(id_nodoSentenciaIteracion) + '"' + '\n'
+        self.ast += '"Sentencia Iteracion ' + str(id_nodoSentenciaIteracion) + '"' + '\n'
 
         if sentencia_iteracion_p.thereis_expresion == True and sentencia_iteracion_p.thereis_sentencia == True:
 
