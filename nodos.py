@@ -226,13 +226,14 @@ class nodoVacio():
 
 class nodoBinarioOP(Nodo):
 
-    def __init__(self,is_rama = False,ramaIzq_p, ramaDer_p, operacion_p):
+    def __init__(self,is_rama = False,ramaIzq_p=None, ramaDer_p=None, operacion_p=None,nombre2 = None):
 
-        #self.is_rama = is_rama
+        self.is_rama = is_rama
         self.ramaIzq_p = ramaIzq_p
         self.ramaDer_p = ramaDer_p
         self.operacion_p = operacion_p
         self.nombre = 'Nodo Binario Op '
+        self.nombre2 = nombre2
 
     def accept(self,visitor):
         visitor.visit_nodoBinarioOP(self)

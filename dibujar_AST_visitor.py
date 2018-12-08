@@ -123,13 +123,13 @@ class Visitor(object):
 
                 aux = [p1]
 
-            print(aux)
-            print("aux")
+            #print(aux)
+            #print("aux")
 
             for x in aux:
 
-                print(x)
-                print("x")
+                #print(x)
+                #print("x")
 
                 if isinstance(x, str):
 
@@ -142,12 +142,12 @@ class Visitor(object):
 
                 else:
 
-                    print("entro else manytimes")
+                    #print("entro else manytimes")
 
-                    print(x)
+                    #print(x)
 
+                    #if x.nombre == "vacio" or x.nombre == "term" or x.nombre == "factor" or x.nombre == "expresion aditiva":
                     if x.nombre == "vacio":
-
                         self.id_nodo += 1
                         id_nodo = self.id_nodo
 
@@ -170,9 +170,10 @@ class Visitor(object):
 
                     else:
 
-                        print(p1)
+                        #print(p1)
 
-                        print("entro segundo else instance")
+                        #print("entro segundo else instance")
+
                         self.ast += '\t"' + p3 + str(p2) + '" ' + '-> '
                         x.accept(self)
                     # self.ast += '\t"Declaracion Var ' + str(id_declaracion_var) + '" '\
@@ -587,16 +588,16 @@ class Visitor(object):
 
         #self.manyTimes(expresion_p.var_p, id_nodoExpresion, expresion_p.nombre)
 
-        print(expresion_p)
-
-        print(expresion_p.var_p)
-        print("ex")
-
-        print(expresion_p.expresion_p2)
-        print("exx")
-
-        print(expresion_p.expresion_negada_p)
-        print("exxx")
+        # print(expresion_p)
+        #
+        # print(expresion_p.var_p)
+        # print("ex")
+        #
+        # print(expresion_p.expresion_p2)
+        # print("exx")
+        #
+        # print(expresion_p.expresion_negada_p)
+        # print("exxx")
 
         #if isinstance(expresion_p.var_p) and isinstance(expresion_p.expresion_p2):
 
@@ -607,7 +608,7 @@ class Visitor(object):
 
         if expresion_p.var_p is not None and expresion_p.expresion_p2 is not None:
 
-            print("entro ")
+            #print("entro ")
 
             #self.manyTimes(expresion_p.expresion_p2, id_nodoExpresion, expresion_p.nombre)
 
@@ -623,7 +624,7 @@ class Visitor(object):
 
         else:
 
-            print("entro else expresion negada")
+            #print("entro else expresion negada")
 
             self.manyTimes(expresion_p.expresion_negada_p, id_nodoExpresion, expresion_p.nombre)
 
@@ -701,17 +702,25 @@ class Visitor(object):
         self.id_nodoBinarioOP += 1
         id_nodoBinarioOP = self.id_nodoBinarioOP
 
-        self.ast += '"Nodo Binario OP ' + str(id_nodoBinarioOP) + '"' + '\n'
+        self.ast += '"Nodo Binario Op ' + str(id_nodoBinarioOP) + '"' + '\n'
 
-        #if nodoBinarioOP_p.is_rama == True:
+        if nodoBinarioOP_p.is_rama == False:
+
+            print("entro if")
+            #print(nodoBinarioOP_p.nombre2)
+
+            self.manyTimes(nodoBinarioOP_p.ramaDer_p, id_nodoBinarioOP, nodoBinarioOP_p.nombre)
+
+
+
+        else:
+
+            print("entro else")
 
             self.manyTimes(nodoBinarioOP_p.ramaIzq_p, id_nodoBinarioOP, nodoBinarioOP_p.nombre)
             self.manyTimes(nodoBinarioOP_p.operacion_p, id_nodoBinarioOP, nodoBinarioOP_p.nombre)
             self.manyTimes(nodoBinarioOP_p.ramaDer_p, id_nodoBinarioOP, nodoBinarioOP_p.nombre)
 
-        #else:
-
-         #   self.manyTimes(nodoBinarioOP_p.ramaDer_p, id_nodoBinarioOP, nodoBinarioOP_p.nombre)
 
 
 

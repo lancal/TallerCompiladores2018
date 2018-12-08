@@ -286,16 +286,16 @@ def p_expresion_simple(p):
 
     if p[2] == "LT":
 
-        p[0] = nodos.nodoBinarioOP(p[1], p[3],[2])
+        p[0] = nodos.nodoBinarioOP(is_rama=True,ramaIzq_p = p[1],ramaDer_p = p[3],operacion_p=p[2])
 
     if p[2] == "EQ":
 
-        p[0] = nodos.nodoBinarioOP(p[1], p[3],p[2])
+        p[0] = nodos.nodoBinarioOP(is_rama=True,ramaIzq_p = p[1],ramaDer_p = p[3],operacion_p=p[2])
 
 def p_expresion_simple2(p):
     #Regla 22
     """expresion_simple : expresion_aditiva"""
-    p[0] = nodos.nodoBinarioOP(p[1])
+    p[0] = nodos.nodoBinarioOP(ramaDer_p=p[1],nombre2="expresion aditiva")
     #p[0] = p[1]
 
 def p_relop(p):
@@ -315,18 +315,18 @@ def p_expresion_aditiva(p):
     if p[2] == "+":
 
         #p[0] = nodos.nodoBinarioOP(p[1],p[3],"+")
-        p[0] = nodos.nodoBinarioOP(is_rama=True, p[1], p[3], p[2])
+        p[0] = nodos.nodoBinarioOP(is_rama=True, ramaIzq_p=p[1], ramaDer_p=p[3], operacion_p=p[2])
 
     if p[2] == "-":
 
         #p[0] = nodos.nodoBinarioOP(p[1],p[3],"-")
-        p[0] = nodos.nodoBinarioOP(is_rama=True, p[1], p[3], p[2])
+        p[0] = nodos.nodoBinarioOP(is_rama=True, ramaIzq_p=p[1], ramaDer_p=p[3], operacion_p=p[2])
 
 def p_expresion_aditiva2(p):
     #Regla 24
     """expresion_aditiva : term"""
     #p[0] = p[1]
-    p[0] = nodos.nodoBinarioOP(p[1])
+    p[0] = nodos.nodoBinarioOP(ramaDer_p= p[1],nombre2="term")
 
 def p_addop(p):
     #Regla 25
@@ -345,19 +345,19 @@ def p_term(p):
     if p[2] == "++":
 
         #p[0] = nodos.nodoBinarioOP(p[1],p[3],"++")
-        p[0] = nodos.nodoBinarioOP(is_rama=True, p[1], [3], p[2])
+        p[0] = nodos.nodoBinarioOP(is_rama=True, ramaIzq_p=p[1], ramaDer_p=p[3], operacion_p=p[2])
 
 
     if p[2] == "--":
 
         #p[0] = nodos.nodoBinarioOP(p[1],p[3],"--")
-        p[0] = nodos.nodoBinarioOP(is_rama=True, p[1], [3],p[2])
+        p[0] = nodos.nodoBinarioOP(is_rama=True, ramaIzq_p=p[1], ramaDer_p=p[3], operacion_p=p[2])
 
 def p_term2(p):
     #Regla 26
     """term : factor"""
     #p[0] = p[1]
-    p[0] = nodos.nodoBinarioOP(p[1])
+    p[0] = nodos.nodoBinarioOP(ramaDer_p=p[1],nombre2="factor")
 
 def p_mulop(p):
     #Regla 27
@@ -371,12 +371,12 @@ def p_mulop2(p):
 def p_factor(p):
     #Regla 28
     """factor : LBRACKET expresion RBRACKET"""
-    p[0] = p[2]
+    p[0] = nodos.nodoExpresion(expresion_p2=p[1])
 
 def p_factor2(p):
     #Regla 28
     """factor : var"""
-    p[0] = p[1]
+    p[0] = nodos.nodoVar(p[1])
 
 def p_factor3(p):
     #Regla 28

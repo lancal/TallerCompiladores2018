@@ -10,41 +10,196 @@ digraph G {
 	"Declaracion Fun 1" -> "Sentencia Comp 1"
 	4 [label="vacio"]
 	"Sentencia Comp 1" -> 4
-	5 [label="vacio"]
-	"Sentencia Comp 1" -> 5
+	"Sentencia Comp 1" -> "Declaracion Var 1"
+	5 [label="ent"]
+	"Declaracion Var 1" -> 5
+	6 [label="ea$"]
+	"Declaracion Var 1" -> 6
+	7 [label="vacio"]
+	"Sentencia Comp 1" -> 7
 	"Sentencia Comp 1" -> "Sentencia Seleccion 1"
 	"Sentencia Seleccion 1" -> "Expresion 1"
-	"Expresion 1" -> "Expresion Negada 1"
+	"Expresion 1" -> "Var 1"
+	8 [label="a$"]
+	"Var 1" -> 8
+	"Expresion 1" -> "Expresion 2"
+	"Expresion 2" -> "Expresion Negada 1"
 	"Expresion Negada 1" -> "Expresion Logica 1"
-	"Expresion Logica 1" -> "Expresion Logica 2"
-	"Expresion Logica 2" -> "Nodo Binario OP 1"
-	"Nodo Binario Op 1" -> "Nodo Binario OP 2"
-	"Nodo Binario Op 2" -> "Nodo Binario OP 3"
-	"Nodo Binario Op 3" -> "Var 1"
-	6 [label="a"]
-	"Var 1" -> 6
-	"Expresion Logica 1" -> "Nodo Binario OP 4"
-	"Nodo Binario Op 4" -> "Nodo Binario OP 5"
-	"Nodo Binario Op 5" -> "Nodo Binario OP 6"
-	"Nodo Binario Op 6" -> "Var 2"
-	7 [label="b"]
-	"Var 2" -> 7
+	"Expresion Logica 1" -> "Nodo Binario Op 1"
+	"Nodo Binario Op 1" -> "Nodo Binario Op 2"
+	"Nodo Binario Op 2" -> "Nodo Binario Op 3"
+	"Nodo Binario Op 3" -> "Var 2"
+	"Var 2" -> "Var 3"
+	9 [label="ed$"]
+	"Var 3" -> 9
 	"Sentencia Seleccion 1" -> "Sentencia Comp 2"
-	8 [label="vacio"]
-	"Sentencia Comp 2" -> 8
-	9 [label="vacio"]
-	"Sentencia Comp 2" -> 9
-	"Sentencia Comp 2" -> "Expresion 2"
-	"Expresion 2" -> "Var 3"
-	10 [label="as$"]
-	"Var 3" -> 10
-	"Expresion 2" -> "Expresion 3"
-	"Expresion 3" -> "Expresion Negada 2"
-	"Expresion Negada 2" -> "Expresion Logica 3"
-	"Expresion Logica 3" -> "Nodo Binario OP 7"
-	"Nodo Binario Op 7" -> "Nodo Binario OP 8"
-	"Nodo Binario Op 8" -> "Nodo Binario OP 9"
-	"Nodo Binario Op 9" -> "Var 4"
-	11 [label="ad"]
-	"Var 4" -> 11
+	10 [label="vacio"]
+	"Sentencia Comp 2" -> 10
+	11 [label="vacio"]
+	"Sentencia Comp 2" -> 11
+	"Sentencia Comp 2" -> "Expresion 3"
+	"Expresion 3" -> "Var 4"
+	12 [label="af$"]
+	"Var 4" -> 12
+	"Expresion 3" -> "Expresion 4"
+	"Expresion 4" -> "Expresion Negada 2"
+	"Expresion Negada 2" -> "Expresion Logica 2"
+	"Expresion Logica 2" -> "Nodo Binario Op 4"
+	"Nodo Binario Op 4" -> "Nodo Binario Op 5"
+	"Nodo Binario Op 5" -> "Nodo Binario Op 6"
+	"Nodo Binario Op 6" -> "Var 5"
+	"Var 5" -> "Var 6"
+	13 [label="a"]
+	"Var 6" -> 13
+	"Sentencia Seleccion 1" -> "Sentencia Comp 3"
+	14 [label="vacio"]
+	"Sentencia Comp 3" -> 14
+	15 [label="vacio"]
+	"Sentencia Comp 3" -> 15
+	"Sentencia Comp 3" -> "Expresion 5"
+	"Expresion 5" -> "Var 7"
+	16 [label="aw$"]
+	"Var 7" -> 16
+	"Expresion 5" -> "Expresion 6"
+	"Expresion 6" -> "Expresion Negada 3"
+	"Expresion Negada 3" -> "Expresion Logica 3"
+	"Expresion Logica 3" -> "Nodo Binario Op 7"
+	"Nodo Binario Op 7" -> "Nodo Binario Op 8"
+	"Nodo Binario Op 8" -> "Nodo Binario Op 9"
+	"Nodo Binario Op 9" -> "Var 8"
+	"Var 8" -> "Var 9"
+	17 [label="q"]
+	"Var 9" -> 17
+	"Lista 1" -> "Declaracion Fun 2"
+	18 [label="VACUO"]
+	"Declaracion Fun 2" -> 18
+	19 [label="ee$"]
+	"Declaracion Fun 2" -> 19
+	"Declaracion Fun 2" -> "Param 2"
+	20 [label="ent"]
+	"Param 2" -> 20
+	21 [label="aaa"]
+	"Param 2" -> 21
+	"Declaracion Fun 2" -> "Param 3"
+	22 [label="vacuo"]
+	"Param 3" -> 22
+	23 [label="w"]
+	"Param 3" -> 23
+	"Declaracion Fun 2" -> "Sentencia Comp 4"
+	24 [label="vacio"]
+	"Sentencia Comp 4" -> 24
+	"Sentencia Comp 4" -> "Declaracion Var 2"
+	25 [label="ent"]
+	"Declaracion Var 2" -> 25
+	26 [label="et$"]
+	"Declaracion Var 2" -> 26
+	"Sentencia Comp 4" -> "Declaracion Var 3"
+	27 [label="VAcuo"]
+	"Declaracion Var 3" -> 27
+	28 [label="a2"]
+	"Declaracion Var 3" -> 28
+	"Sentencia Comp 4" -> "Declaracion Var 4"
+	29 [label="ent"]
+	"Declaracion Var 4" -> 29
+	30 [label="b"]
+	"Declaracion Var 4" -> 30
+	31 [label="10"]
+	"Declaracion Var 4" -> 31
+	32 [label="vacio"]
+	"Sentencia Comp 4" -> 32
+	"Sentencia Comp 4" -> "Sentencia Seleccion 2"
+	"Sentencia Seleccion 2" -> "Expresion 7"
+	"Expresion 7" -> "Var 10"
+	33 [label="a$"]
+	"Var 10" -> 33
+	"Expresion 7" -> "Expresion 8"
+	"Expresion 8" -> "Var 11"
+	34 [label="e$"]
+	"Var 11" -> 34
+	"Expresion 8" -> "Expresion 9"
+	"Expresion 9" -> "Expresion Negada 4"
+	"Expresion Negada 4" -> "Expresion Logica 4"
+	"Expresion Logica 4" -> "Nodo Binario Op 10"
+	"Nodo Binario Op 10" -> "Nodo Binario Op 11"
+	"Nodo Binario Op 11" -> "Nodo Binario Op 12"
+	"Nodo Binario Op 12" -> "Var 12"
+	"Var 12" -> "Var 13"
+	35 [label="a"]
+	"Var 13" -> 35
+	"Sentencia Seleccion 2" -> "Sentencia Comp 5"
+	36 [label="vacio"]
+	"Sentencia Comp 5" -> 36
+	37 [label="vacio"]
+	"Sentencia Comp 5" -> 37
+	"Sentencia Comp 5" -> "Expresion 10"
+	"Expresion 10" -> "Var 14"
+	38 [label="as$"]
+	"Var 14" -> 38
+	"Expresion 10" -> "Expresion 11"
+	"Expresion 11" -> "Expresion Negada 5"
+	"Expresion Negada 5" -> "Expresion Logica 5"
+	"Expresion Logica 5" -> "Nodo Binario Op 13"
+	"Nodo Binario Op 13" -> "Nodo Binario Op 14"
+	"Nodo Binario Op 14" -> "Nodo Binario Op 15"
+	"Nodo Binario Op 15" -> "Var 15"
+	"Var 15" -> "Var 16"
+	39 [label="ad"]
+	"Var 16" -> 39
+	"Sentencia Seleccion 2" -> "Sentencia Comp 6"
+	40 [label="vacio"]
+	"Sentencia Comp 6" -> 40
+	41 [label="vacio"]
+	"Sentencia Comp 6" -> 41
+	"Sentencia Comp 6" -> "Expresion 12"
+	"Expresion 12" -> "Var 17"
+	42 [label="aq$"]
+	"Var 17" -> 42
+	"Expresion 12" -> "Expresion 13"
+	"Expresion 13" -> "Expresion Negada 6"
+	"Expresion Negada 6" -> "Expresion Logica 6"
+	"Expresion Logica 6" -> "Nodo Binario Op 16"
+	"Nodo Binario Op 16" -> "Nodo Binario Op 17"
+	"Nodo Binario Op 17" -> "Nodo Binario Op 18"
+	"Nodo Binario Op 18" -> "Var 18"
+	"Var 18" -> "Var 19"
+	43 [label="wr"]
+	"Var 19" -> 43
+	"Sentencia Comp 4" -> "Sentencia Seleccion 3"
+	"Sentencia Seleccion 3" -> "Expresion 14"
+	"Expresion 14" -> "Expresion Negada 7"
+	"Expresion Negada 7" -> "Expresion Logica 7"
+	"Expresion Logica 7" -> "Expresion Logica 8"
+	"Expresion Logica 8" -> "Nodo Binario Op 19"
+	"Nodo Binario Op 19" -> "Nodo Binario Op 20"
+	"Nodo Binario Op 20" -> "Nodo Binario Op 21"
+	"Nodo Binario Op 21" -> "Var 20"
+	"Var 20" -> "Var 21"
+	44 [label="a"]
+	"Var 21" -> 44
+	"Expresion Logica 7" -> "Nodo Binario Op 22"
+	"Nodo Binario Op 22" -> "Nodo Binario Op 23"
+	"Nodo Binario Op 23" -> "Nodo Binario Op 24"
+	"Nodo Binario Op 24" -> "Var 22"
+	"Var 22" -> "Var 23"
+	45 [label="b"]
+	"Var 23" -> 45
+	"Sentencia Seleccion 3" -> "Sentencia Comp 7"
+	46 [label="vacio"]
+	"Sentencia Comp 7" -> 46
+	47 [label="vacio"]
+	"Sentencia Comp 7" -> 47
+	"Sentencia Comp 7" -> "Expresion 15"
+	"Expresion 15" -> "Var 24"
+	48 [label="as$"]
+	"Var 24" -> 48
+	"Expresion 15" -> "Expresion 16"
+	"Expresion 16" -> "Expresion Negada 8"
+	"Expresion Negada 8" -> "Expresion Logica 9"
+	"Expresion Logica 9" -> "Nodo Binario Op 25"
+	"Nodo Binario Op 25" -> "Nodo Binario Op 26"
+	"Nodo Binario Op 26" -> "Nodo Binario Op 27"
+	"Nodo Binario Op 27" -> "Var 25"
+	"Var 25" -> "Var 26"
+	49 [label="ad"]
+	"Var 26" -> 49
 }
