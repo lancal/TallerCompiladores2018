@@ -144,6 +144,8 @@ class Visitor(object):
 
                     print("entro else manytimes")
 
+                    print(x)
+
                     if x.nombre == "vacio":
 
                         self.id_nodo += 1
@@ -660,11 +662,11 @@ class Visitor(object):
 
         self.ast += '"Expresion Negada ' + str(id_nodoExpresionNegada) + '"' + '\n'
 
-        if expresion_negada_p.not_bracket == False:
+        #if expresion_negada_p.not_bracket == False:
 
             #print("entro True")
 
-            self.manyTimes(expresion_negada_p.expresion_logica_p,id_nodoExpresionNegada,expresion_negada_p.nombre)
+        self.manyTimes(expresion_negada_p.expresion_logica_p,id_nodoExpresionNegada,expresion_negada_p.nombre)
 
         #else:
 
@@ -682,8 +684,14 @@ class Visitor(object):
 
         self.ast += '"Expresion Logica ' + str(id_nodoExpresionLogica) + '"' + '\n'
 
-        self.manyTimes(expresion_logica_p.expresion_logica_p, id_nodoExpresionLogica, expresion_logica_p.nombre)
-        self.manyTimes(expresion_logica_p.expresion_simple_p, id_nodoExpresionLogica, expresion_logica_p.nombre)
+        if expresion_logica_p.thereis_exp_log == True:
+
+            self.manyTimes(expresion_logica_p.expresion_logica_p, id_nodoExpresionLogica, expresion_logica_p.nombre)
+            self.manyTimes(expresion_logica_p.expresion_simple_p, id_nodoExpresionLogica, expresion_logica_p.nombre)
+
+        else:
+
+            self.manyTimes(expresion_logica_p.expresion_simple_p, id_nodoExpresionLogica, expresion_logica_p.nombre)
 
     def visit_nodoBinarioOP(self,nodoBinarioOP_p):
 
@@ -695,9 +703,17 @@ class Visitor(object):
 
         self.ast += '"Nodo Binario OP ' + str(id_nodoBinarioOP) + '"' + '\n'
 
-        self.manyTimes(nodoBinarioOP_p.ramaIzq_p, id_nodoBinarioOP, nodoBinarioOP_p.nombre)
-        self.manyTimes(nodoBinarioOP_p.operacion_p, id_nodoBinarioOP, nodoBinarioOP_p.nombre)
-        self.manyTimes(nodoBinarioOP_p.ramaDer_p, id_nodoBinarioOP, nodoBinarioOP_p.nombre)
+        #if nodoBinarioOP_p.is_rama == True:
+
+            self.manyTimes(nodoBinarioOP_p.ramaIzq_p, id_nodoBinarioOP, nodoBinarioOP_p.nombre)
+            self.manyTimes(nodoBinarioOP_p.operacion_p, id_nodoBinarioOP, nodoBinarioOP_p.nombre)
+            self.manyTimes(nodoBinarioOP_p.ramaDer_p, id_nodoBinarioOP, nodoBinarioOP_p.nombre)
+
+        #else:
+
+         #   self.manyTimes(nodoBinarioOP_p.ramaDer_p, id_nodoBinarioOP, nodoBinarioOP_p.nombre)
+
+
 
     def visit_nodoNUM(self,nodoNum_p):
 

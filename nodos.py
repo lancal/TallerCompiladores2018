@@ -189,20 +189,23 @@ class nodoVar(Nodo):
 
 class nodoExpresionNegada(Nodo):
 
-    def __init__(self,not_bracket=False,expresion_logica_p=None):
+    def __init__(self,expresion_logica_p):
 
-        self.not_bracket = not_bracket
+        #self.not_bracket = not_bracket
         self.expresion_logica_p = expresion_logica_p
         self.nombre = 'Expresion Negada '
-        self.nombre2 = 'Expresion Negada ![]'
+        #self.nombre2 = 'Expresion Negada ![]'
 
     def accept(self,visitor):
         visitor.visit_nodoExpresionNegada(self)
 
 class nodoExpresionLogica(Nodo):
 
-    def __init__(self,expresion_logica_p = None , expresion_simple_p = None):
+    def __init__(self,thereis_exp_log = False, expresion_logica_p = None , expresion_simple_p = None):
+
+        self.thereis_exp_log =thereis_exp_log
         self.expresion_logica_p = expresion_logica_p
+        #self.thereis_exp_sim = thereis_exp_sim
         self.expresion_simple_p = expresion_simple_p
         self.nombre = 'Expresion Logica '
 
@@ -223,8 +226,9 @@ class nodoVacio():
 
 class nodoBinarioOP(Nodo):
 
-    def __init__(self,ramaIzq_p, ramaDer_p, operacion_p):
+    def __init__(self,is_rama = False,ramaIzq_p, ramaDer_p, operacion_p):
 
+        #self.is_rama = is_rama
         self.ramaIzq_p = ramaIzq_p
         self.ramaDer_p = ramaDer_p
         self.operacion_p = operacion_p
