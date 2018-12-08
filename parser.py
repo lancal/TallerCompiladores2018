@@ -148,8 +148,6 @@ def p_lista_sentencias(p):
     else:
         p[0] = [p[1]]
         #p[0] = nodos.nodoVacio(is_vacio=True, vacio_t=p[1])
-
-
     if isinstance(p[2], list):
         p[0].extend(p[2])
     else:
@@ -440,8 +438,6 @@ def p_error(p):
     else:
         print('El archivo de entrada esta vacío\n')
 
-
-
 # Build the parser
 #parser = yacc.yacc()
 parser = yacc.yacc(debug=True,start="programa")
@@ -466,8 +462,6 @@ def ingresarArchivo(nombreArchivo):
             treeFileDot.write(visitor_tipos.ast)
         else:
             treeFileDot.write('Error al realizar el parse.')
-
-
 
 def main():
 

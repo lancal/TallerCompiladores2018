@@ -36,9 +36,6 @@ class Visitor(object):
         self.id_program += 1
         id_program = self.id_program
 
-        #print(program.statement_list)
-        #print("asdf")
-
         if program.statement_list is not None:
 
             if isinstance(program.statement_list,list):
@@ -185,8 +182,6 @@ class Visitor(object):
 
         else:
 
-            #print("entro if sentencia seleccion")
-
             self.manyTimes(sentencia_seleccion_p.expresion_p, id_nodoSentenciaSeleccion, sentencia_seleccion_p.nombre)
             self.manyTimes(sentencia_seleccion_p.sentencia_p, id_nodoSentenciaSeleccion, sentencia_seleccion_p.nombre)
             self.manyTimes(sentencia_seleccion_p.sentencia_p2, id_nodoSentenciaSeleccion, sentencia_seleccion_p.nombre)
@@ -313,8 +308,6 @@ class Visitor(object):
             self.manyTimes(nodoBinarioOP_p.ramaDer_p, id_nodoBinarioOP, nodoBinarioOP_p.nombre)
 
 
-
-
     def visit_nodoNUM(self,nodoNum_p):
 
 
@@ -335,7 +328,3 @@ class Visitor(object):
 
         self.manyTimes(invocacion_p.id_t, id_nodoInvocacion, invocacion_p.nombre)
         self.manyTimes(invocacion_p.argumentos_p, id_nodoInvocacion, invocacion_p.nombre)
-
-
-
-

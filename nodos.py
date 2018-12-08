@@ -158,13 +158,10 @@ class nodoVacio():
 
     def __init__(self):
 
-        #self.is_vacio = is_vacio
-        #self.vacio_t = vacio_t
         self.nombre = 'vacio'
 
     def accept(self,visitor):
         visitor.visit_nodoVacio(self)
-
 
 class nodoBinarioOP(Nodo):
 
