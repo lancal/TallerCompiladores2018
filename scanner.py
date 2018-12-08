@@ -13,7 +13,7 @@ t_ignore = ' \t\n'  # Ignorar esto!
 t_PLUS = r'\+'
 t_MINUS = r'\-'
 t_TIMES = r'\+\+'
-t_DIVIDE = r'\--'
+t_DIVIDE = r'\-\-'
 t_LT = r'LT'
 t_EQ = r'EQ'
 t_ASSIGN = r'='

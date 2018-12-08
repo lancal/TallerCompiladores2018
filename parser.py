@@ -365,6 +365,8 @@ def p_mulop(p):
 def p_mulop2(p):
     #Regla 27
     """mulop : DIVIDE"""
+    p[0] = p[1]
+
 
 def p_factor(p):
     #Regla 28

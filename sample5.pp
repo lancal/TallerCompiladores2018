@@ -7,7 +7,7 @@ VACUO e$ [ ent a , vacuo w ] (
   ) SINO (
     a$ = w;
   )
-  SI [ ! [ 30 ++ 50 && a EQ 3 + 4 ] ] (
+  SI [ ! [ 30 ++ 50 && a LT 3 -- 4 ] ] (
     vacuO uwu;
     SI [ a$=e$=a ](
       a$ = a;

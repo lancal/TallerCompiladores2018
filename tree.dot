@@ -118,7 +118,7 @@ digraph G {
 	"Var 11" -> "Var 12"
 	30 [label="a"]
 	"Var 12" -> 30
-	31 [label="EQ"]
+	31 [label="LT"]
 	"Nodo Binario Op 14" -> 31
 	"Nodo Binario Op 14" -> "Nodo Binario Op 18"
 	"Nodo Binario Op 18" -> "Nodo Binario Op 19"
@@ -126,10 +126,9 @@ digraph G {
 	"Nodo Binario Op 20" -> "NUM 3"
 	32 [label="3"]
 	"NUM 3" -> 32
-	33 [label="+"]
-	"Nodo Binario Op 18" -> 33
-	"Nodo Binario Op 18" -> "Nodo Binario Op 21"
-	"Nodo Binario Op 21" -> "NUM 4"
+	33 [label="--"]
+	"Nodo Binario Op 19" -> 33
+	"Nodo Binario Op 19" -> "NUM 4"
 	34 [label="4"]
 	"NUM 4" -> 34
 	"Sentencia Seleccion 2" -> "Sentencia Comp 4"
@@ -154,10 +153,10 @@ digraph G {
 	"Expresion 10" -> "Expresion 11"
 	"Expresion 11" -> "Expresion Negada 5"
 	"Expresion Negada 5" -> "Expresion Logica 6"
-	"Expresion Logica 6" -> "Nodo Binario Op 22"
+	"Expresion Logica 6" -> "Nodo Binario Op 21"
+	"Nodo Binario Op 21" -> "Nodo Binario Op 22"
 	"Nodo Binario Op 22" -> "Nodo Binario Op 23"
-	"Nodo Binario Op 23" -> "Nodo Binario Op 24"
-	"Nodo Binario Op 24" -> "Var 15"
+	"Nodo Binario Op 23" -> "Var 15"
 	"Var 15" -> "Var 16"
 	41 [label="a"]
 	"Var 16" -> 41
@@ -173,10 +172,10 @@ digraph G {
 	"Expresion 12" -> "Expresion 13"
 	"Expresion 13" -> "Expresion Negada 6"
 	"Expresion Negada 6" -> "Expresion Logica 7"
-	"Expresion Logica 7" -> "Nodo Binario Op 25"
+	"Expresion Logica 7" -> "Nodo Binario Op 24"
+	"Nodo Binario Op 24" -> "Nodo Binario Op 25"
 	"Nodo Binario Op 25" -> "Nodo Binario Op 26"
-	"Nodo Binario Op 26" -> "Nodo Binario Op 27"
-	"Nodo Binario Op 27" -> "Var 18"
+	"Nodo Binario Op 26" -> "Var 18"
 	"Var 18" -> "Var 19"
 	45 [label="a"]
 	"Var 19" -> 45
@@ -188,43 +187,43 @@ digraph G {
 	"Expresion 14" -> "Expresion Negada 7"
 	"Expresion Negada 7" -> "Expresion Logica 8"
 	"Expresion Logica 8" -> "Expresion Logica 9"
-	"Expresion Logica 9" -> "Nodo Binario Op 28"
+	"Expresion Logica 9" -> "Nodo Binario Op 27"
+	"Nodo Binario Op 27" -> "Nodo Binario Op 28"
 	"Nodo Binario Op 28" -> "Nodo Binario Op 29"
-	"Nodo Binario Op 29" -> "Nodo Binario Op 30"
-	"Nodo Binario Op 30" -> "Var 20"
+	"Nodo Binario Op 29" -> "Var 20"
 	"Var 20" -> "Var 21"
 	47 [label="uwu"]
 	"Var 21" -> 47
-	"Expresion Logica 8" -> "Nodo Binario Op 31"
+	"Expresion Logica 8" -> "Nodo Binario Op 30"
+	"Nodo Binario Op 30" -> "Nodo Binario Op 31"
 	"Nodo Binario Op 31" -> "Nodo Binario Op 32"
 	"Nodo Binario Op 32" -> "Nodo Binario Op 33"
-	"Nodo Binario Op 33" -> "Nodo Binario Op 34"
-	"Nodo Binario Op 34" -> "Expresion 15"
+	"Nodo Binario Op 33" -> "Expresion 15"
 	48 [label="EQ"]
-	"Nodo Binario Op 31" -> 48
-	"Nodo Binario Op 31" -> "Nodo Binario Op 35"
-	"Nodo Binario Op 35" -> "Nodo Binario Op 36"
-	"Nodo Binario Op 36" -> "Var 22"
+	"Nodo Binario Op 30" -> 48
+	"Nodo Binario Op 30" -> "Nodo Binario Op 34"
+	"Nodo Binario Op 34" -> "Nodo Binario Op 35"
+	"Nodo Binario Op 35" -> "Var 22"
 	"Var 22" -> "Var 23"
 	49 [label="a"]
 	"Var 23" -> 49
 	"Var 23" -> "Expresion 16"
 	"Expresion 16" -> "Expresion Negada 8"
 	"Expresion Negada 8" -> "Expresion Logica 10"
-	"Expresion Logica 10" -> "Nodo Binario Op 37"
+	"Expresion Logica 10" -> "Nodo Binario Op 36"
+	"Nodo Binario Op 36" -> "Nodo Binario Op 37"
 	"Nodo Binario Op 37" -> "Nodo Binario Op 38"
-	"Nodo Binario Op 38" -> "Nodo Binario Op 39"
-	"Nodo Binario Op 39" -> "Var 24"
+	"Nodo Binario Op 38" -> "Var 24"
 	"Var 24" -> "Var 25"
 	50 [label="a2"]
 	"Var 25" -> 50
 	"Var 25" -> "Expresion 17"
 	"Expresion 17" -> "Expresion Negada 9"
 	"Expresion Negada 9" -> "Expresion Logica 11"
-	"Expresion Logica 11" -> "Nodo Binario Op 40"
+	"Expresion Logica 11" -> "Nodo Binario Op 39"
+	"Nodo Binario Op 39" -> "Nodo Binario Op 40"
 	"Nodo Binario Op 40" -> "Nodo Binario Op 41"
-	"Nodo Binario Op 41" -> "Nodo Binario Op 42"
-	"Nodo Binario Op 42" -> "Var 26"
+	"Nodo Binario Op 41" -> "Var 26"
 	"Var 26" -> "Var 27"
 	51 [label="e$"]
 	"Var 27" -> 51
@@ -242,10 +241,10 @@ digraph G {
 	"Sentencia Retorno 1" -> "Expresion 18"
 	"Expresion 18" -> "Expresion Negada 10"
 	"Expresion Negada 10" -> "Expresion Logica 12"
-	"Expresion Logica 12" -> "Nodo Binario Op 43"
+	"Expresion Logica 12" -> "Nodo Binario Op 42"
+	"Nodo Binario Op 42" -> "Nodo Binario Op 43"
 	"Nodo Binario Op 43" -> "Nodo Binario Op 44"
-	"Nodo Binario Op 44" -> "Nodo Binario Op 45"
-	"Nodo Binario Op 45" -> "Var 28"
+	"Nodo Binario Op 44" -> "Var 28"
 	"Var 28" -> "Var 29"
 	56 [label="uwu"]
 	"Var 29" -> 56
@@ -254,17 +253,17 @@ digraph G {
 	"Expresion 19" -> "Expresion Negada 11"
 	"Expresion Negada 11" -> "Expresion Logica 13"
 	"Expresion Logica 13" -> "Expresion Logica 14"
-	"Expresion Logica 14" -> "Nodo Binario Op 46"
+	"Expresion Logica 14" -> "Nodo Binario Op 45"
+	"Nodo Binario Op 45" -> "Nodo Binario Op 46"
 	"Nodo Binario Op 46" -> "Nodo Binario Op 47"
-	"Nodo Binario Op 47" -> "Nodo Binario Op 48"
-	"Nodo Binario Op 48" -> "Var 30"
+	"Nodo Binario Op 47" -> "Var 30"
 	"Var 30" -> "Var 31"
 	57 [label="uwu"]
 	"Var 31" -> 57
-	"Expresion Logica 13" -> "Nodo Binario Op 49"
+	"Expresion Logica 13" -> "Nodo Binario Op 48"
+	"Nodo Binario Op 48" -> "Nodo Binario Op 49"
 	"Nodo Binario Op 49" -> "Nodo Binario Op 50"
-	"Nodo Binario Op 50" -> "Nodo Binario Op 51"
-	"Nodo Binario Op 51" -> "Invocacion 1"
+	"Nodo Binario Op 50" -> "Invocacion 1"
 	58 [label="owo"]
 	"Invocacion 1" -> 58
 	"Invocacion 1" -> "Expresion 20"
@@ -274,10 +273,10 @@ digraph G {
 	"Expresion 20" -> "Expresion 21"
 	"Expresion 21" -> "Expresion Negada 12"
 	"Expresion Negada 12" -> "Expresion Logica 15"
-	"Expresion Logica 15" -> "Nodo Binario Op 52"
+	"Expresion Logica 15" -> "Nodo Binario Op 51"
+	"Nodo Binario Op 51" -> "Nodo Binario Op 52"
 	"Nodo Binario Op 52" -> "Nodo Binario Op 53"
-	"Nodo Binario Op 53" -> "Nodo Binario Op 54"
-	"Nodo Binario Op 54" -> "Var 33"
+	"Nodo Binario Op 53" -> "Var 33"
 	"Var 33" -> "Var 34"
 	60 [label="a"]
 	"Var 34" -> 60
@@ -288,10 +287,10 @@ digraph G {
 	"Expresion 22" -> "Expresion 23"
 	"Expresion 23" -> "Expresion Negada 13"
 	"Expresion Negada 13" -> "Expresion Logica 16"
-	"Expresion Logica 16" -> "Nodo Binario Op 55"
+	"Expresion Logica 16" -> "Nodo Binario Op 54"
+	"Nodo Binario Op 54" -> "Nodo Binario Op 55"
 	"Nodo Binario Op 55" -> "Nodo Binario Op 56"
-	"Nodo Binario Op 56" -> "Nodo Binario Op 57"
-	"Nodo Binario Op 57" -> "Var 36"
+	"Nodo Binario Op 56" -> "Var 36"
 	"Var 36" -> "Var 37"
 	62 [label="b"]
 	"Var 37" -> 62
