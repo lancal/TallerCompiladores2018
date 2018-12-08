@@ -1,5 +1,5 @@
 VACUO e$ [ ent a , vacuo w ] (
-  enT e$$;
+  enT e$a;
   VAcuo a2;
   ent b<10>;
   SI [ a$=e$=a ](
