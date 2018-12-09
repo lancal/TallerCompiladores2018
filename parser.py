@@ -5,6 +5,8 @@ from scanner import tokens
 
 from os import listdir
 
+import os.path
+
 import nodos
 
 from dibujar_AST_visitor import Visitor
@@ -465,13 +467,68 @@ def ingresarArchivo(nombreArchivo):
         else:
             treeFileDot.write('Error al realizar el parse.')
 
+def cerrar(cerrar):
+
+    if cerrar == "CERRAR":
+
+        print("\nBye ! :(")
+
+        c = False
+
+        return c
+    else:
+
+        c = True
+
+        return c
+
+
 def main():
 
-    listarArchivoPP()
+    global flag
 
-    archivoNombre = input("Ingrese el nombre del archivo a leer: ")
+    flag = True
 
-    ingresarArchivo(archivoNombre)
+    while flag != False:
+
+        listarArchivoPP()
+
+        print("\nPara salir Ingresar: CERRAR ")
+
+        archivoNombre = input("\nIngrese el nombre del archivo a leer: ")
+
+        flag = cerrar(archivoNombre)
+
+        if flag == False:
+
+            break
+
+        while os.path.isfile(archivoNombre) == False:
+
+            print("\nArchivo no encontrado :( ")
+
+            # se ingresa nuevamente el nombre del archivo a buscar
+            archivoNombre = input("\nIngrese el nombre del archivo a leer: ")
+
+            flag = cerrar(archivoNombre)
+
+            if flag == False:
+
+                break
+
+        if os.path.isfile(archivoNombre) == True:
+
+            print("\nArchivo Encontrado :) ")
+
+            ingresarArchivo(archivoNombre)
+
+            print("Archivo tree.dot Generado :) \n")
+
+        #flag = cerrar(archivoNombre)
+
 
 if __name__ == "__main__":
+
+    #flag = True
+
     main()
