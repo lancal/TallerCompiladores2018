@@ -1,12 +1,25 @@
+erroresSemanticos1 = []
+erroresSemanticos2 = []
+
+listAsignaciones = []
+listFunciones = []
+
 class Nodo():
     pass
 
 class Program(Nodo):
     def __init__(self, statement_list_p):
+
         self.statement_list = statement_list_p
+        self.nombre = 'Program '
 
     def accept(self, visitor):
+
         visitor.visit_program(self)
+
+    def accept2(self,visitor2):
+
+        visitor2.visit_program(self)
 
 class nodoDeclaracionVar(Nodo):
 
@@ -20,8 +33,14 @@ class nodoDeclaracionVar(Nodo):
         self.NUM_t = NUM_t
         self.nombre = 'Declaracion Var '
 
+        if self.def_tipo_p == 'VACUO':
+
+            erroresSemanticos1.append("Variable " + self.ID_t + " declarada no puede ser void")
 
     def accept(self, visitor):
+        visitor.visit_nodoDeclaracionVar(self)
+
+    def accept2(self, visitor):
         visitor.visit_nodoDeclaracionVar(self)
 
 
@@ -197,5 +216,12 @@ class nodoInvocacion(Nodo):
     def accept(self,visitor):
         visitor.visit_nodoInvocacion(self)
 
+def getTable():
+    return st
 
+def getesp():
+    return erroresSemanticos1
+
+def getess():
+    return erroresSemanticos2
 

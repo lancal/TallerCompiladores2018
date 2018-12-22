@@ -9,7 +9,7 @@ import os.path
 
 import nodos
 
-from dibujar_AST_visitor import Visitor
+from dibujar_AST_visitor import *
 
 def p_programa(p):
     #Regla 1
@@ -456,14 +456,18 @@ def listarArchivoPP():
 def ingresarArchivo(nombreArchivo):
 
     treeFileDot = open('tree.dot', 'w')
+    treeFileDot2 = open('tree2.dot', 'w')
 
     with open(nombreArchivo, 'r') as arch:
         contents = arch.read()
         result = parser.parse(contents)
         if result is not None:
             visitor_tipos = Visitor()
+            visitor_tipos2 = Visitor2()
             nodos.Program.accept(result, visitor_tipos)
+            nodos.Program.accept2(result,visitor_tipos2)
             treeFileDot.write(visitor_tipos.ast)
+            treeFileDot2.write(visitor_tipos2.ast)
         else:
             treeFileDot.write('Error al realizar el parse.')
 

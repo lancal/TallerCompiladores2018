@@ -1,3 +1,9 @@
+from symbol_Table import *
+
+
+st = symbolTable()
+
+
 class Visitor(object):
     def __init__(self):
         self.ast = ''
@@ -49,7 +55,7 @@ class Visitor(object):
             for stmt in aux:
 
                 if stmt is not None:
-                    self.ast += '\t"Lista ' + str(id_program) +  '" ' + '-> '
+                    self.ast += '\t"Programa ' + str(id_program) +  '" ' + '-> '
                     stmt.accept(self)
         self.ast = 'digraph G {\n' + self.ast + '}'
 
@@ -328,3 +334,55 @@ class Visitor(object):
 
         self.manyTimes(invocacion_p.id_t, id_nodoInvocacion, invocacion_p.nombre)
         self.manyTimes(invocacion_p.argumentos_p, id_nodoInvocacion, invocacion_p.nombre)
+
+class Visitor2(object):
+
+    def __init__(self):
+
+        self.ast = ''
+        self.id_program = 0
+        self.id_declaracion_var = 0
+
+
+    def visit_program(self,program):
+
+        self.id_program += 1
+        id_program = self.id_program
+
+        if program.statement_list is not None:
+
+            if isinstance(program.statement_list,list):
+
+                aux = program.statement_list
+
+            else:
+
+                aux = [program.statement_list]
+
+            for stmt in aux:
+
+                if stmt is not None:
+                    self.ast += '\t"Programa ' + str(id_program) +  '" ' + '-> '
+                    stmt.accept(self)
+
+            self.ast = 'digraph G {\n' + self.ast + '}'
+
+
+        #for x in program.statement_list:
+
+         #   x = x.accept2(st)
+
+
+
+
+    def visit_nodoDeclaracionVar(self, symbol_Table):
+
+        self.id_declaracion_var += 1
+        id_declaracion_var = self.id_declaracion_var
+
+
+
+
+
+
+

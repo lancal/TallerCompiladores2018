@@ -1,34 +1,7 @@
 digraph G {
-	"Lista 1" -> "Declaracion Var 1"
-	1 [label="VACUo"]
+	"Programa 1" -> "Declaracion Var 1"
+	1 [label="vacuo"]
 	"Declaracion Var 1" -> 1
-	2 [label="ab$cc"]
+	2 [label="abc"]
 	"Declaracion Var 1" -> 2
-	"Lista 1" -> "Declaracion Var 2"
-	3 [label="VACUO"]
-	"Declaracion Var 2" -> 3
-	4 [label="ab$aa"]
-	"Declaracion Var 2" -> 4
-	5 [label="123"]
-	"Declaracion Var 2" -> 5
-	"Lista 1" -> "Declaracion Fun 1"
-	6 [label="VACUO"]
-	"Declaracion Fun 1" -> 6
-	7 [label="ab"]
-	"Declaracion Fun 1" -> 7
-	"Declaracion Fun 1" -> "Param 1"
-	8 [label="ent"]
-	"Param 1" -> 8
-	9 [label="f"]
-	"Param 1" -> 9
-	"Declaracion Fun 1" -> "Param 2"
-	10 [label="ent"]
-	"Param 2" -> 10
-	11 [label="k"]
-	"Param 2" -> 11
-	"Declaracion Fun 1" -> "Sentencia Comp 1"
-	12 [label="vacio"]
-	"Sentencia Comp 1" -> 12
-	13 [label="vacio"]
-	"Sentencia Comp 1" -> 13
 }
