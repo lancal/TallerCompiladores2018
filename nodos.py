@@ -1,8 +1,12 @@
+from symbol_Table import *
+
 erroresSemanticos1 = []
 erroresSemanticos2 = []
 
 listAsignaciones = []
 listFunciones = []
+
+st = symbolTable()
 
 class Nodo():
     pass
@@ -17,9 +21,9 @@ class Program(Nodo):
 
         visitor.visit_program(self)
 
-    def accept2(self,visitor2):
+    def accept2(self,visitor2,symbol_Table):
 
-        visitor2.visit_program(self)
+       visitor2.visit_program(self,symbol_Table)
 
 class nodoDeclaracionVar(Nodo):
 
@@ -35,13 +39,15 @@ class nodoDeclaracionVar(Nodo):
 
         if self.def_tipo_p == 'VACUO':
 
-            erroresSemanticos1.append("Variable " + self.ID_t + " declarada no puede ser void")
+            print("error vacuo")
+
+            erroresSemanticos1.append("Variable " + self.ID_t + " declarada no puede ser vacuo")
 
     def accept(self, visitor):
         visitor.visit_nodoDeclaracionVar(self)
 
-    def accept2(self, visitor):
-        visitor.visit_nodoDeclaracionVar(self)
+    def accept2(self, visitor,symbol_Table):
+        visitor.visit_nodoDeclaracionVar(self,symbol_Table)
 
 
 class nodoDeclaracionFun(Nodo):
@@ -217,6 +223,7 @@ class nodoInvocacion(Nodo):
         visitor.visit_nodoInvocacion(self)
 
 def getTable():
+
     return st
 
 def getesp():

@@ -1,6 +1,6 @@
 digraph G {
 	"Programa 1" -> "Declaracion Var 1"
-	1 [label="vacuo"]
+	1 [label="VACUO"]
 	"Declaracion Var 1" -> 1
 	2 [label="abc"]
 	"Declaracion Var 1" -> 2

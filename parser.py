@@ -11,10 +11,15 @@ import nodos
 
 from dibujar_AST_visitor import *
 
+from symbol_Table import *
+
+es = []
+
 def p_programa(p):
     #Regla 1
     """programa : lista_decl """
     p[0] = nodos.Program(p[1])
+    #p2[0] = nodo.
 
     #print(p[0])
 
@@ -442,6 +447,9 @@ def p_error(p):
     else:
         print('El archivo de entrada esta vacío\n')
 
+def errorSemantico(errores):
+    print("Error Semántico",errores)
+
 # Build the parser
 #parser = yacc.yacc()
 parser = yacc.yacc(debug=True,start="programa")
@@ -463,11 +471,22 @@ def ingresarArchivo(nombreArchivo):
         result = parser.parse(contents)
         if result is not None:
             visitor_tipos = Visitor()
-            visitor_tipos2 = Visitor2()
             nodos.Program.accept(result, visitor_tipos)
-            nodos.Program.accept2(result,visitor_tipos2)
             treeFileDot.write(visitor_tipos.ast)
+            st = symbolTable()
+            visitor_tipos2 = Visitor2()
+            nodos.Program.accept2(result,visitor_tipos2,st)
             treeFileDot2.write(visitor_tipos2.ast)
+
+            #print("aaaaaa")
+
+            es1 = nodos.getesp()
+            es.extend(es1)
+            for e in es:
+                #print("errores semanticos")
+
+                errorSemantico(e)
+
         else:
             treeFileDot.write('Error al realizar el parse.')
 
@@ -526,7 +545,9 @@ def main():
 
             ingresarArchivo(archivoNombre)
 
-            print("Archivo tree.dot Generado :) \n")
+            print("\nArchivo tree.dot Generado :) \n")
+            print("Archivo tree2.dot Generado :) \n")
+
 
         #flag = cerrar(archivoNombre)
 

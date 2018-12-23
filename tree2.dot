@@ -1,2 +1,3 @@
 digraph G {
-	"Lista 1" -> }
+	"Programa 1" -> 1[label= "Declaracion Var : VACUO abc" ];
+	}

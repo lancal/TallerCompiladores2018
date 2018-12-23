@@ -1,7 +1,7 @@
 from symbol_Table import *
 
 
-st = symbolTable()
+#st = symbolTable()
 
 
 class Visitor(object):
@@ -344,7 +344,7 @@ class Visitor2(object):
         self.id_declaracion_var = 0
 
 
-    def visit_program(self,program):
+    def visit_program(self,program,symbol_Table):
 
         self.id_program += 1
         id_program = self.id_program
@@ -363,7 +363,7 @@ class Visitor2(object):
 
                 if stmt is not None:
                     self.ast += '\t"Programa ' + str(id_program) +  '" ' + '-> '
-                    stmt.accept(self)
+                    stmt.accept2(self,symbol_Table)
 
             self.ast = 'digraph G {\n' + self.ast + '}'
 
@@ -375,10 +375,23 @@ class Visitor2(object):
 
 
 
-    def visit_nodoDeclaracionVar(self, symbol_Table):
+    def visit_nodoDeclaracionVar(self,declaracion_var_p, symbol_Table):
 
         self.id_declaracion_var += 1
         id_declaracion_var = self.id_declaracion_var
+
+        print("asds")
+
+        if declaracion_var_p.NUM_t is None:
+            vardec = Nodo(declaracion_var_p.def_tipo_p, declaracion_var_p.ID_t, None)
+            vardec.setPadre(symbol_Table)
+            symbol_Table.agregar(vardec)
+            self.ast += str(id_declaracion_var) + '[label= "'+declaracion_var_p.nombre+': '+declaracion_var_p.def_tipo_p+' '+declaracion_var_p.ID_t+'" ];\n\t'
+        else:
+            vardec = Nodo(declaracion_var_p.def_tipo_p, declaracion_var_p.ID_t + "[]", None)
+            vardec.setPadre(symbol_Table)
+            symbol_Table.agregar(vardec)
+            self.ast += str(id_declaracion_var) + '[label= "'+declaracion_var_p.nombre+': '+declaracion_var_p.def_tipo_p+'[] '+declaracion_var_p.ID_t+'" ];\n\t'
 
 
 

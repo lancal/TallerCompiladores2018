@@ -1,1 +1,1 @@
-vacuo abc;
+VACUO abc;
