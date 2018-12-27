@@ -1,7 +1,12 @@
 from symbol_Table import *
 
+import re
 
 #st = symbolTable()
+
+
+listAsignaciones = []
+listFunciones = []
 
 
 class Visitor(object):
@@ -342,6 +347,8 @@ class Visitor2(object):
         self.ast = ''
         self.id_program = 0
         self.id_declaracion_var = 0
+        self.id_declaracion_fun = 0
+        self.id_nodoParam = 0
 
 
     def visit_program(self,program,symbol_Table):
@@ -349,27 +356,44 @@ class Visitor2(object):
         self.id_program += 1
         id_program = self.id_program
 
-        if program.statement_list is not None:
+        # if program.statement_list is not None:
+        #
+        #     if isinstance(program.statement_list,list):
+        #
+        #         aux = program.statement_list
+        #
+        #     else:
+        #
+        #         aux = [program.statement_list]
+        #
+        #     for stmt in aux:
+        #
+        #         if stmt is not None:
+        #             #stmt.accept2(self, symbol_Table)
+        #             #self.ast += str(id_program) + '-> '
+        #             #stmt.accept2(self,symbol_Table)
+        #
+        #             self.ast += '\t"Programa ' + str(id_program) + '" ' + '-> '
+        #             stmt.accept2(self,symbol_Table)
+        #
+        #
+        #     self.ast = 'digraph G {\n' + self.ast + '}'
 
-            if isinstance(program.statement_list,list):
-
-                aux = program.statement_list
-
-            else:
-
-                aux = [program.statement_list]
-
-            for stmt in aux:
-
-                if stmt is not None:
-                    #stmt.accept2(self, symbol_Table)
-                    self.ast += str(id_program) + '-> '
-                    stmt.accept2(self,symbol_Table)
 
 
-            self.ast = 'digraph G {\n' + self.ast + '}'
 
-            self.ast += str(id_program) + "[label= " + program.nombre + "];"
+        for dl in program.statement_list:
+
+            dl = dl.accept2(self,symbol_Table)
+
+            self.ast += str(id_program) + "->" + str(dl) + "\n\t"
+
+        self.ast += str(id_program) + "[label= " + program.nombre + "];" + "\n\t"
+
+        self.ast = 'digraph G {\n' + self.ast + '}'
+
+
+            #self.ast += str(id_program) + "[label= " + program.nombre + "];"
 
 
         #for x in program.statement_list:
@@ -397,7 +421,58 @@ class Visitor2(object):
             symbol_Table.agregar(vardec)
             self.ast += str(id_declaracion_var) + '[label= "'+declaracion_var_p.nombre+': '+declaracion_var_p.def_tipo_p+'[] '+declaracion_var_p.ID_t+'" ];\n\t'
 
+    def visit_nodoDeclaracionFun(self,declaracion_fun_p,symbol_Table):
 
+        self.id_declaracion_fun += 1
+        id_declaracion_fun = self.id_declaracion_fun
+
+        fun = Nodo(declaracion_fun_p.def_tipo_p, declaracion_fun_p.ID_t, None)
+
+        listFunciones.append(fun)
+
+        fun.setPadre(symbol_Table)
+        st2 = symbolTable()
+
+        self.patron = re.compile(r'vacuo', re.I)
+        self.arreglo = self.patron.findall(declaracion_fun_p.def_tipo_p)
+
+        if declaracion_fun_p.parametros_p != self.arreglo[0] :
+
+            print("algo")
+
+            for ps in declaracion_fun_p.parametros_p:
+
+                ps = ps.accept2(st2)
+                self.ast += str(id) + "->" + str(ps) + "\n\t"
+
+        fun.setsymbolTable(st2)
+        symbol_Table.agregar(fun)
+
+        compound = declaracion_fun_p.sentencia_com_p.accept2(st2)
+
+        self.ast += str(id_declaracion_fun) + "->" + str(compound) + "\n\t"
+        self.ast += str(id_declaracion_fun) + '[label= "' + declaracion_fun_p.nombre+ ': ' + declaracion_fun_p.def_tipo_p + ' ' + declaracion_fun_p.ID_t + '" ];\n\t'
+
+    def visit_nodoParam(self,param_p, symbol_Table):
+
+        self.id_nodoParam += 1
+        id_nodoParam = self.id_nodoParam
+
+        if param_p.Lt_Rt is None:
+
+            param = Nodo(param_p.def_tipo_p,param_p.ID_t,None)
+            param.setPadre(symbol_Table)
+            symbol_Table.agregar(param)
+            symbol_Table.agregarParam(param)
+            self.ast += str(id_nodoParam) + '[label= "' + param_p.nombre + ': ' + param_p.def_tipo_p + ' ' + param_p.ID_t + '" ];\n\t'
+
+        else:
+
+            param = Nodo(param_p.def_tipo_p + param_p.Lt_Rt, param_p.ID_t, None)
+            param.setPadre(symbol_Table)
+            symbol_Table.agregar(param)
+            symbol_Table.agregarParam(param)
+            self.ast += str(id_nodoParam) + '[label= "' + param_p.nombre + ': ' + param_p.def_tipo_p + param_p.Lt_Rt + ' ' + param_p.ID_t + '" ];\n\t'
 
 
 

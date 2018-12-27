@@ -117,7 +117,7 @@ def p_param(p):
 def p_param2(p):
     #Regla 9
     """param : def_tipo ID LTCOMMENT RTCOMMENT"""
-    p[0] = nodos.nodoParam(p[1], thereis_ID=True, ID_t= p[2])
+    p[0] = nodos.nodoParam(p[1], thereis_ID=True, ID_t= p[2],Lt_Rt='< >')
 
 def p_sentencia_comp(p):
     #Regla 10

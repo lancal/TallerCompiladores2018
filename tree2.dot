@@ -1,4 +1,7 @@
 digraph G {
-1-> 1[label= "Declaracion Var : VACUO abc" ];
-	1-> 2[label= "Declaracion Var : vaCuo abc" ];
-	}1[label= Program ];
+1[label= "Declaracion Var : VACUO abc" ];
+	1->None
+	2[label= "Declaracion Var : vaCuo abc" ];
+	1->None
+	1[label= Program ];
+	}

@@ -6,8 +6,6 @@ import re
 erroresSemanticos1 = []
 erroresSemanticos2 = []
 
-listAsignaciones = []
-listFunciones = []
 
 st = symbolTable()
 
@@ -67,17 +65,26 @@ class nodoDeclaracionFun(Nodo):
 
         visitor.visit_nodoDeclaracionFun(self)
 
+    def accept2(self, visitor,symbol_Table):
+
+        visitor.visit_nodoDeclaracionFun(self,symbol_Table)
+
 class nodoParam(Nodo):
 
-    def __init__(self,def_tipo_p,thereis_ID = False,ID_t = None):
+    def __init__(self,def_tipo_p,thereis_ID = False,ID_t = None,Lt_Rt = None):
 
         self.def_tipo_p = def_tipo_p
         self.ID_t = ID_t
         self.thereis_ID = thereis_ID
+        self.Lt_Rt = Lt_Rt
         self.nombre = 'Param '
 
     def accept(self,visitor):
         visitor.visit_nodoParam(self)
+
+    def accept2(self, visitor,symbol_Table):
+
+        visitor.visit_nodoParam(self,symbol_Table)
 
 
 class nodoSentenciaComp(Nodo):
