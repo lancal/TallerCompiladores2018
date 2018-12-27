@@ -4,4 +4,9 @@ digraph G {
 	"Declaracion Var 1" -> 1
 	2 [label="abc"]
 	"Declaracion Var 1" -> 2
+	"Programa 1" -> "Declaracion Var 2"
+	3 [label="vaCuo"]
+	"Declaracion Var 2" -> 3
+	4 [label="abc"]
+	"Declaracion Var 2" -> 4
 }

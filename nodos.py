@@ -1,4 +1,7 @@
 from symbol_Table import *
+from scanner import  *
+
+import re
 
 erroresSemanticos1 = []
 erroresSemanticos2 = []
@@ -36,12 +39,12 @@ class nodoDeclaracionVar(Nodo):
         self.thereis_num = thereis_num
         self.NUM_t = NUM_t
         self.nombre = 'Declaracion Var '
+        self.patron = re.compile(r'vacuo',re.I)
+        self.arreglo = self.patron.findall(self.def_tipo_p)
 
-        if self.def_tipo_p == 'VACUO':
+        if self.def_tipo_p == self.arreglo[0]:
 
-            print("error vacuo")
-
-            erroresSemanticos1.append("Variable " + self.ID_t + " declarada no puede ser vacuo")
+            erroresSemanticos1.append("Variable " + self.ID_t + " declarada no puede ser del tipo " + self.arreglo[0])
 
     def accept(self, visitor):
         visitor.visit_nodoDeclaracionVar(self)

@@ -362,10 +362,14 @@ class Visitor2(object):
             for stmt in aux:
 
                 if stmt is not None:
-                    self.ast += '\t"Programa ' + str(id_program) +  '" ' + '-> '
+                    #stmt.accept2(self, symbol_Table)
+                    self.ast += str(id_program) + '-> '
                     stmt.accept2(self,symbol_Table)
 
+
             self.ast = 'digraph G {\n' + self.ast + '}'
+
+            self.ast += str(id_program) + "[label= " + program.nombre + "];"
 
 
         #for x in program.statement_list:
