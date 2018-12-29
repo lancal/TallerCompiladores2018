@@ -555,7 +555,7 @@ def scope_variables(symbolTable):
                 if dato == nod.identificador and dato != "if" and dato != "else" and dato != "while":
                     comparation += 1
             if comparation > 1 and node.getsymbolTable() is None:
-                es.append("Variable" + " " + node.tipo + " " + dato + " repetida")
+                es.append("Variable del tipo " + node.tipo + " " + dato + " repetida")
 
             if node.getsymbolTable() is not None:
                 scope_variables(node.getsymbolTable())
