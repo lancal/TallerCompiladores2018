@@ -51,4 +51,54 @@ digraph G {
 	"Declaracion Var 6" -> 20
 	21 [label="vacio"]
 	"Sentencia Comp 1" -> 21
+	"Programa 1" -> "Declaracion Fun 2"
+	22 [label="VACUO"]
+	"Declaracion Fun 2" -> 22
+	23 [label="ab"]
+	"Declaracion Fun 2" -> 23
+	"Declaracion Fun 2" -> "Param 3"
+	24 [label="ent"]
+	"Param 3" -> 24
+	25 [label="uu"]
+	"Param 3" -> 25
+	"Declaracion Fun 2" -> "Param 4"
+	26 [label="ent"]
+	"Param 4" -> 26
+	27 [label="f"]
+	"Param 4" -> 27
+	"Declaracion Fun 2" -> "Sentencia Comp 2"
+	28 [label="vacio"]
+	"Sentencia Comp 2" -> 28
+	"Sentencia Comp 2" -> "Declaracion Var 7"
+	29 [label="ent"]
+	"Declaracion Var 7" -> 29
+	30 [label="uu"]
+	"Declaracion Var 7" -> 30
+	31 [label="vacio"]
+	"Sentencia Comp 2" -> 31
+	"Programa 1" -> "Declaracion Fun 3"
+	32 [label="VACUO"]
+	"Declaracion Fun 3" -> 32
+	33 [label="ab"]
+	"Declaracion Fun 3" -> 33
+	"Declaracion Fun 3" -> "Param 5"
+	34 [label="ent"]
+	"Param 5" -> 34
+	35 [label="hh"]
+	"Param 5" -> 35
+	"Declaracion Fun 3" -> "Param 6"
+	36 [label="ent"]
+	"Param 6" -> 36
+	37 [label="hh"]
+	"Param 6" -> 37
+	"Declaracion Fun 3" -> "Sentencia Comp 3"
+	38 [label="vacio"]
+	"Sentencia Comp 3" -> 38
+	"Sentencia Comp 3" -> "Declaracion Var 8"
+	39 [label="ent"]
+	"Declaracion Var 8" -> 39
+	40 [label="f"]
+	"Declaracion Var 8" -> 40
+	41 [label="vacio"]
+	"Sentencia Comp 3" -> 41
 }

@@ -20,5 +20,27 @@ digraph G {
 	1->None
 	1[label= "Declaracion Fun : VACUO ab" ];
 	1->None
+	3[label= "Param : ent uu" ];
+	<built-in function id>->None
+	4[label= "Param : ent f" ];
+	<built-in function id>->None
+	2[label= Sentencia Comp ];
+	7[label= "Declaracion Var : ent uu" ];
+	2->None
+	2[label= Sentencia Comp ];
+	2->None
+	2[label= "Declaracion Fun : VACUO ab" ];
+	1->None
+	5[label= "Param : ent hh" ];
+	<built-in function id>->None
+	6[label= "Param : ent hh" ];
+	<built-in function id>->None
+	3[label= Sentencia Comp ];
+	8[label= "Declaracion Var : ent f" ];
+	3->None
+	3[label= Sentencia Comp ];
+	3->None
+	3[label= "Declaracion Fun : VACUO ab" ];
+	1->None
 	1[label= Program ];
 	}
