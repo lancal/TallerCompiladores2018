@@ -42,7 +42,7 @@ class nodoDeclaracionVar(Nodo):
         if not self.arreglo:
 
             pass
-            print('pass')
+            #print('pass')
 
         else:
 

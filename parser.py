@@ -484,18 +484,18 @@ def ingresarArchivo(nombreArchivo):
 
             #print("aaaaaa")
 
-            table = getTable()
+            #table = getTable()
 
-            print(table)
-            print("table")
+            #print(table)
+            #print("table")
 
-            print (st.getNodos())
-            print("st.getNodos")
+            #print (st.getNodos())
+            #print("st.getNodos")
 
             #t = table.getNodos()
 
-            scope_variables(st.getNodos())
-            scope_function(st.getNodos())
+            scope_variables(st)
+            scope_function(st)
 
             es1 = nodos.getesp()
             es.extend(es1)
@@ -533,21 +533,21 @@ def scope_variables(symbolTable):
 
     cont = 0
 
-    print(symbolTable)
-    print("scope_variables")
+    #print(symbolTable)
+    #print("scope_variables")
 
     #if len(symbolTable.getNodos()) != 0:
 
     if symbolTable:
 
-        print ("dentro de if symbolTable.getNodos")
-        nodes = symbolTable
-        print(nodes)
-        print("symbolTable.")
+        #print ("dentro de if symbolTable.getNodos")
+        nodes = symbolTable.getNodos()
+        #print(nodes)
+        #print("symbolTable.")
 
         for node in nodes:
 
-            print("dentro node in nodes")
+            #print("dentro node in nodes")
 
             comparation = 0
             dato = node.identificador
@@ -555,7 +555,7 @@ def scope_variables(symbolTable):
                 if dato == nod.identificador and dato != "if" and dato != "else" and dato != "while":
                     comparation += 1
             if comparation > 1 and node.getsymbolTable() is None:
-                
+
                 es.append("Variable del tipo " + node.tipo + " " + dato + " repetida")
 
             if node.getsymbolTable() is not None:
@@ -564,7 +564,7 @@ def scope_variables(symbolTable):
 
 def scope_function(symbolTable):
     nodeFunction = []
-    nodes = symbolTable
+    nodes = symbolTable.getNodos()
     temp = Nodo(None, None, None)
     position = 0
     comparation = 0
