@@ -7,6 +7,8 @@ from os import listdir
 
 import os.path
 
+import dibujar_AST_visitor
+
 import nodos
 
 from dibujar_AST_visitor import *
@@ -195,12 +197,14 @@ def p_sentencia5(p):
 def p_sentencia_expr(p):
     #Regla 14
     """sentencia_expr : expresion SEMICOLON"""
-    p[0] = p[1]
+    #p[0] = p[1]
+
+    p[0] = nodos.nodoExpresion(expresion_p2=p[1])
 
 def p_sentencia_expr2(p):
     #Regla 14
     """sentencia_expr : SEMICOLON"""
-    p[0] = p[1]
+    p[0] = nodos.nodoExpresion()
 
 def p_sentencia_seleccion(p):
     #Regla 15
@@ -246,12 +250,12 @@ def p_expresion2(p):
 def p_var(p):
     #Regla 19
     """var : ID"""
-    p[0] = nodos.nodoVar(p[1])
+    p[0] = nodos.nodoVar(id_t=p[1])
 
 def p_var2(p):
     #Regla 19
     """var : ID LTCOMMENT expresion RTCOMMENT"""
-    p[0] = nodos.nodoVar(p[1],is_vec_access=True, expresion_p=p[3])
+    p[0] = nodos.nodoVar(id_t=p[1],is_vec_access=True, expresion_p=p[3])
 
 def p_expresion_negada(p):
     #Regla 20
@@ -480,12 +484,24 @@ def ingresarArchivo(nombreArchivo):
 
             #print("aaaaaa")
 
+            table = dibujar_AST_visitor.getTable()
+
+            #t = table.getNodos()
+
+            scope_variables(table)
+            scope_function(table)
+
             es1 = nodos.getesp()
             es.extend(es1)
             for e in es:
                 #print("errores semanticos")
 
                 errorSemantico(e)
+
+            es2 = nodos.getess()
+            if es2 is not None:
+                for e in es2:
+                    print(e)
 
         else:
             treeFileDot.write('Error al realizar el parse.')
@@ -504,6 +520,61 @@ def cerrar(cerrar):
         c = True
 
         return c
+
+
+def scope_variables(symbolTable):
+
+    cont = 0
+
+    print(symbolTable.getNodos())
+
+    if len(symbolTable.getNodos()) != 0:
+        nodes = symbolTable.getNodos()
+        for node in nodes:
+            comparation = 0
+            dato = node.identificador
+            for nod in nodes:
+                if dato == nod.identificador and dato != "if" and dato != "else" and dato != "while":
+                    comparation += 1
+            if comparation > 1 and node.getsymbolTable() is None:
+                es.append("Variable" + " " + node.tipo + " " + dato + " repetida")
+
+            if node.getsymbolTable() is not None:
+                scope_variables(node.getsymbolTable())
+
+
+def scope_function(symbolTable):
+    nodeFunction = []
+    nodes = symbolTable.getNodos()
+    temp = Nodo(None, None, None)
+    position = 0
+    comparation = 0
+    for node in nodes:
+        if node.getsymbolTable() is not None:
+            nodeFunction.append(node)
+
+    for i in range(len(nodeFunction)):
+        temp = nodeFunction[i]
+        position = i
+        nodeFunction.pop(i)
+        for x in nodeFunction:
+            if temp.tipo == x.tipo and temp.identificador == x.identificador:
+                comparation += 1
+                if comparation == 2:
+                    st = temp.getsymbolTable().getParam()
+                    st2 = x.getsymbolTable().getParam()
+                    comparation = 0
+                    cont = 0
+                    if len(st) == len(st2):
+                        for s in range(len(st)):
+                            if st[s].tipo == st2[s].tipo:
+                                cont += 1
+                        if len(st) == cont:
+                            es.append("Funciones declaradas iguales " + temp.identificador)
+                            break
+        nodeFunction.insert(i, temp)
+
+
 
 
 def main():

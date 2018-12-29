@@ -6,9 +6,6 @@ import re
 erroresSemanticos1 = []
 erroresSemanticos2 = []
 
-
-st = symbolTable()
-
 class Nodo():
     pass
 
@@ -100,6 +97,10 @@ class nodoSentenciaComp(Nodo):
     def accept(self,visitor):
         visitor.visit_nodoSentenciaComp(self)
 
+    def accept2(self, visitor,symbol_Table):
+
+        visitor.visit_nodoSentenciaComp(self,symbol_Table)
+
 class nodoSentenciaSeleccion(Nodo):
 
     def __init__(self,expresion_p,sentencia_p,is_else = False,sentencia_p2=None):
@@ -151,9 +152,14 @@ class nodoExpresion(Nodo):
     def accept(self,visitor):
         visitor.visit_nodoExpresion(self)
 
+    def accept2(self, visitor, symbol_Table):
+
+        visitor.visit_nodoExpresion(self, symbol_Table)
+
+
 class nodoVar(Nodo):
 
-    def __init__(self,id_t, is_vec_access=False, expresion_p=None):
+    def __init__(self,id_t=None, is_vec_access=False, expresion_p=None):
     #def __init__(self, id_t, expresion_p):
 
         self.id_t = id_t
@@ -232,9 +238,42 @@ class nodoInvocacion(Nodo):
     def accept(self,visitor):
         visitor.visit_nodoInvocacion(self)
 
-def getTable():
 
-    return st
+def isDeclared(listSymbol, listaNodosActual, node):
+    cont = 0
+    for lna in listaNodosActual:
+        if lna.identificador == node.ident:
+            cont += 1
+    if cont == 0:
+        for ls in listSymbol:
+            if ls.identificador == node.ident and ls.getsymbolTable() is None:
+                cont += 1
+                break
+    if cont == 0:
+        erroresSemanticos1.append("Error Semántico, variable "+node.ident+" no declarada")
+
+def isInitialized(listaasignaciones, node):
+    if len(listaasignaciones) > 0:
+        cont = 0
+        for la in listaasignaciones:
+            if la.var.expression is not None:
+                temp = nodoVar(None,False, None)
+                temp.ident = la.var.ident + "["+la.var.expression.number+"]"
+
+                if temp.ident == node.ident:
+                    cont += 1
+            else:
+                if la.var.ident == node.ident:
+                    cont += 1
+        if cont == 0:
+            erroresSemanticos2.append("Error de tipo, variable "+node.ident+" no inicializada")
+    else:
+        erroresSemanticos2.append("Error de tipo, variable "+node.ident+" no inicializada")
+
+
+#def getTable():
+
+ #   return st
 
 def getesp():
     return erroresSemanticos1

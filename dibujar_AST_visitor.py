@@ -1,8 +1,10 @@
 from symbol_Table import *
 
+import nodos
+
 import re
 
-#st = symbolTable()
+st = symbolTable()
 
 
 listAsignaciones = []
@@ -349,6 +351,8 @@ class Visitor2(object):
         self.id_declaracion_var = 0
         self.id_declaracion_fun = 0
         self.id_nodoParam = 0
+        self.id_sentencia_comp = 0
+        self.id_sentencia_expr = 0
 
 
     def visit_program(self,program,symbol_Table):
@@ -442,7 +446,7 @@ class Visitor2(object):
 
             for ps in declaracion_fun_p.parametros_p:
 
-                ps = ps.accept2(st2)
+                ps = ps.accept2(self,st2)
                 self.ast += str(id) + "->" + str(ps) + "\n\t"
 
         fun.setsymbolTable(st2)
@@ -474,6 +478,80 @@ class Visitor2(object):
             symbol_Table.agregarParam(param)
             self.ast += str(id_nodoParam) + '[label= "' + param_p.nombre + ': ' + param_p.def_tipo_p + param_p.Lt_Rt + ' ' + param_p.ID_t + '" ];\n\t'
 
+
+
+    def visit_nodoSentenciaComp(self,sentencia_comp_p,symbol_Table):
+
+        self.id_sentencia_comp += 1
+
+        id_sentencia_comp = self.id_sentencia_comp
+
+        for local in sentencia_comp_p.declaraciones_locales_p:
+
+            if local.names is not "vacio":
+
+                sentencia_comp_p = sentencia_comp_p.accept2(self,symbol_Table)
+
+                self.ast += str(id_sentencia_comp) + "->" + str(sentencia_comp_p) + "\n\t"
+
+            for state in sentencia_comp_p.lista_sentencias_p:
+                print("soy un while o if")
+                if state.name is not "vacio":
+                    state = state.accept2(symbol_Table)
+                    self.ast += str(id_sentencia_comp) + "->" + str(state) + "\n\t"
+            self.ast += str(id_sentencia_comp) + "[label= " + sentencia_comp_p.nombre+ "];" + "\n\t"
+
+    def visit_nodoExpresion(self,expresion_p,symbol_Table):
+
+        self.id_sentencia_expr += 1
+
+        id_sentencia_expr = self.id_sentencia_expr
+
+        listSymbol = st.getNodos()
+
+        listaNodosActual = symbol_Table.getNodos()
+
+        if isinstance(expresion_p.expresion_p2,expresion_p.var_p):
+
+            listAsignaciones.append(expresion_p.expresion_p2)
+
+            idvar = expresion_p.var_p
+
+            if idvar.expresion_p is None:
+
+                nodos.isDeclared(listSymbol,listaNodosActual,idvar)
+
+            else:
+                temp = nodos.nodoVar(None,False,None)
+
+                temp.id_t = idvar.id_t + "<>"
+                nodos.isDeclared(listSymbol,listaNodosActual,temp)
+
+            if not isinstance(expresion_p.expresion_p2,nodos.nodoExpresionNegada):
+
+                idvar = expresion_p.expresion_p2
+
+                print(idvar)
+
+                if not isinstance(idvar,nodos.nodoExpresionNegada):
+
+                    if idvar.expresion_p is None:
+
+                        nodos.isDeclared(listSymbol,listaNodosActual,idvar)
+                        nodos.isInitialized(listAsignaciones,idvar)
+
+                    else:
+
+                        temp = nodos.nodoVar(None,False,None)
+                        temp.id_t = idvar.id_t + "<>"
+                        nodos.isDeclared(listSymbol,listaNodosActual,temp)
+                        temp.id_t = idvar.id_t + "<"+idvar.expresion_p.number+">"
+
+
+
+
+def getTable():
+    return st
 
 
 
