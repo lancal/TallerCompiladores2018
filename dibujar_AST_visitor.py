@@ -251,6 +251,16 @@ class Visitor(object):
 
             self.manyTimes(expresion_p.expresion_negada_p, id_nodoExpresion, expresion_p.nombre)
 
+            if expresion_p.expresion_p2:
+
+                #self.manyTimes(expresion_p.var_p, id_nodoExpresion, expresion_p.nombre)
+
+                self.manyTimes(expresion_p.expresion_p2,id_nodoExpresion,expresion_p.nombre)
+
+            else:
+
+                self.manyTimes(expresion_p.semicolon_t, id_nodoExpresion, expresion_p.nombre)
+
 
     def visit_nodoVar(self,var_p):
 

@@ -204,7 +204,8 @@ def p_sentencia_expr(p):
 def p_sentencia_expr2(p):
     #Regla 14
     """sentencia_expr : SEMICOLON"""
-    p[0] = nodos.nodoExpresion()
+    #p[0] = nodos.nodoExpresion()
+    p[0] = nodos.nodoExpresion(semicolon_t=p[1])
 
 def p_sentencia_seleccion(p):
     #Regla 15
@@ -477,10 +478,10 @@ def ingresarArchivo(nombreArchivo):
             visitor_tipos = Visitor()
             nodos.Program.accept(result, visitor_tipos)
             treeFileDot.write(visitor_tipos.ast)
-            st = symbolTable()
-            visitor_tipos2 = Visitor2()
-            nodos.Program.accept2(result,visitor_tipos2,st)
-            treeFileDot2.write(visitor_tipos2.ast)
+            #st = symbolTable()
+            #visitor_tipos2 = Visitor2()
+            #nodos.Program.accept2(result,visitor_tipos2,st)
+            #treeFileDot2.write(visitor_tipos2.ast)
 
             #print("aaaaaa")
 

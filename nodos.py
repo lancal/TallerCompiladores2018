@@ -164,10 +164,11 @@ class nodoSentenciaRetorno(Nodo):
 
 class nodoExpresion(Nodo):
 
-    def __init__(self,var_p = None,expresion_p2 = None , expresion_negada_p = None):
+    def __init__(self,var_p = None,expresion_p2 = None , expresion_negada_p = None, semicolon_t = None):
         self.var_p = var_p
         self.expresion_p2 = expresion_p2
         self.expresion_negada_p = expresion_negada_p
+        self.semicolon_t = semicolon_t
         self.nombre = 'Expresion '
 
     def accept(self,visitor):

@@ -8,4 +8,8 @@ VACUO e$ [ ent a , vacuo w ] (
 
   RET bb = ! [ aa ];
 
+  abc = abc;
+
+  ;
+
 )
