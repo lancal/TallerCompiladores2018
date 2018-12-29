@@ -16,4 +16,14 @@ digraph G {
 	"Declaracion Var 3" -> 6
 	7 [label="123"]
 	"Declaracion Var 3" -> 7
+	"Programa 1" -> "Declaracion Var 4"
+	8 [label="ent"]
+	"Declaracion Var 4" -> 8
+	9 [label="aaa"]
+	"Declaracion Var 4" -> 9
+	"Programa 1" -> "Declaracion Var 5"
+	10 [label="ent"]
+	"Declaracion Var 5" -> 10
+	11 [label="aaa"]
+	"Declaracion Var 5" -> 11
 }

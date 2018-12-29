@@ -7,7 +7,7 @@ from os import listdir
 
 import os.path
 
-import dibujar_AST_visitor
+#import dibujar_AST_visitor
 
 import nodos
 
@@ -484,12 +484,18 @@ def ingresarArchivo(nombreArchivo):
 
             #print("aaaaaa")
 
-            table = dibujar_AST_visitor.getTable()
+            table = getTable()
+
+            print(table)
+            print("table")
+
+            print (st.getNodos())
+            print("st.getNodos")
 
             #t = table.getNodos()
 
-            scope_variables(table)
-            scope_function(table)
+            scope_variables(st.getNodos())
+            scope_function(st.getNodos())
 
             es1 = nodos.getesp()
             es.extend(es1)
@@ -501,7 +507,8 @@ def ingresarArchivo(nombreArchivo):
             es2 = nodos.getess()
             if es2 is not None:
                 for e in es2:
-                    print(e)
+                    print(e + "Error Semantico")
+                    #errorSemantico(e)
 
         else:
             treeFileDot.write('Error al realizar el parse.')
@@ -526,11 +533,22 @@ def scope_variables(symbolTable):
 
     cont = 0
 
-    print(symbolTable.getNodos())
+    print(symbolTable)
+    print("scope_variables")
 
-    if len(symbolTable.getNodos()) != 0:
-        nodes = symbolTable.getNodos()
+    #if len(symbolTable.getNodos()) != 0:
+
+    if symbolTable:
+
+        print ("dentro de if symbolTable.getNodos")
+        nodes = symbolTable
+        print(nodes)
+        print("symbolTable.")
+
         for node in nodes:
+
+            print("dentro node in nodes")
+
             comparation = 0
             dato = node.identificador
             for nod in nodes:
@@ -545,7 +563,7 @@ def scope_variables(symbolTable):
 
 def scope_function(symbolTable):
     nodeFunction = []
-    nodes = symbolTable.getNodos()
+    nodes = symbolTable
     temp = Nodo(None, None, None)
     position = 0
     comparation = 0
@@ -612,7 +630,7 @@ def main():
 
         if os.path.isfile(archivoNombre) == True:
 
-            print("\nArchivo Encontrado :) ")
+            print("\nArchivo Encontrado :) \n")
 
             ingresarArchivo(archivoNombre)
 

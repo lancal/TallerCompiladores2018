@@ -5,5 +5,9 @@ digraph G {
 	1->None
 	3[label= "Declaracion Var : ent[] abc" ];
 	1->None
+	4[label= "Declaracion Var : ent aaa" ];
+	1->None
+	5[label= "Declaracion Var : ent aaa" ];
+	1->None
 	1[label= Program ];
 	}

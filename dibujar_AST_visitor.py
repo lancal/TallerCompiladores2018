@@ -412,17 +412,31 @@ class Visitor2(object):
         self.id_declaracion_var += 1
         id_declaracion_var = self.id_declaracion_var
 
-        print("asds")
+        print(declaracion_var_p.NUM_t)
+        print("declaracion_var_p.NUM_t")
 
         if declaracion_var_p.NUM_t is None:
+            print("dentro de declaracion_var_p.NUM_t")
             vardec = Nodo(declaracion_var_p.def_tipo_p, declaracion_var_p.ID_t, None)
             vardec.setPadre(symbol_Table)
             symbol_Table.agregar(vardec)
+            a = symbol_Table.getNodos()
+            print(str(a))
+            print("symbol_Table.getNodos dentro del if declaracion_var_p.NUM.t")
             self.ast += str(id_declaracion_var) + '[label= "'+declaracion_var_p.nombre+': '+declaracion_var_p.def_tipo_p+' '+declaracion_var_p.ID_t+'" ];\n\t'
         else:
             vardec = Nodo(declaracion_var_p.def_tipo_p, declaracion_var_p.ID_t + "[]", None)
+
+            print(vardec.tipo)
+            print("vardec.tipo")
+
+            print(vardec.identificador)
+            print("vardec")
             vardec.setPadre(symbol_Table)
             symbol_Table.agregar(vardec)
+            a = symbol_Table.getNodos()
+            print(a)
+            print("symbol_Table.getNodos")
             self.ast += str(id_declaracion_var) + '[label= "'+declaracion_var_p.nombre+': '+declaracion_var_p.def_tipo_p+'[] '+declaracion_var_p.ID_t+'" ];\n\t'
 
     def visit_nodoDeclaracionFun(self,declaracion_fun_p,symbol_Table):
@@ -531,7 +545,7 @@ class Visitor2(object):
 
                 idvar = expresion_p.expresion_p2
 
-                print(idvar)
+                #print(idvar)
 
                 if not isinstance(idvar,nodos.nodoExpresionNegada):
 

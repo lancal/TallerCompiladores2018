@@ -19,7 +19,7 @@ class Nodo():
         self.symbolTable = st
 
 
-class symbolTable():
+class symbolTable(object):
     def __init__(self):
         self.listNodo = []
         self.listParam = []

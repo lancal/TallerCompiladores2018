@@ -19,9 +19,9 @@ class Program(Nodo):
 
         visitor.visit_program(self)
 
-    def accept2(self,visitor2,symbol_Table):
+    def accept2(self,visitor,symbol_Table):
 
-       visitor2.visit_program(self,symbol_Table)
+       visitor.visit_program(self,symbol_Table)
 
 class nodoDeclaracionVar(Nodo):
 
@@ -42,6 +42,7 @@ class nodoDeclaracionVar(Nodo):
         if not self.arreglo:
 
             pass
+            print('pass')
 
         else:
 
