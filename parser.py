@@ -119,7 +119,7 @@ def p_param(p):
 def p_param2(p):
     #Regla 9
     """param : def_tipo ID LTCOMMENT RTCOMMENT"""
-    p[0] = nodos.nodoParam(p[1], thereis_ID=True, ID_t= p[2],Lt_Rt='< >')
+    p[0] = nodos.nodoParam(p[1], thereis_ID=True, ID_t= p[2],Lt_Rt='<>')
 
 def p_sentencia_comp(p):
     #Regla 10
@@ -507,7 +507,7 @@ def ingresarArchivo(nombreArchivo):
             es2 = nodos.getess()
             if es2 is not None:
                 for e in es2:
-                    print(e + "Error Semantico")
+                    print(e)
                     #errorSemantico(e)
 
         else:
@@ -542,12 +542,13 @@ def scope_variables(symbolTable):
 
         #print ("dentro de if symbolTable.getNodos")
         nodes = symbolTable.getNodos()
-        #print(nodes)
-        #print("symbolTable.")
+
+        print(nodes)
+        print("symbolTable.")
 
         for node in nodes:
 
-            #print("dentro node in nodes")
+            print("dentro node in nodes")
 
             comparation = 0
             dato = node.identificador

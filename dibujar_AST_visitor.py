@@ -357,6 +357,8 @@ class Visitor2(object):
 
     def visit_program(self,program,symbol_Table):
 
+        print("dentro de visit_program")
+
         self.id_program += 1
         id_program = self.id_program
 
@@ -409,6 +411,8 @@ class Visitor2(object):
 
     def visit_nodoDeclaracionVar(self,declaracion_var_p, symbol_Table):
 
+        print("dentro de visit_nodoDeclaracionVar\n")
+
         self.id_declaracion_var += 1
         id_declaracion_var = self.id_declaracion_var
 
@@ -441,10 +445,15 @@ class Visitor2(object):
 
     def visit_nodoDeclaracionFun(self,declaracion_fun_p,symbol_Table):
 
+
+        print("dentro visit_nodoDeclaracionFun\n")
+
         self.id_declaracion_fun += 1
         id_declaracion_fun = self.id_declaracion_fun
 
         fun = Nodo(declaracion_fun_p.def_tipo_p, declaracion_fun_p.ID_t, None)
+
+
 
         listFunciones.append(fun)
 
@@ -466,7 +475,7 @@ class Visitor2(object):
         fun.setsymbolTable(st2)
         symbol_Table.agregar(fun)
 
-        compound = declaracion_fun_p.sentencia_com_p.accept2(st2)
+        compound = declaracion_fun_p.sentencia_comp_p.accept2(self,st2)
 
         self.ast += str(id_declaracion_fun) + "->" + str(compound) + "\n\t"
         self.ast += str(id_declaracion_fun) + '[label= "' + declaracion_fun_p.nombre+ ': ' + declaracion_fun_p.def_tipo_p + ' ' + declaracion_fun_p.ID_t + '" ];\n\t'
@@ -496,22 +505,33 @@ class Visitor2(object):
 
     def visit_nodoSentenciaComp(self,sentencia_comp_p,symbol_Table):
 
+        print("dentro de visit_nodoSentenciaComp")
+
         self.id_sentencia_comp += 1
 
         id_sentencia_comp = self.id_sentencia_comp
 
         for local in sentencia_comp_p.declaraciones_locales_p:
 
-            if local.names is not "vacio":
+            print(local)
+            print("local")
 
-                sentencia_comp_p = sentencia_comp_p.accept2(self,symbol_Table)
 
-                self.ast += str(id_sentencia_comp) + "->" + str(sentencia_comp_p) + "\n\t"
+            if local.nombre != "vacio":
+
+                #sentencia_comp_p = sentencia_comp_p.accept2(self,symbol_Table)
+
+                local = local.accept2(self,symbol_Table)
+
+                #self.ast += str(id_sentencia_comp) + "->" + str(sentencia_comp_p) + "\n\t"
+                self.ast += str(id_sentencia_comp) + "->" + str(local) + "\n\t"
 
             for state in sentencia_comp_p.lista_sentencias_p:
                 print("soy un while o if")
-                if state.name is not "vacio":
-                    state = state.accept2(symbol_Table)
+                print(state.nombre)
+                if state.nombre != "vacio":
+                    print("dentro if state.nombre")
+                    state = state.accept2(self,symbol_Table)
                     self.ast += str(id_sentencia_comp) + "->" + str(state) + "\n\t"
             self.ast += str(id_sentencia_comp) + "[label= " + sentencia_comp_p.nombre+ "];" + "\n\t"
 
@@ -521,7 +541,7 @@ class Visitor2(object):
 
         id_sentencia_expr = self.id_sentencia_expr
 
-        listSymbol = st.getNodos()
+        #listSymbol = st.getNodos()
 
         listaNodosActual = symbol_Table.getNodos()
 
