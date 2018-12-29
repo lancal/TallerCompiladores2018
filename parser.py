@@ -52,7 +52,7 @@ def p_declaracion(p):
     p[0] = p[1]
 
 def p_declaracion2(p):
-    #Regal 3
+    #Regla 3
     """declaracion : declaracion_fun"""
     p[0] = p[1]
 

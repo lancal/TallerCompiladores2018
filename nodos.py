@@ -37,9 +37,17 @@ class nodoDeclaracionVar(Nodo):
         self.patron = re.compile(r'vacuo',re.I)
         self.arreglo = self.patron.findall(self.def_tipo_p)
 
-        if self.def_tipo_p == self.arreglo[0]:
+        #print(self.arreglo)
 
-            erroresSemanticos1.append("Variable " + self.ID_t + " declarada no puede ser del tipo " + self.arreglo[0])
+        if not self.arreglo:
+
+            pass
+
+        else:
+
+            if self.def_tipo_p == self.arreglo[0]:
+
+                erroresSemanticos1.append("Variable " + self.ID_t + " declarada no puede ser del tipo " + self.arreglo[0])
 
     def accept(self, visitor):
         visitor.visit_nodoDeclaracionVar(self)
@@ -113,6 +121,10 @@ class nodoSentenciaSeleccion(Nodo):
     def accept(self,visitor):
         visitor.visit_nodoSentenciaSeleccion(self)
 
+    def accept2(self, visitor,symbol_Table):
+
+        visitor.visit_nodoSentenciaSeleccion(self,symbol_Table)
+
 class nodoSentenciaIteracion(Nodo):
 
     def __init__(self,thereis_expresion = False,expresion_p=None,thereis_sentencia = False,sentencia_p=None,
@@ -129,6 +141,10 @@ class nodoSentenciaIteracion(Nodo):
     def accept(self,visitor):
         visitor.visit_nodoSentenciaIteracion(self)
 
+    def accept2(self, visitor,symbol_Table):
+
+        visitor.visit_nodoSentenciaIteracion(self,symbol_Table)
+
 class nodoSentenciaRetorno(Nodo):
 
     def __init__(self,thereis_expression = False, expresion_p = None):
@@ -140,6 +156,10 @@ class nodoSentenciaRetorno(Nodo):
 
     def accept(self,visitor):
         visitor.visit_nodoSentenciaRetorno(self)
+
+    def accept2(self, visitor,symbol_Table):
+
+        visitor.visit_nodoSentenciaRetorno(self,symbol_Table)
 
 class nodoExpresion(Nodo):
 
@@ -170,6 +190,10 @@ class nodoVar(Nodo):
     def accept(self,visitor):
         visitor.visit_nodoVar(self)
 
+    def accept2(self, visitor, symbol_Table):
+
+        visitor.visit_nodoVar(self, symbol_Table)
+
 class nodoExpresionNegada(Nodo):
 
     def __init__(self,expresion_logica_p):
@@ -182,6 +206,10 @@ class nodoExpresionNegada(Nodo):
     def accept(self,visitor):
         visitor.visit_nodoExpresionNegada(self)
 
+    def accept2(self, visitor, symbol_Table):
+
+        visitor.visit_nodoExpresionNegada(self, symbol_Table)
+
 class nodoExpresionLogica(Nodo):
 
     def __init__(self,thereis_exp_log = False, expresion_logica_p = None , expresion_simple_p = None):
@@ -193,7 +221,11 @@ class nodoExpresionLogica(Nodo):
         self.nombre = 'Expresion Logica '
 
     def accept(self,visitor):
-        visitor.visit_nodoExpresion_logica(self)
+        visitor.visit_nodoExpresionLogica(self)
+
+    def accept2(self, visitor, symbol_Table):
+
+        visitor.visit_nodoExpresionLogica(self, symbol_Table)
 
 class nodoVacio():
 
@@ -218,6 +250,10 @@ class nodoBinarioOP(Nodo):
     def accept(self,visitor):
         visitor.visit_nodoBinarioOP(self)
 
+    def accept2(self, visitor, symbol_Table):
+
+        visitor.visit_nodoBinarioOP(self, symbol_Table)
+
 class nodoNUM(Nodo):
 
     def __init__(self, num_t):
@@ -226,6 +262,10 @@ class nodoNUM(Nodo):
 
     def accept(self, visitor):
         visitor.visit_nodoNUM(self)
+
+    def accept2(self, visitor, symbol_Table):
+
+        visitor.visit_nodoNUM(self, symbol_Table)
 
 class nodoInvocacion(Nodo):
 
@@ -237,6 +277,10 @@ class nodoInvocacion(Nodo):
 
     def accept(self,visitor):
         visitor.visit_nodoInvocacion(self)
+
+    def accept2(self, visitor, symbol_Table):
+
+        visitor.visit_nodoInvocacion(self, symbol_Table)
 
 
 def isDeclared(listSymbol, listaNodosActual, node):

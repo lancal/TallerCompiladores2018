@@ -279,7 +279,7 @@ class Visitor(object):
 
         self.manyTimes(expresion_negada_p.expresion_logica_p,id_nodoExpresionNegada,expresion_negada_p.nombre)
 
-    def visit_nodoExpresion_logica(self,expresion_logica_p):
+    def visit_nodoExpresionLogica(self,expresion_logica_p):
 
 
         self.id_nodoExpresionLogica += 1
