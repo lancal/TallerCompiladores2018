@@ -2,6 +2,8 @@ from symbol_Table import *
 
 import nodos
 
+#from nodos import *
+
 import re
 
 st = symbolTable()
@@ -149,7 +151,7 @@ class Visitor(object):
 
         if param_p.thereis_ID == False:
 
-            print("dentro de param_p.thereis_ID == False")
+            #print("dentro de param_p.thereis_ID == False")
 
             self.manyTimes(param_p.def_tipo_p,id_nodoParam,param_p.nombre)
 
@@ -370,7 +372,7 @@ class Visitor2(object):
 
     def visit_program(self,program,symbol_Table):
 
-        print("dentro de visit_program")
+        #print("dentro de visit_program")
 
         self.id_program += 1
         id_program = self.id_program
@@ -459,7 +461,7 @@ class Visitor2(object):
 
     def visit_nodoDeclaracionVar(self,declaracion_var_p, symbol_Table):
 
-        print("dentro de visit_nodoDeclaracionVar\n")
+        print("\ndentro de visit_nodoDeclaracionVar")
 
         self.id_declaracion_var += 1
         id_declaracion_var = self.id_declaracion_var
@@ -469,7 +471,7 @@ class Visitor2(object):
         #print(declaracion_var_p.NUM_t)
         #print("declaracion_var_p.NUM_t")
 
-        print(id_declaracion_var)
+        #print(id_declaracion_var)
 
         #if declaracion_var_p.NUM_t is None:
 
@@ -483,10 +485,10 @@ class Visitor2(object):
             #print("symbol_Table.getNodos dentro del if declaracion_var_p.NUM.t")
             #self.ast += str(id_declaracion_var) + '[label= "'+declaracion_var_p.nombre+': '+declaracion_var_p.def_tipo_p+' '+declaracion_var_p.ID_t+'" ];\n\t'
 
-            self.ast += '"Error Nodo Declaracion Var ' + str(id_declaracion_var) + '"' + '\n'
+            #self.ast += '"Error Nodo Declaracion Var ' + str(id_declaracion_var) + '"' + '\n'
 
-            self.manyTimes(declaracion_var_p.def_tipo_p, id_declaracion_var, declaracion_var_p.nombre2,symbol_Table)
-            self.manyTimes(declaracion_var_p.ID_t, id_declaracion_var, declaracion_var_p.nombre2,symbol_Table)
+            #self.manyTimes(declaracion_var_p.def_tipo_p, id_declaracion_var, declaracion_var_p.nombre2,symbol_Table)
+            #self.manyTimes(declaracion_var_p.ID_t, id_declaracion_var, declaracion_var_p.nombre2,symbol_Table)
 
         else:
             vardec = Nodo(declaracion_var_p.def_tipo_p, declaracion_var_p.ID_t , None)
@@ -502,16 +504,16 @@ class Visitor2(object):
             #print(a)
             #print("symbol_Table.getNodos")
             #self.ast += str(id_declaracion_var) + '[label= "'+declaracion_var_p.nombre+': '+declaracion_var_p.def_tipo_p+'[] '+declaracion_var_p.ID_t+'" ];\n\t'
-            self.ast += '"Error Nodo Declaracion Var ' + str(id_declaracion_var) + '"' + '\n'
-            self.manyTimes(declaracion_var_p.def_tipo_p, id_declaracion_var, declaracion_var_p.nombre2,symbol_Table)
-            self.manyTimes(declaracion_var_p.ID_t, id_declaracion_var, declaracion_var_p.nombre2,symbol_Table)
-            self.manyTimes(declaracion_var_p.NUM_t, id_declaracion_var, declaracion_var_p.nombre2,symbol_Table)
+            #self.ast += '"Error Nodo Declaracion Var ' + str(id_declaracion_var) + '"' + '\n'
+            #self.manyTimes(declaracion_var_p.def_tipo_p, id_declaracion_var, declaracion_var_p.nombre2,symbol_Table)
+            #self.manyTimes(declaracion_var_p.ID_t, id_declaracion_var, declaracion_var_p.nombre2,symbol_Table)
+            #self.manyTimes(declaracion_var_p.NUM_t, id_declaracion_var, declaracion_var_p.nombre2,symbol_Table)
 
 
     def visit_nodoDeclaracionFun(self,declaracion_fun_p,symbol_Table):
 
 
-        print("dentro visit_nodoDeclaracionFun\n")
+        print("\ndentro visit_nodoDeclaracionFun")
 
         self.id_declaracion_fun += 1
         id_declaracion_fun = self.id_declaracion_fun
@@ -520,45 +522,101 @@ class Visitor2(object):
 
         fun = Nodo(declaracion_fun_p.def_tipo_p, declaracion_fun_p.ID_t, None)
 
+        print(fun.tipo)
+        print("fun.tipo")
+        print(fun.identificador)
+        print("fun.identificador")
+
+        print(fun)
+        print("fun")
+
         listFunciones.append(fun)
+        #agregado pero nose bn
+        #listAsignaciones.append(fun)
 
         fun.setPadre(symbol_Table)
+
+        print(symbol_Table)
+        print("symbol_Table")
+
         st2 = symbolTable()
 
-        self.patron = re.compile(r'vacuo', re.I)
+        print(st2)
+        print("st2 valores")
+
+        self.patron = re.compile(r'vacuo|ent', re.I)
         self.arreglo = self.patron.findall(declaracion_fun_p.def_tipo_p)
+
+        # self.patron = re.compile(r'ent', re.I)
+        # self.arreglo2 = self.patron.findall(declaracion_fun_p.def_tipo_p)
+
+        print(declaracion_fun_p.def_tipo_p)
+        print("declaracion_fun_p.def_tipo_")
+
+        print(declaracion_fun_p.parametros_p)
+        print("declaracion_fun_p.parametros_p")
+
+        # print(self.arreglo2)
+        # print("self.arreglo2")
+
+        #print(self.arreglo)
+        #print("self.arreglo")
+
+        #print(st)
+        #print("st")
+
+        #listSymbol = st.getNodos()
+        #print(listSymbol)
+        #print("listSymbol[0]")
+        #listaNodosActual = symbol_Table.getNodos()
+
+        #print(listSymbol)
+        #print("listSymbol")
+
+        #print(listaNodosActual)
+        #print("listaNodosActual")
+
 
         if declaracion_fun_p.parametros_p != self.arreglo[0] :
 
             print("algo")
+            print(declaracion_fun_p.parametros_p)
+            print ("declaracion_fun_p.parametros_p")
 
             #for ps in declaracion_fun_p.parametros_p:
 
                 #ps = ps.accept2(self,st2)
                 #self.ast += str(id) + "->" + str(ps) + "\n\t"
-            self.ast += '"Error Nodo Declaracion Fun ' + str(id_declaracion_fun) + '"' + '\n'
-            self.manyTimes(declaracion_fun_p.def_tipo_p, id_declaracion_fun, declaracion_fun_p.nombre2,symbol_Table)
-            self.manyTimes(declaracion_fun_p.ID_t, id_declaracion_fun, declaracion_fun_p.nombre2,symbol_Table)
-            self.manyTimes(declaracion_fun_p.parametros_p, id_declaracion_fun, declaracion_fun_p.nombre2,symbol_Table)
-
+            #self.ast += '"Error Nodo Declaracion Fun ' + str(id_declaracion_fun) + '"' + '\n'
+            #self.manyTimes(declaracion_fun_p.def_tipo_p, id_declaracion_fun, declaracion_fun_p.nombre2,st2)
+            #self.manyTimes(declaracion_fun_p.ID_t, id_declaracion_fun, declaracion_fun_p.nombre2,st2)
+            #self.manyTimes(declaracion_fun_p.parametros_p, id_declaracion_fun, declaracion_fun_p.nombre2,st2)
 
         fun.setsymbolTable(st2)
         symbol_Table.agregar(fun)
 
         #compound = declaracion_fun_p.sentencia_comp_p.accept2(self,st2)
-        self.ast += '"Error Nodo Declaracion Fun ' + str(id_declaracion_fun) + '"' + '\n'
-        self.manyTimes(declaracion_fun_p.sentencia_comp_p, id_declaracion_fun, declaracion_fun_p.nombre2,symbol_Table)
+        #self.ast += '"Error Nodo Declaracion Fun ' + str(id_declaracion_fun) + '"' + '\n'
+        #self.manyTimes(declaracion_fun_p.sentencia_comp_p, id_declaracion_fun, declaracion_fun_p.nombre2,st2)
 
         #self.ast += str(id_declaracion_fun) + "->" + str(compound) + "\n\t"
         #self.ast += str(id_declaracion_fun) + '[label= "' + declaracion_fun_p.nombre+ ': ' + declaracion_fun_p.def_tipo_p + ' ' + declaracion_fun_p.ID_t + '" ];\n\t'
 
     def visit_nodoParam(self,param_p, symbol_Table):
 
+        print("\n dentro de visit_nodoParam")
+
         self.id_nodoParam += 1
         id_nodoParam = self.id_nodoParam
 
         print(param_p.def_tipo_p)
         print("param_p.def_tipo_")
+
+        listSymbol = st.getNodos()
+
+        listNodoActual = symbol_Table.getNodos
+
+        #nodos.isDeclared(listSymbol,li)
 
         if param_p.Lt_Rt is None:
 
@@ -581,7 +639,7 @@ class Visitor2(object):
 
     def visit_nodoSentenciaComp(self,sentencia_comp_p,symbol_Table):
 
-        print("dentro de visit_nodoSentenciaComp")
+        print("\ndentro de visit_nodoSentenciaComp")
 
         self.id_sentencia_comp += 1
 
@@ -589,8 +647,8 @@ class Visitor2(object):
 
         for local in sentencia_comp_p.declaraciones_locales_p:
 
-            print(local)
-            print("local")
+            #print(local)
+            #print("local")
 
 
             if local.nombre != "vacio":

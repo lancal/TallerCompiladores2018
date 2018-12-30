@@ -168,9 +168,9 @@ class nodoSentenciaRetorno(Nodo):
 
 class nodoExpresion(Nodo):
 
-    def __init__(self,var_p = None,expresion_p2 = None , expresion_negada_p = None, semicolon_t = None):
+    def __init__(self,var_p = None,expresion_p = None , expresion_negada_p = None, semicolon_t = None):
         self.var_p = var_p
-        self.expresion_p2 = expresion_p2
+        self.expresion_p = expresion_p
         self.expresion_negada_p = expresion_negada_p
         self.semicolon_t = semicolon_t
         self.nombre = 'Expresion '
@@ -185,10 +185,10 @@ class nodoExpresion(Nodo):
 
 class nodoVar(Nodo):
 
-    def __init__(self,id_t=None, is_vec_access=False, expresion_p=None):
+    def __init__(self,ID_t=None, is_vec_access=False, expresion_p=None):
     #def __init__(self, id_t, expresion_p):
 
-        self.id_t = id_t
+        self.ID_t = ID_t
         self.is_vec_access = is_vec_access
         self.expresion_p = expresion_p
         self.nombre = 'Var '
@@ -262,8 +262,8 @@ class nodoBinarioOP(Nodo):
 
 class nodoNUM(Nodo):
 
-    def __init__(self, num_t):
-        self.num_t = num_t
+    def __init__(self, NUM_t):
+        self.NUM_t = NUM_t
         self.nombre = 'NUM '
 
     def accept(self, visitor):
@@ -275,9 +275,9 @@ class nodoNUM(Nodo):
 
 class nodoInvocacion(Nodo):
 
-    def __init__(self,id_t, argumentos_p):
+    def __init__(self,ID_t, argumentos_p):
 
-        self.id_t = id_t
+        self.ID_t = ID_t
         self.argumentos_p = argumentos_p
         self.nombre = 'Invocacion '
 

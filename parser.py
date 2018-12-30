@@ -119,7 +119,7 @@ def p_param(p):
 def p_param2(p):
     #Regla 9
     """param : def_tipo ID LTCOMMENT RTCOMMENT"""
-    p[0] = nodos.nodoParam(p[1], thereis_ID=True, ID_t= p[2],Lt_Rt=' < >')
+    p[0] = nodos.nodoParam(p[1], thereis_ID=True, ID_t= p[2],Lt_Rt='< >')
 
 def p_sentencia_comp(p):
     #Regla 10
@@ -199,7 +199,7 @@ def p_sentencia_expr(p):
     """sentencia_expr : expresion SEMICOLON"""
     #p[0] = p[1]
 
-    p[0] = nodos.nodoExpresion(expresion_p2=p[1])
+    p[0] = nodos.nodoExpresion(expresion_p=p[1])
 
 def p_sentencia_expr2(p):
     #Regla 14
@@ -241,7 +241,7 @@ def p_sentencia_retorno2(p):
 def p_expresion(p):
     #Regla 18
     """expresion : var ASSIGN expresion"""
-    p[0] = nodos.nodoExpresion(var_p=p[1],expresion_p2=p[3])
+    p[0] = nodos.nodoExpresion(var_p=p[1],expresion_p=p[3])
 
 def p_expresion2(p):
     #Regla 18
@@ -251,12 +251,12 @@ def p_expresion2(p):
 def p_var(p):
     #Regla 19
     """var : ID"""
-    p[0] = nodos.nodoVar(id_t=p[1])
+    p[0] = nodos.nodoVar(ID_t=p[1])
 
 def p_var2(p):
     #Regla 19
     """var : ID LTCOMMENT expresion RTCOMMENT"""
-    p[0] = nodos.nodoVar(id_t=p[1],is_vec_access=True, expresion_p=p[3])
+    p[0] = nodos.nodoVar(ID_t=p[1],is_vec_access=True, expresion_p=p[3])
 
 def p_expresion_negada(p):
     #Regla 20
@@ -383,7 +383,7 @@ def p_mulop2(p):
 def p_factor(p):
     #Regla 28
     """factor : LBRACKET expresion RBRACKET"""
-    p[0] = nodos.nodoExpresion(expresion_p2=p[1])
+    p[0] = nodos.nodoExpresion(expresion_p=p[1])
 
 def p_factor2(p):
     #Regla 28
@@ -479,6 +479,8 @@ def ingresarArchivo(nombreArchivo):
             nodos.Program.accept(result, visitor_tipos)
             treeFileDot.write(visitor_tipos.ast)
             st = symbolTable()
+            print(st)
+            print("st en parser.py")
             visitor_tipos2 = Visitor2()
             nodos.Program.accept2(result,visitor_tipos2,st)
             treeFileDot2.write(visitor_tipos2.ast)
@@ -544,12 +546,12 @@ def scope_variables(symbolTable):
         #print ("dentro de if symbolTable.getNodos")
         nodes = symbolTable.getNodos()
 
-        print(nodes)
-        print("symbolTable.")
+        #print(nodes)
+        #print("symbolTable.")
 
         for node in nodes:
 
-            print("dentro node in nodes")
+            #print("dentro node in nodes")
 
             comparation = 0
             dato = node.identificador
