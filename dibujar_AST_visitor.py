@@ -149,6 +149,8 @@ class Visitor(object):
 
         if param_p.thereis_ID == False:
 
+            print("dentro de param_p.thereis_ID == False")
+
             self.manyTimes(param_p.def_tipo_p,id_nodoParam,param_p.nombre)
 
         else:
@@ -357,6 +359,7 @@ class Visitor2(object):
     def __init__(self):
 
         self.ast = ''
+        self.id_nodo = 0
         self.id_program = 0
         self.id_declaracion_var = 0
         self.id_declaracion_fun = 0
@@ -372,41 +375,76 @@ class Visitor2(object):
         self.id_program += 1
         id_program = self.id_program
 
-        # if program.statement_list is not None:
-        #
-        #     if isinstance(program.statement_list,list):
-        #
-        #         aux = program.statement_list
-        #
-        #     else:
-        #
-        #         aux = [program.statement_list]
-        #
-        #     for stmt in aux:
-        #
-        #         if stmt is not None:
-        #             #stmt.accept2(self, symbol_Table)
-        #             #self.ast += str(id_program) + '-> '
-        #             #stmt.accept2(self,symbol_Table)
-        #
-        #             self.ast += '\t"Programa ' + str(id_program) + '" ' + '-> '
-        #             stmt.accept2(self,symbol_Table)
-        #
-        #
-        #     self.ast = 'digraph G {\n' + self.ast + '}'
+        if program.statement_list is not None:
+
+            if isinstance(program.statement_list,list):
+
+                aux = program.statement_list
+
+            else:
+
+                aux = [program.statement_list]
+
+            for stmt in aux:
+
+                if stmt is not None:
+                    #stmt.accept2(self, symbol_Table)
+                    #self.ast += str(id_program) + '-> '
+                    #stmt.accept2(self,symbol_Table)
+
+                    self.ast += '\t"Programa ' + str(id_program) + '" ' + '-> '
+                    stmt.accept2(self,symbol_Table)
 
 
+            self.ast = 'digraph G {\n' + self.ast + '}'
+
+    def manyTimes(self, p1, p2, p3,st):
+
+        if p1 is not None:
+
+            if isinstance(p1, list):
+
+                aux = p1
+
+            else:
+
+                aux = [p1]
+
+            for x in aux:
+
+                if isinstance(x, str):
+
+                    self.id_nodo += 1
+                    id_nodo = self.id_nodo
+
+                    self.ast += '\t' + str(id_nodo) + ' [label="' + x + '"]\n'
+
+                    self.ast += '\t"' + p3 + str(p2) + '" ' + '-> ' + str(id_nodo) + '\n'
+
+                else:
+
+                    if x.nombre == "vacio":
+                        self.id_nodo += 1
+                        id_nodo = self.id_nodo
+
+                        self.ast += '\t' + str(id_nodo) + ' [label="' + x.nombre + '"]\n'
+                        self.ast += '\t"' + p3 + str(p2) + '" ' + '-> ' + str(id_nodo) + '\n'
+
+                    else:
+
+                        self.ast += '\t"' + p3 + str(p2) + '" ' + '-> '
+                        x.accept2(self,st)
 
 
-        for dl in program.statement_list:
-
-            dl = dl.accept2(self,symbol_Table)
-
-            self.ast += str(id_program) + "->" + str(dl) + "\n\t"
-
-        self.ast += str(id_program) + "[label= " + program.nombre + "];" + "\n\t"
-
-        self.ast = 'digraph G {\n' + self.ast + '}'
+        # for dl in program.statement_list:
+        #
+        #     dl = dl.accept2(self,symbol_Table)
+        #
+        #     self.ast += str(id_program) + "->" + str(dl) + "\n\t"
+        #
+        # self.ast += str(id_program) + "[label= " + program.nombre + "];" + "\n\t"
+        #
+        # self.ast = 'digraph G {\n' + self.ast + '}'
 
 
             #self.ast += str(id_program) + "[label= " + program.nombre + "];"
@@ -426,8 +464,14 @@ class Visitor2(object):
         self.id_declaracion_var += 1
         id_declaracion_var = self.id_declaracion_var
 
+        #self.ast += '"Error Nodo Declaracion Var ' + str(id_declaracion_var) + '"' + '\n'
+
         #print(declaracion_var_p.NUM_t)
         #print("declaracion_var_p.NUM_t")
+
+        print(id_declaracion_var)
+
+        #if declaracion_var_p.NUM_t is None:
 
         if declaracion_var_p.NUM_t is None:
             #print("dentro de declaracion_var_p.NUM_t")
@@ -437,9 +481,15 @@ class Visitor2(object):
             #a = symbol_Table.getNodos()
             #print(str(a))
             #print("symbol_Table.getNodos dentro del if declaracion_var_p.NUM.t")
-            self.ast += str(id_declaracion_var) + '[label= "'+declaracion_var_p.nombre+': '+declaracion_var_p.def_tipo_p+' '+declaracion_var_p.ID_t+'" ];\n\t'
+            #self.ast += str(id_declaracion_var) + '[label= "'+declaracion_var_p.nombre+': '+declaracion_var_p.def_tipo_p+' '+declaracion_var_p.ID_t+'" ];\n\t'
+
+            self.ast += '"Error Nodo Declaracion Var ' + str(id_declaracion_var) + '"' + '\n'
+
+            self.manyTimes(declaracion_var_p.def_tipo_p, id_declaracion_var, declaracion_var_p.nombre2,symbol_Table)
+            self.manyTimes(declaracion_var_p.ID_t, id_declaracion_var, declaracion_var_p.nombre2,symbol_Table)
+
         else:
-            vardec = Nodo(declaracion_var_p.def_tipo_p, declaracion_var_p.ID_t + "[]", None)
+            vardec = Nodo(declaracion_var_p.def_tipo_p, declaracion_var_p.ID_t , None)
 
             #print(vardec.tipo)
             #print("vardec.tipo")
@@ -451,7 +501,12 @@ class Visitor2(object):
             #a = symbol_Table.getNodos()
             #print(a)
             #print("symbol_Table.getNodos")
-            self.ast += str(id_declaracion_var) + '[label= "'+declaracion_var_p.nombre+': '+declaracion_var_p.def_tipo_p+'[] '+declaracion_var_p.ID_t+'" ];\n\t'
+            #self.ast += str(id_declaracion_var) + '[label= "'+declaracion_var_p.nombre+': '+declaracion_var_p.def_tipo_p+'[] '+declaracion_var_p.ID_t+'" ];\n\t'
+            self.ast += '"Error Nodo Declaracion Var ' + str(id_declaracion_var) + '"' + '\n'
+            self.manyTimes(declaracion_var_p.def_tipo_p, id_declaracion_var, declaracion_var_p.nombre2,symbol_Table)
+            self.manyTimes(declaracion_var_p.ID_t, id_declaracion_var, declaracion_var_p.nombre2,symbol_Table)
+            self.manyTimes(declaracion_var_p.NUM_t, id_declaracion_var, declaracion_var_p.nombre2,symbol_Table)
+
 
     def visit_nodoDeclaracionFun(self,declaracion_fun_p,symbol_Table):
 
@@ -461,9 +516,9 @@ class Visitor2(object):
         self.id_declaracion_fun += 1
         id_declaracion_fun = self.id_declaracion_fun
 
+        #self.ast += '"Error Nodo Declaracion Fun ' + str(id_declaracion_fun) + '"' + '\n'
+
         fun = Nodo(declaracion_fun_p.def_tipo_p, declaracion_fun_p.ID_t, None)
-
-
 
         listFunciones.append(fun)
 
@@ -477,23 +532,33 @@ class Visitor2(object):
 
             print("algo")
 
-            for ps in declaracion_fun_p.parametros_p:
+            #for ps in declaracion_fun_p.parametros_p:
 
-                ps = ps.accept2(self,st2)
-                self.ast += str(id) + "->" + str(ps) + "\n\t"
+                #ps = ps.accept2(self,st2)
+                #self.ast += str(id) + "->" + str(ps) + "\n\t"
+            self.ast += '"Error Nodo Declaracion Fun ' + str(id_declaracion_fun) + '"' + '\n'
+            self.manyTimes(declaracion_fun_p.def_tipo_p, id_declaracion_fun, declaracion_fun_p.nombre2,symbol_Table)
+            self.manyTimes(declaracion_fun_p.ID_t, id_declaracion_fun, declaracion_fun_p.nombre2,symbol_Table)
+            self.manyTimes(declaracion_fun_p.parametros_p, id_declaracion_fun, declaracion_fun_p.nombre2,symbol_Table)
+
 
         fun.setsymbolTable(st2)
         symbol_Table.agregar(fun)
 
-        compound = declaracion_fun_p.sentencia_comp_p.accept2(self,st2)
+        #compound = declaracion_fun_p.sentencia_comp_p.accept2(self,st2)
+        self.ast += '"Error Nodo Declaracion Fun ' + str(id_declaracion_fun) + '"' + '\n'
+        self.manyTimes(declaracion_fun_p.sentencia_comp_p, id_declaracion_fun, declaracion_fun_p.nombre2,symbol_Table)
 
-        self.ast += str(id_declaracion_fun) + "->" + str(compound) + "\n\t"
-        self.ast += str(id_declaracion_fun) + '[label= "' + declaracion_fun_p.nombre+ ': ' + declaracion_fun_p.def_tipo_p + ' ' + declaracion_fun_p.ID_t + '" ];\n\t'
+        #self.ast += str(id_declaracion_fun) + "->" + str(compound) + "\n\t"
+        #self.ast += str(id_declaracion_fun) + '[label= "' + declaracion_fun_p.nombre+ ': ' + declaracion_fun_p.def_tipo_p + ' ' + declaracion_fun_p.ID_t + '" ];\n\t'
 
     def visit_nodoParam(self,param_p, symbol_Table):
 
         self.id_nodoParam += 1
         id_nodoParam = self.id_nodoParam
+
+        print(param_p.def_tipo_p)
+        print("param_p.def_tipo_")
 
         if param_p.Lt_Rt is None:
 
@@ -501,7 +566,8 @@ class Visitor2(object):
             param.setPadre(symbol_Table)
             symbol_Table.agregar(param)
             symbol_Table.agregarParam(param)
-            self.ast += str(id_nodoParam) + '[label= "' + param_p.nombre + ': ' + param_p.def_tipo_p + ' ' + param_p.ID_t + '" ];\n\t'
+            #self.ast += str(id_nodoParam) + '[label= "' + param_p.nombre + ': ' + param_p.def_tipo_p + ' ' + param_p.ID_t + '" ];\n\t'
+            self.ast += '"Error Param ' + str(id_nodoParam) + '"' + '\n'
 
         else:
 
@@ -509,8 +575,8 @@ class Visitor2(object):
             param.setPadre(symbol_Table)
             symbol_Table.agregar(param)
             symbol_Table.agregarParam(param)
-            self.ast += str(id_nodoParam) + '[label= "' + param_p.nombre + ': ' + param_p.def_tipo_p + param_p.Lt_Rt + ' ' + param_p.ID_t + '" ];\n\t'
-
+            #self.ast += str(id_nodoParam) + '[label= "' + param_p.nombre + ': ' + param_p.def_tipo_p + param_p.Lt_Rt + ' ' + param_p.ID_t + '" ];\n\t'
+            self.ast += '"Error Param ' + str(id_nodoParam) + '"' + '\n'
 
 
     def visit_nodoSentenciaComp(self,sentencia_comp_p,symbol_Table):
@@ -531,19 +597,21 @@ class Visitor2(object):
 
                 #sentencia_comp_p = sentencia_comp_p.accept2(self,symbol_Table)
 
-                local = local.accept2(self,symbol_Table)
+                #local = local.accept2(self,symbol_Table)
 
                 #self.ast += str(id_sentencia_comp) + "->" + str(sentencia_comp_p) + "\n\t"
-                self.ast += str(id_sentencia_comp) + "->" + str(local) + "\n\t"
+                #self.ast += str(id_sentencia_comp) + "->" + str(local) + "\n\t"
+
+                print("relleno local.nombre")
 
             for state in sentencia_comp_p.lista_sentencias_p:
                 print("soy un while o if")
                 print(state.nombre)
                 if state.nombre != "vacio":
                     print("dentro if state.nombre")
-                    state = state.accept2(self,symbol_Table)
-                    self.ast += str(id_sentencia_comp) + "->" + str(state) + "\n\t"
-            self.ast += str(id_sentencia_comp) + "[label= " + sentencia_comp_p.nombre+ "];" + "\n\t"
+                    #state = state.accept2(self,symbol_Table)
+                    #self.ast += str(id_sentencia_comp) + "->" + str(state) + "\n\t"
+            #self.ast += str(id_sentencia_comp) + "[label= " + sentencia_comp_p.nombre+ "];" + "\n\t"
 
     def visit_nodoExpresion(self,expresion_p,symbol_Table):
 
@@ -551,7 +619,7 @@ class Visitor2(object):
 
         id_sentencia_expr = self.id_sentencia_expr
 
-        #listSymbol = st.getNodos()
+        listSymbol = st.getNodos()
 
         listaNodosActual = symbol_Table.getNodos()
 

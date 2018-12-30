@@ -1,0 +1,89 @@
+digraph G {
+	"Programa 1" -> "Error Nodo Declaracion Var 1"
+	1 [label="VACUO"]
+	"Error Nodo Declaracion Var 1" -> 1
+	2 [label="abc"]
+	"Error Nodo Declaracion Var 1" -> 2
+	"Programa 1" -> "Error Nodo Declaracion Var 2"
+	3 [label="vaCuo"]
+	"Error Nodo Declaracion Var 2" -> 3
+	4 [label="abc"]
+	"Error Nodo Declaracion Var 2" -> 4
+	"Programa 1" -> "Error Nodo Declaracion Var 3"
+	5 [label="ent"]
+	"Error Nodo Declaracion Var 3" -> 5
+	6 [label="abc"]
+	"Error Nodo Declaracion Var 3" -> 6
+	7 [label="123"]
+	"Error Nodo Declaracion Var 3" -> 7
+	"Programa 1" -> "Error Nodo Declaracion Var 4"
+	8 [label="ent"]
+	"Error Nodo Declaracion Var 4" -> 8
+	9 [label="aaa"]
+	"Error Nodo Declaracion Var 4" -> 9
+	"Programa 1" -> "Error Nodo Declaracion Var 5"
+	10 [label="ent"]
+	"Error Nodo Declaracion Var 5" -> 10
+	11 [label="aaa"]
+	"Error Nodo Declaracion Var 5" -> 11
+	"Programa 1" -> "Error Nodo Declaracion Fun 1"
+	12 [label="VACUO"]
+	"Error Nodo Declaracion Fun 1" -> 12
+	13 [label="ab"]
+	"Error Nodo Declaracion Fun 1" -> 13
+	"Error Nodo Declaracion Fun 1" -> "Error Param 1"
+	"Error Nodo Declaracion Fun 1" -> "Error Param 2"
+"Error Nodo Declaracion Fun 1"
+	"Error Nodo Declaracion Fun 1" -> 	"Programa 1" -> "Error Nodo Declaracion Fun 2"
+	14 [label="VACUO"]
+	"Error Nodo Declaracion Fun 2" -> 14
+	15 [label="ab"]
+	"Error Nodo Declaracion Fun 2" -> 15
+	"Error Nodo Declaracion Fun 2" -> "Error Param 3"
+	"Error Nodo Declaracion Fun 2" -> "Error Param 4"
+"Error Nodo Declaracion Fun 2"
+	"Error Nodo Declaracion Fun 2" -> 	"Programa 1" -> "Error Nodo Declaracion Fun 3"
+	16 [label="VACUO"]
+	"Error Nodo Declaracion Fun 3" -> 16
+	17 [label="ab"]
+	"Error Nodo Declaracion Fun 3" -> 17
+	"Error Nodo Declaracion Fun 3" -> "Error Param 5"
+	"Error Nodo Declaracion Fun 3" -> "Error Param 6"
+"Error Nodo Declaracion Fun 3"
+	"Error Nodo Declaracion Fun 3" -> 	"Programa 1" -> "Error Nodo Declaracion Fun 4"
+	18 [label="VACUO"]
+	"Error Nodo Declaracion Fun 4" -> 18
+	19 [label="kk"]
+	"Error Nodo Declaracion Fun 4" -> 19
+	"Error Nodo Declaracion Fun 4" -> "Error Param 7"
+	"Error Nodo Declaracion Fun 4" -> "Error Param 8"
+"Error Nodo Declaracion Fun 4"
+	"Error Nodo Declaracion Fun 4" -> 	"Programa 1" -> "Error Nodo Declaracion Fun 5"
+	20 [label="VACUO"]
+	"Error Nodo Declaracion Fun 5" -> 20
+	21 [label="ww"]
+	"Error Nodo Declaracion Fun 5" -> 21
+	"Error Nodo Declaracion Fun 5" -> "Error Param 9"
+"Error Nodo Declaracion Fun 5"
+	"Error Nodo Declaracion Fun 5" -> 	"Programa 1" -> "Error Nodo Declaracion Fun 6"
+	22 [label="VACUO"]
+	"Error Nodo Declaracion Fun 6" -> 22
+	23 [label="ii"]
+	"Error Nodo Declaracion Fun 6" -> 23
+	"Error Nodo Declaracion Fun 6" -> "Error Param 10"
+"Error Nodo Declaracion Fun 6"
+	"Error Nodo Declaracion Fun 6" -> 	"Programa 1" -> "Error Nodo Declaracion Fun 7"
+	24 [label="VACUO"]
+	"Error Nodo Declaracion Fun 7" -> 24
+	25 [label="ii"]
+	"Error Nodo Declaracion Fun 7" -> 25
+	"Error Nodo Declaracion Fun 7" -> "Error Param 11"
+"Error Nodo Declaracion Fun 7"
+	"Error Nodo Declaracion Fun 7" -> 	"Programa 1" -> "Error Nodo Declaracion Fun 8"
+	26 [label="VACUO"]
+	"Error Nodo Declaracion Fun 8" -> 26
+	27 [label="ii"]
+	"Error Nodo Declaracion Fun 8" -> 27
+	"Error Nodo Declaracion Fun 8" -> "Error Param 12"
+"Error Nodo Declaracion Fun 8"
+	"Error Nodo Declaracion Fun 8" -> }

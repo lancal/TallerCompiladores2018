@@ -21,7 +21,7 @@ class Program(Nodo):
 
     def accept2(self,visitor,symbol_Table):
 
-       visitor.visit_program(self,symbol_Table)
+        visitor.visit_program(self,symbol_Table)
 
 class nodoDeclaracionVar(Nodo):
 
@@ -36,6 +36,7 @@ class nodoDeclaracionVar(Nodo):
         self.nombre = 'Declaracion Var '
         self.patron = re.compile(r'vacuo',re.I)
         self.arreglo = self.patron.findall(self.def_tipo_p)
+        self.nombre2 = 'Error Nodo Declaracion Var '
 
         #print(self.arreglo)
 
@@ -66,6 +67,7 @@ class nodoDeclaracionFun(Nodo):
         self.parametros_p = parametros_p
         self.sentencia_comp_p = sentencia_comp_p
         self.nombre = 'Declaracion Fun '
+        self.nombre2 = 'Error Nodo Declaracion Fun '
 
     def accept(self,visitor):
 
@@ -84,6 +86,7 @@ class nodoParam(Nodo):
         self.thereis_ID = thereis_ID
         self.Lt_Rt = Lt_Rt
         self.nombre = 'Param '
+        self.nombre2 = 'Error Param '
 
     def accept(self,visitor):
         visitor.visit_nodoParam(self)
@@ -102,6 +105,7 @@ class nodoSentenciaComp(Nodo):
         self.is_vacio = is_vacio
         self.vacio_t = vacio_t
         self.nombre = 'Sentencia Comp '
+        self.nombre2 = 'Error Sentencia Comp'
 
     def accept(self,visitor):
         visitor.visit_nodoSentenciaComp(self)
