@@ -1,2 +1,9 @@
 digraph G {
-	"Programa 1" -> 	"Programa 1" -> 	"Programa 1" -> 	"Programa 1" -> 	"Programa 1" -> }
+	3[label= "Param : ent a" ];
+	2->21
+	4[label= Sentencia Comp ];
+	2->22
+	2[label= "Declaracion Fun : ent yy" ];
+	1->11
+	1[label= Program ];
+	}

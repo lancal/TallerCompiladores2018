@@ -242,6 +242,10 @@ class nodoVacio():
     def accept(self,visitor):
         visitor.visit_nodoVacio(self)
 
+    def accept2(self, visitor, symbol_Table):
+
+        visitor.visit_nodoVacio(self, symbol_Table)
+
 class nodoBinarioOP(Nodo):
 
     def __init__(self,is_rama = False,ramaIzq_p=None, ramaDer_p=None, operacion_p=None,nombre2 = None):

@@ -80,7 +80,7 @@ def p_declaracion_fun(p):
     #Regla 6
     """declaracion_fun : def_tipo ID LBRACKET parametros RBRACKET sentencia_comp"""
     #"""declaracion_fun : def_tipo ID LBRACKET parametros RBRACKET"""
-    p[0] = nodos.nodoDeclaracionFun(p[1],p[2],p[4],p[6])
+    p[0] = [nodos.nodoDeclaracionFun(p[1],p[2],p[4],p[6])]
 
 def p_parametros(p):
     #Regla 7
@@ -90,7 +90,8 @@ def p_parametros(p):
 def p_parametros2(p):
     #Regla 7
     """parametros : VACUO"""
-    p[0] = nodos.nodoParam(p[1])
+    #p[0] = nodos.nodoParam(p[1])
+    p[0] = p[1]
 
 
 def p_lista_parametros(p):
@@ -114,12 +115,14 @@ def p_lista_parametros2(p):
 def p_param(p):
     #Regla 9
     """param : def_tipo ID"""
-    p[0] = nodos.nodoParam(p[1],thereis_ID=True, ID_t= p[2])
+    p[0] = [nodos.nodoParam(p[1],thereis_ID=True, ID_t= p[2])]
+    #if len(p)==3:
+     #   p[0] = nodos.nodoParam(p[1],thereis_ID=True, ID_t= p[2])
 
 def p_param2(p):
     #Regla 9
     """param : def_tipo ID LTCOMMENT RTCOMMENT"""
-    p[0] = nodos.nodoParam(p[1], thereis_ID=True, ID_t= p[2],Lt_Rt='< >')
+    p[0] = [nodos.nodoParam(p[1], thereis_ID=True, ID_t= p[2],Lt_Rt='< > ')]
 
 def p_sentencia_comp(p):
     #Regla 10
